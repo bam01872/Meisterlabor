@@ -1,0 +1,16 @@
+name: check
+on:
+  push: {branches: [main]}
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 20}
+      - run: npm i --no-save playwright@1.48.2
+      - run: npx playwright install --with-deps chromium
+        timeout-minutes: 8
+      - run: node tests/check.js
