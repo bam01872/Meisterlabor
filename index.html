@@ -2540,5 +2540,32 @@ X['Arbeitsgericht & Beendigung']={
 if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
 
 </script>
+<style>/* ===== Version 6: Fußzeile mit Impressum, Datenschutz, Hinweisen und „Fehler melden“ wie im Lernlabor ===== */
+#ft .ftl{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
+#ft .ftl button,#ft .ftrep{font:inherit;color:inherit;background:none;border:0;padding:0 6px;min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#ft .ftrep{padding:0;min-height:0;display:inline}#ft .ftl button:first-child{padding-left:0}#ft .ftk{margin:0 0 2px}#ft .ft-c{margin:2px 0 0}
+#ft>details:not([open]){display:none}#ft details{margin:6px 0}#ft summary{cursor:pointer;font-weight:700;line-height:44px}#ft p{max-width:64ch}
+.rep6{margin:10px 0 0;text-align:right}.rep6 button{font:inherit;font-size:14px;color:var(--mute);background:none;border:0;padding:0 4px;min-height:44px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.rep6 button:hover{color:var(--brand)}
+</style>
+<script>/* ===== Version 6: Impressum, Datenschutz, Hinweise, Fehler melden ===== */
+(()=>{const APPV=6,OW='Dr. rer. nat. Markus Baum',MAIL=['baum.ma91','yahoo.de'].join('@'),AD='Am alten Schlachthof 2<br>93053 Regensburg';
+ const dev=()=>'Gerät: '+innerWidth+' × '+innerHeight+' px, '+(navigator.userAgent||'').slice(0,120);
+ const mail=(sub,lines)=>{location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Fehler im Meisterlabor: '+sub)+'&body='+encodeURIComponent(lines.concat(['Version: '+APPV,dev(),'','Was ist falsch?','']).join('\n'))};
+ /* Fußzeile */
+ const vf=document.querySelector('.ftr');if(vf){const ft=document.createElement('footer');ft.id='ft';ft.className='ftr';
+  ft.innerHTML='<nav class="ftl" aria-label="Impressum und Datenschutz"><button type="button" data-ft="Impressum">Impressum</button><span aria-hidden="true">·</span><button type="button" data-ft="Datenschutz">Datenschutz</button><span aria-hidden="true">·</span><button type="button" data-ft="Hinweise">Hinweise</button></nav><p class="ftk">🔒 Dein Lernstand bleibt auf Deinem Gerät · keine Konten · kein Tracking</p><p class="ft-c">© 2026 '+OW+' · Version '+APPV+' · Weitergabe nur mit Erlaubnis</p>'
+  +'<details><summary>Hinweise</summary><p>Alle Aufgaben sind eigene Aufgaben und keine IHK-Prüfungsaufgaben. Ich prüfe die Inhalte sorgfältig, Fehler sind trotzdem möglich. Beträge, Grenzen und Fristen haben den Rechtsstand Herbst 2026 und dienen zum Üben. Maßgeblich sind die aktuellen Gesetze und die Angaben Deiner IHK. Das Meisterlabor ersetzt keinen Lehrgang und keine Rechtsberatung und garantiert keinen Prüfungserfolg.</p><p>Einen Fehler gefunden? Schreib mir über „Fehler melden“ unten auf jeder Themenseite oder <button type="button" class="ftrep">hier per E-Mail</button>.</p></details>'
+  +'<details><summary>Impressum</summary><p>Angaben gemäß § 5 DDG</p><p>'+OW+'<br>'+AD+'</p><p>E-Mail: '+MAIL+'</p><p>Das Meisterlabor ist ein privates Lernangebot. Es steht in keiner Verbindung zur IHK oder zum DIHK.</p><p><b>Urheberrecht:</b> Aufgaben, Texte, Grafiken und Programm des Meisterlabors sind urheberrechtlich geschützt. Du darfst sie für Dein eigenes Lernen nutzen. Kopieren, Weitergeben oder Veröffentlichen, auch in Teilen, ist nur mit meiner schriftlichen Erlaubnis gestattet.</p></details>'
+  +'<details><summary>Datenschutz</summary><p>Verantwortlich: '+OW+', '+AD.replace('<br>',', ')+', '+MAIL+'</p><p><b>Dein Lernstand:</b> Das Meisterlabor speichert Deinen Lernstand, Deine Vermutungen und Deine Kurstermine nur in Deinem Browser auf Deinem Gerät. Sie werden nicht automatisch an mich oder andere übertragen. Wenn Du die Browserdaten löschst, ist auch der Lernstand weg.</p><p><b>Fehler melden:</b> Der Knopf öffnet Dein eigenes E-Mail-Programm mit einem Entwurf (Thema, Version, Bildschirmgröße und Browser). Gesendet wird erst, wenn Du selbst auf Senden tippst. Ich nutze die Mail nur, um Dir zu antworten und den Fehler zu beheben.</p><p><b>Hosting:</b> Die Seite liegt bei GitHub Pages (GitHub Inc., USA). Beim Aufruf verarbeitet GitHub technisch nötige Zugriffsdaten, zum Beispiel Deine IP-Adresse, um die Seite auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren Bereitstellung). Die Übermittlung in die USA stützt sich auf das EU-US Data Privacy Framework.</p><p>Keine Cookies, kein Tracking, keine Werbung.</p><p><b>Deine Rechte:</b> Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Datenschutz-Aufsichtsbehörde (in Bayern für Private: Bayerisches Landesamt für Datenschutzaufsicht).</p></details>';
+  vf.replaceWith(ft);
+  ft.querySelectorAll('.ftl button[data-ft]').forEach(b=>b.onclick=()=>{let t=null;ft.querySelectorAll(':scope>details').forEach(d=>{const m=d.querySelector('summary').textContent.trim()===b.dataset.ft;d.open=m&&!d.open;if(d.open)t=d});if(t)t.scrollIntoView({behavior:'smooth',block:'nearest'})});
+  ft.querySelector('.ftrep').onclick=()=>{const f=typeof tab!=='undefined'&&FACH.includes(tab)?tab:null;mail(f?D[f].modules[modSel[f]].t:'allgemein',f?['Fach: '+D[f].kurz,'Thema: '+D[f].modules[modSel[f]].t]:['Seite: '+(typeof tab!=='undefined'?tab:'?')])}}
+ /* Themenseite: „Fehler melden“ klein am Ende */
+ const fach6=fach;
+ fach=function(f){fach6(f);const v=$('#view'),mod=D[f].modules[modSel[f]],p=el('<button type="button">⚑ Fehler melden</button>','rep6');
+  p.firstChild.onclick=()=>mail(mod.t,['Fach: '+D[f].kurz,'Thema: '+mod.t]);v.append(p)};
+ if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
+</script>
 </body>
 </html>
