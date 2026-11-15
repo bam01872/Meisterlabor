@@ -1,6 +1,6 @@
 {
- "name": "Meisterlabor Basis: ReHa, BeHa, MIKP, ZiB",
- "short_name": "Meisterlabor",
+ "name": "Lernlabor Betrieb: ReHa, BeHa, MIKP, ZiB",
+ "short_name": "LL Betrieb",
  "description": "Lernen und Üben für die Basisqualifikationen der Industriemeister",
  "start_url": "./",
  "scope": "./",

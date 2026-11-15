@@ -1,4 +1,4 @@
-# Meisterlabor
+# Lernlabor Betrieb (früher Meisterlabor)
 
 Lern-App für die Basisqualifikationen der IHK-Industriemeister: Rechtsbewusstes Handeln (ReHa), Betriebswirtschaftliches Handeln (BeHa), Information, Kommunikation und Planung (MIKP) und Zusammenarbeit im Betrieb (ZiB). Schwester-App des [Lernlabors](https://github.com/bam01872/Lernlabor) (NTG).
 
