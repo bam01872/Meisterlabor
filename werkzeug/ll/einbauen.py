@@ -3,7 +3,7 @@
 Aufruf im Repo-Ordner: python3 werkzeug/ll/einbauen.py
 Version und Datum stehen nur hier (APPV, APPD); daraus entstehen die Angaben in der App und sw.js."""
 import os,re
-APPV,APPD=9,'16.11.2026'
+APPV,APPD=10,'16.11.2026'
 R=os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 W=os.path.join(R,'werkzeug','ll')
 rd=lambda n:open(os.path.join(W,n),encoding='utf-8').read()
@@ -14,7 +14,7 @@ s=s.replace('<meta charset="utf-8">','<meta charset="utf-8">\n<script>const APPV
 old="<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>"
 new="<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>{const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&window.llUpdate)window.llUpdate()});navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})});setInterval(()=>r.update().catch(()=>{}),36e5)}).catch(()=>{})});</script>"
 s=s.replace(old,new)
-blk='<!--LL8-->\n<style>'+rd('ll.css')+'</style>\n'+''.join('<script>'+rd(n)+'</script>\n' for n in ['ll-thema.js','qrcode.js','ll-bedienung.js','ll-audit.js','ll-umbruch.js','ll-update.js'])+'<!--/LL8-->\n'
+blk='<!--LL8-->\n<style>'+rd('ll.css')+'</style>\n'+''.join('<script>'+rd(n)+'</script>\n' for n in ['ll-thema.js','qrcode.js','ll-tutorial.js','ll-bedienung.js','ll-audit.js','ll-umbruch.js','ll-update.js'])+'<!--/LL8-->\n'
 mk='<style>/* ===== Version 6'
 assert mk in s;s=s.replace(mk,blk+mk,1)
 s=s.replace('(()=>{const APPV=7,OW=','(()=>{const OW=').replace('(()=>{const APPV=8,OW=','(()=>{const OW=')
