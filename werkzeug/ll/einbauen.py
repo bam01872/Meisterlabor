@@ -3,7 +3,7 @@
 Aufruf im Repo-Ordner: python3 werkzeug/ll/einbauen.py
 Version und Datum stehen nur hier (APPV, APPD); daraus entstehen die Angaben in der App und sw.js."""
 import os,re
-APPV,APPD=8,'16.11.2026'
+APPV,APPD=9,'16.11.2026'
 R=os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 W=os.path.join(R,'werkzeug','ll')
 rd=lambda n:open(os.path.join(W,n),encoding='utf-8').read()
