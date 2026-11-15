@@ -30,9 +30,9 @@ body.subpg .brand .bpro{font-size:.5em}
 .tdesc{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
 .tdesc.cl{display:block;-webkit-line-clamp:unset;max-height:3em;line-height:1.5;overflow:hidden;position:relative;cursor:pointer}
 .tdesc.cl.ov{-webkit-mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));-webkit-mask-size:100% 1.5em,100% 1.5em;mask-size:100% 1.5em,100% 1.5em;-webkit-mask-position:0 0,0 1.5em;mask-position:0 0,0 1.5em;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.tdots{display:block;position:relative;height:0;pointer-events:none}.tdots::after{content:'…';position:absolute;right:0;bottom:6px;font-size:16px;line-height:24px}
+span.tdots{display:block;position:relative;height:0;pointer-events:none}span.tdots::after{content:'…';position:absolute;right:0;bottom:6px;font-size:16px;line-height:24px}
 .tdesc:not(.cl.ov)+.tdots{display:none}
-@media(min-width:900px){.tdesc.cl{max-height:none;-webkit-mask-image:none;mask-image:none;cursor:auto}.tdots{display:none}}
+@media(min-width:900px){.tdesc.cl{max-height:none;-webkit-mask-image:none;mask-image:none;cursor:auto}span.tdots{display:none}}
 /* Fachrichtungen, Im Betrieb, Kästen */
 .box h2.bx2{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
 .ibc h3{margin:0 0 4px}.ibc .ibm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 10px}.ibc .ibm .tag,.tag.ibt{color:#fff}
@@ -244,3 +244,51 @@ body.subpg .brand .bpro{font-size:.5em}
 .frp .frs .frn{min-width:0}
 @media(max-width:360px){.frp .frs{gap:4px;padding:4px}}
 @media(min-width:560px){.frp .frs button{font-size:15px;padding:8px 12px;column-gap:8px}}
+
+/* ===== Version 10: Tutorial wie im Lernlabor ===== */
+#tut .tuh{display:flex;gap:12px;align-items:flex-start}#tut .tuh h2{margin:0 0 4px}
+.tunav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:12px -4px 4px;padding:2px 4px 6px;scroll-snap-type:x proximity}.tunav::-webkit-scrollbar{display:none}
+.tunav button{flex:0 0 auto;scroll-snap-align:start;display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 12px 7px 7px;font:inherit;font-size:.9em;font-weight:600;min-height:40px;cursor:pointer;white-space:nowrap}
+.tunav button i{font-style:normal;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:color-mix(in srgb,var(--acc) 12%,var(--card));color:var(--acc);font-size:.85em;font-weight:800}
+.tunav button.dn i{background:var(--ok);color:#fff}
+.tunav button[aria-current="true"]{background:var(--acc);border-color:var(--acc);color:#fff}.tunav button[aria-current="true"] i{background:#fff;color:var(--acc)}
+.tuk h3{font-size:1.25em;margin:6px 0 4px}.tuk .tuz{color:var(--mute);margin:0 0 10px}
+.tupt{list-style:none;padding:0;margin:0 0 12px}.tupt li{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);line-height:1.45}.tupt li:last-child{border-bottom:0}
+.tupt li>span:first-child{flex:0 0 1.6em;text-align:center;font-size:1.15em}.tupt b{font-weight:700}
+.tudemo{border:2px dashed color-mix(in srgb,var(--acc) 40%,var(--line));border-radius:16px;padding:12px;margin:10px 0 12px;background:color-mix(in srgb,var(--acc) 4%,var(--card))}
+.tudemo>h4{margin:0 0 8px;font-size:.8em;letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.tugo{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 6px}
+.tubt{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.tubt button{min-height:44px}.tubt .sub{font-size:.9em}
+/* Kapitel 1: Menüband zum Antippen */
+.tumb{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:4px}
+.tumb button{border:0;background:none;color:var(--ink);font:inherit;font-size:.78em;font-weight:700;border-radius:12px;padding:6px 2px;min-height:52px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer}
+.tumb button span{font-size:1.5em;line-height:1}.tumb button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.tumbl{margin:8px 0 0;padding:10px 12px;border-radius:12px;background:var(--card);border:1px solid var(--line);min-height:3em}
+.tumbl ul{margin:6px 0 0;padding-left:1.1em}.tumbl li{margin:2px 0}
+.tuweg{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:.9em;margin:2px 0}.tuweg span{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:4px 8px}.tuweg b{color:var(--mute)}
+/* Kapitel 2: Schrittleiste */
+.tusl{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.tusl button{border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit;font-size:.8em;font-weight:600;border-radius:999px;padding:6px 4px;min-height:40px;cursor:pointer;white-space:nowrap}
+.tusl button[aria-pressed="true"]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc);color:var(--acc)}
+.tufa{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px;margin:4px 0 10px}
+.tufa button{display:flex;justify-content:space-between;gap:6px;align-items:center;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:8px 10px;font:inherit;font-size:.9em;font-weight:600;cursor:pointer;text-align:left;min-height:44px}.tufa .tucn{color:var(--mute);font-weight:500;white-space:nowrap;flex:none}
+/* Kapitel 3: Bedienleiste des Erklärvideos */
+.tupl{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.tupl span{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:5px 9px;font-size:.88em;font-weight:600}
+.tuple{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:10px 0 0;font-size:.92em}.tuple dt{font-weight:700;white-space:nowrap}.tuple dd{margin:0}
+/* Kapitel 4: Mini-Simulation */
+/* Kapitel 5: Mini-Aufgabe */
+.tuq{font-size:1.05em;margin:0 0 8px}.tuin{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.tuin input{width:9em;font:inherit;padding:9px 10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink)}
+.tufb{margin:8px 0 0;padding:8px 12px;border-radius:10px;font-weight:600}.tufb.ok{background:color-mix(in srgb,var(--ok) 12%,var(--card));color:var(--ok)}.tufb.no{background:color-mix(in srgb,var(--red,#dc2626) 10%,var(--card))}
+.tulw{margin:8px 0 0;padding:8px 12px;border-radius:10px;background:var(--card);border:1px solid var(--line)}.tulw p{margin:4px 0}
+.tubet{display:block;margin:10px 0 2px;padding:10px 12px;border-radius:12px;border:1px solid color-mix(in srgb,var(--amber) 55%,var(--line));background:color-mix(in srgb,var(--amber) 13%,var(--card));line-height:1.45}.tubet b{display:block;margin-bottom:2px}
+.tust{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 0}.tust span{border-radius:999px;padding:4px 10px;font-size:.88em;font-weight:600;border:1px solid var(--line);background:var(--card)}
+/* Kapitel 6: Aufgabentypen */
+.tuty{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:4px 0 10px}
+.tuty>div{border:1px solid var(--line);border-radius:14px;padding:10px 12px;background:var(--card);display:flex;flex-direction:column;gap:6px}
+.tuty h4{margin:0;font-size:1em}.tuty p{margin:0;font-size:.92em;line-height:1.45}.tutyh{display:flex;justify-content:space-between;align-items:center;gap:8px}.tutyh .chip{flex:none}
+.tuwg{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:.88em;font-weight:600}.tuwg span{background:color-mix(in srgb,var(--acc) 10%,var(--card));border-radius:999px;padding:4px 10px}.tuwg b{color:var(--mute)}
+
+/* RES-03 aus dem Lernlabor: Menüband auf sehr schmalen Handys einzeilig, alle Reiter gleich hoch */
+@media(max-width:359px){#fs button{font-size:11px;letter-spacing:-.01em;white-space:nowrap;padding:6px 1px}}
+#tut .btn:disabled{opacity:.45;cursor:default}
+#tut .tupt,#tut .tuz,#tut .tuh p,#tut .tuq{max-width:75ch}#tut .tubt .sub{margin:0}
