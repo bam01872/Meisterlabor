@@ -1404,7 +1404,7 @@ let tab='home',modSel={reha:0,beha:0,mikp:0,zib:0},simTimer=null;
 function setAcc(f){document.documentElement.style.setProperty('--acc',f&&D[f]?D[f].col:'#0f766e')}
 function go(t){if(t==='send'){go('stand');const r=$('#rsh');if(r)r.closest('.panel').scrollIntoView({block:'start'});return}KI.stop();tab=t;if(simTimer&&t!=='sim'){clearInterval(simTimer);simTimer=null}setAcc(FACH.includes(t)?t:null);nav();draw()}
 function nav(){const inF=FACH.includes(tab);document.body.classList.toggle('subpg',tab!=='home');
- const NG=[['🏠','Start',['home']],inF?[FEM[tab],D[tab].kurz,FACH]:['📚','Fächer',FACH],['🎓','Prüfen',['uben','fall','oral','sim','kipruf']],['👤','Ich',['stand','send','kitutor','tour',...(DOZENT?['doz']:[])]]];
+ const NG=[['🏠','Start',['home']],inF?[FEM[tab],D[tab].kurz,FACH]:['📚','Fächer',FACH],['🎓','Prüfen',['uben','fall','oral','sim']],['👤','Ich',['stand','send','tour',...(DOZENT?['doz']:[])]]];
  nmClose();$('#fs').innerHTML=NG.map((g,i)=>'<button type="button" data-g="'+i+'" aria-pressed="'+g[2].includes(tab)+'"'+(i?' aria-haspopup="menu" aria-expanded="false"':'')+'><span class="ni" aria-hidden="true">'+g[0]+'</span><span>'+esc(g[1])+'</span></button>').join('');
  $('#fs').querySelectorAll('button').forEach(b=>b.onclick=()=>{const g=+b.dataset.g;if(!g){nmClose();go('home');window.scrollTo(0,0);return}if(NMO===g){nmClose();return}nmClose();NMO=g;b.setAttribute('aria-expanded','true');const m=$('#nm');
   m.innerHTML='<h3>'+(g===1?'Fächer':NG[g][1])+'</h3>'+NG[g][2].map(k=>{const l=TL[k],sp=l.indexOf(' '),ic='<span class="mi">'+l.slice(0,sp)+'</span>';return '<button type="button" role="menuitem" data-k="'+k+'" aria-current="'+(tab===k)+'">'+ic+'<span>'+l.slice(sp+1)+'</span></button>'}).join('');m.style.left=innerWidth>=900?b.offsetLeft+'px':'';m.hidden=false;$('#nmb').hidden=false;
@@ -1540,9 +1540,9 @@ function fall(v){
  const show=()=>{area.innerHTML='';const c=CASES[fIdx];setAcc(c.f);let got=Array(c.tasks.length).fill(null);const max=c.tasks.reduce((s,t)=>s+t.p,0);
   area.append(el('<h2>'+D[c.f].icon+' '+esc(c.t)+'</h2><p>'+esc(c.txt)+'</p><p class="sub">Schreibe Deine Antwort, öffne dann den Erwartungshorizont und hake ab, welche Aspekte Du genannt hast. Daraus ergeben sich Deine Punkte.</p>','panel'));
   const tot=el('','panel');const upd=()=>{const g=got.reduce((s,x)=>s+(x||0),0);tot.innerHTML='<b>Punkte: '+nf(g,1)+' von '+max+'</b> ('+Math.round(g/max*100)+' %)'+(got.some(x=>x===null)?' <span class="sub">· noch nicht alle Teilaufgaben bewertet</span>':'');if(got.every(x=>x!==null))recCase(c.f,c.t,g,max)};
-  c.tasks.forEach((t,i)=>{const q=el('<p>'+(i+1)+'. '+esc(t.q)+' <span class="tag">'+t.p+' P.</span></p><textarea aria-label="Deine Antwort"></textarea><div class="row"><button class="btn sec">Erwartungshorizont zeigen</button><button class="btn sec" data-ki="1">🤖 KI bewerten</button></div><div class="kg"></div><div class="sol" hidden></div>','q');
+  c.tasks.forEach((t,i)=>{const q=el('<p>'+(i+1)+'. '+esc(t.q)+' <span class="tag">'+t.p+' P.</span></p><textarea aria-label="Deine Antwort"></textarea><div class="row"><button class="btn sec">Erwartungshorizont zeigen</button></div><div class="kg"></div><div class="sol" hidden></div>','q');
    const eh=ehBox(t,p=>{got[i]=p;upd()});q.querySelector('.sol').append(eh);
-   q.querySelector('.btn').onclick=()=>{q.querySelector('.sol').hidden=false;if(got[i]===null){got[i]=eh.points();upd()}};q.querySelector('[data-ki]').onclick=async()=>{const p=await KI.grade(q.querySelector('.kg'),t,q.querySelector('textarea').value,t.p);if(p!==null){got[i]=p;upd()}};
+   q.querySelector('.btn').onclick=()=>{q.querySelector('.sol').hidden=false;if(got[i]===null){got[i]=eh.points();upd()}};
    area.append(q)});
   area.append(tot);upd()};
  $('#fs').onchange=e=>{fIdx=+e.target.value;show()};show()}
@@ -2149,7 +2149,7 @@ fach=function(f){const v=$('#view'),d=D[f],ms=d.modules,m=modSel[f],mod=ms[m],gi
  const ut=el('<button type="button" class="btn">✏️ Gemischt üben in '+esc(d.kurz)+'</button>','ubt');ut.firstChild.onclick=()=>{uF=f;go('uben');scrollTo(0,0)};ub.append(ut);v.append(ub);
  if(E){const ns=el('<h2>Nachschlagen</h2>','panel nsl');
   ns.innerHTML+='<details><summary>💡 Verstehen</summary><p>'+esc(E[0])+'</p></details>'+(E[1]?'<details><summary>🏭 Im Betrieb</summary><p>'+esc(E[1])+'</p></details>':'')+'<details><summary>⚠️ Typische Fehler</summary><ul>'+E[2].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></details>';
-  const kd=el('<summary>🤖 Dazu die KI fragen</summary><p class="sub">Nur im Claude-Artifact verfügbar.</p>','');const kdd=document.createElement('details');kdd.innerHTML=kd.innerHTML;const kb=el('<button class="btn sec">KI-Tutor öffnen</button>','');kb.firstChild.onclick=()=>{kiPre={f,m};go('kitutor')};kdd.append(kb);ns.append(kdd);v.append(ns)}
+  v.append(ns)}
  rfPaint(key)};
 
 /* ---------- Startseite: „Dein nächster Schritt“ wie im Lernlabor ---------- */
@@ -2539,6 +2539,33 @@ X['Arbeitsgericht & Beendigung']={
 
 if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
 
+</script>
+<style>/* ===== Version 6: Fußzeile mit Impressum, Datenschutz, Hinweisen und „Fehler melden“ wie im Lernlabor ===== */
+#ft .ftl{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
+#ft .ftl button,#ft .ftrep{font:inherit;color:inherit;background:none;border:0;padding:0 6px;min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#ft .ftrep{padding:0;min-height:0;display:inline}#ft .ftl button:first-child{padding-left:0}#ft .ftk{margin:0 0 2px}#ft .ft-c{margin:2px 0 0}
+#ft>details:not([open]){display:none}#ft details{margin:6px 0}#ft summary{cursor:pointer;font-weight:700;line-height:44px}#ft p{max-width:64ch}
+.rep6{margin:10px 0 0;text-align:right}.rep6 button{font:inherit;font-size:14px;color:var(--mute);background:none;border:0;padding:0 4px;min-height:44px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.rep6 button:hover{color:var(--brand)}
+</style>
+<script>/* ===== Version 6: Impressum, Datenschutz, Hinweise, Fehler melden ===== */
+(()=>{const APPV=6,OW='Dr. rer. nat. Markus Baum',MAIL=['baum.ma91','yahoo.de'].join('@'),AD='Am alten Schlachthof 2<br>93053 Regensburg';
+ const dev=()=>'Gerät: '+innerWidth+' × '+innerHeight+' px, '+(navigator.userAgent||'').slice(0,120);
+ const mail=(sub,lines)=>{location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Fehler im Meisterlabor: '+sub)+'&body='+encodeURIComponent(lines.concat(['Version: '+APPV,dev(),'','Was ist falsch?','']).join('\n'))};
+ /* Fußzeile */
+ const vf=document.querySelector('.ftr');if(vf){const ft=document.createElement('footer');ft.id='ft';ft.className='ftr';
+  ft.innerHTML='<nav class="ftl" aria-label="Impressum und Datenschutz"><button type="button" data-ft="Impressum">Impressum</button><span aria-hidden="true">·</span><button type="button" data-ft="Datenschutz">Datenschutz</button><span aria-hidden="true">·</span><button type="button" data-ft="Hinweise">Hinweise</button></nav><p class="ftk">🔒 Dein Lernstand bleibt auf Deinem Gerät · keine Konten · kein Tracking</p><p class="ft-c">© 2026 '+OW+' · Version '+APPV+' · Weitergabe nur mit Erlaubnis</p>'
+  +'<details><summary>Hinweise</summary><p>Alle Aufgaben sind eigene Aufgaben und keine IHK-Prüfungsaufgaben. Ich prüfe die Inhalte sorgfältig, Fehler sind trotzdem möglich. Beträge, Grenzen und Fristen haben den Rechtsstand Herbst 2026 und dienen zum Üben. Maßgeblich sind die aktuellen Gesetze und die Angaben Deiner IHK. Das Meisterlabor ersetzt keinen Lehrgang und keine Rechtsberatung und garantiert keinen Prüfungserfolg.</p><p>Einen Fehler gefunden? Schreib mir über „Fehler melden“ unten auf jeder Themenseite oder <button type="button" class="ftrep">hier per E-Mail</button>.</p></details>'
+  +'<details><summary>Impressum</summary><p>Angaben gemäß § 5 DDG</p><p>'+OW+'<br>'+AD+'</p><p>E-Mail: '+MAIL+'</p><p>Das Meisterlabor ist ein privates Lernangebot. Es steht in keiner Verbindung zur IHK oder zum DIHK.</p><p><b>Urheberrecht:</b> Aufgaben, Texte, Grafiken und Programm des Meisterlabors sind urheberrechtlich geschützt. Du darfst sie für Dein eigenes Lernen nutzen. Kopieren, Weitergeben oder Veröffentlichen, auch in Teilen, ist nur mit meiner schriftlichen Erlaubnis gestattet.</p></details>'
+  +'<details><summary>Datenschutz</summary><p>Verantwortlich: '+OW+', '+AD.replace('<br>',', ')+', '+MAIL+'</p><p><b>Dein Lernstand:</b> Das Meisterlabor speichert Deinen Lernstand, Deine Vermutungen und Deine Kurstermine nur in Deinem Browser auf Deinem Gerät. Sie werden nicht automatisch an mich oder andere übertragen. Wenn Du die Browserdaten löschst, ist auch der Lernstand weg.</p><p><b>Fehler melden:</b> Der Knopf öffnet Dein eigenes E-Mail-Programm mit einem Entwurf (Thema, Version, Bildschirmgröße und Browser). Gesendet wird erst, wenn Du selbst auf Senden tippst. Ich nutze die Mail nur, um Dir zu antworten und den Fehler zu beheben.</p><p><b>Hosting:</b> Die Seite liegt bei GitHub Pages (GitHub Inc., USA). Beim Aufruf verarbeitet GitHub technisch nötige Zugriffsdaten, zum Beispiel Deine IP-Adresse, um die Seite auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren Bereitstellung). Die Übermittlung in die USA stützt sich auf das EU-US Data Privacy Framework.</p><p>Keine Cookies, kein Tracking, keine Werbung, keine KI.</p><p><b>Deine Rechte:</b> Auskunft, Berichtigung, Löschung, Einschränkung, Widerspruch und Beschwerde bei einer Datenschutz-Aufsichtsbehörde (in Bayern für Private: Bayerisches Landesamt für Datenschutzaufsicht).</p></details>';
+  vf.replaceWith(ft);
+  ft.querySelectorAll('.ftl button[data-ft]').forEach(b=>b.onclick=()=>{let t=null;ft.querySelectorAll(':scope>details').forEach(d=>{const m=d.querySelector('summary').textContent.trim()===b.dataset.ft;d.open=m&&!d.open;if(d.open)t=d});if(t)t.scrollIntoView({behavior:'smooth',block:'nearest'})});
+  ft.querySelector('.ftrep').onclick=()=>{const f=typeof tab!=='undefined'&&FACH.includes(tab)?tab:null;mail(f?D[f].modules[modSel[f]].t:'allgemein',f?['Fach: '+D[f].kurz,'Thema: '+D[f].modules[modSel[f]].t]:['Seite: '+(typeof tab!=='undefined'?tab:'?')])}}
+ /* Themenseite: „Fehler melden“ klein am Ende */
+ const fach6=fach;
+ fach=function(f){fach6(f);const v=$('#view'),mod=D[f].modules[modSel[f]],p=el('<button type="button">⚑ Fehler melden</button>','rep6');
+  p.firstChild.onclick=()=>mail(mod.t,['Fach: '+D[f].kurz,'Thema: '+mod.t]);v.append(p)};
+ if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
 </script>
 </body>
 </html>
