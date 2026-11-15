@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<script>const APPV=8,APPD='16.11.2026'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lernlabor Betrieb</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -1683,7 +1684,7 @@ TL.tour='🧭 So funktioniert das Lernlabor Betrieb';const go1=go;go=function(t)
 hdrInit();nav();draw();TOUR.start();
 
 </script>
-<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));</script>
+<script>if('serviceWorker' in navigator)window.addEventListener('load',()=>{const had=!!navigator.serviceWorker.controller;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(had&&window.llUpdate)window.llUpdate()});navigator.serviceWorker.register('sw.js').then(r=>{document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')r.update().catch(()=>{})});setInterval(()=>r.update().catch(()=>{}),36e5)}).catch(()=>{})});</script>
 <style>/* ===== Version 5: Lernlabor-Stil (Markenfarbe, Themenseite, Kurz erklärt) ===== */
 :root{--flow:#1f6fd1;--brand:#7c1628;--logo:#5e1120;--logo2:#ffb0b8}
 :root[data-brand=kupfer]{--brand:#b4531f;--logo:#0F1E33;--logo2:#E8955A}
@@ -2540,6 +2541,720 @@ X['Arbeitsgericht & Beendigung']={
 if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
 
 </script>
+<!--LL8-->
+<style>/* ===== Lernlabor Betrieb, Version 8: Gestaltung wie im Lernlabor (aus Lernlabor Pro übernommen) ===== */
+.brand .bpro{display:inline-block;font-size:.42em;font-weight:800;letter-spacing:.06em;background:var(--logo2);color:var(--logo);border-radius:6px;padding:.22em .4em .18em;margin-left:.35em;vertical-align:.6em}
+body.subpg .brand .bpro{font-size:.5em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 .15em;font-size:.95em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}.fr>span:last-child{padding:0 .25em}
+#mbx li,.sol div{white-space:normal}
+.psim .simg{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:720px){.psim .simg{grid-template-columns:minmax(0,1fr)}}
+.psim .simsv svg{width:100%;height:auto;display:block;background:color-mix(in srgb,var(--bg) 60%,var(--card));border:1px solid var(--line);border-radius:12px}
+.psim .rg{display:grid;grid-template-columns:1fr auto;gap:2px 8px;margin:10px 0 4px;font-size:15px}
+.psim .rg input{grid-column:1/-1;width:100%;accent-color:var(--acc)}
+
+.psim table{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px}
+.psim td{padding:5px 4px;border-top:1px solid var(--line)}.psim td:last-child{text-align:right;font-weight:600}
+.psim tr.tg td:last-child{color:var(--ok)}.psim tr.tr td:last-child{color:var(--red)}
+.psim .simfx{font-size:13px;margin-top:8px}
+.auf{--aufc:#4f46e5;--auft:#4338ca;border:1px solid color-mix(in srgb,var(--aufc) 40%,var(--line));border-left:4px solid var(--aufc);background:color-mix(in srgb,var(--aufc) 8%,var(--card));border-radius:12px;padding:2px 12px;margin-bottom:6px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .auf{--aufc:#818cf8;--auft:#a5b4fc}}
+:root[data-theme=dark] .auf{--aufc:#818cf8;--auft:#a5b4fc}
+.auf.aufok{--aufc:var(--ok);--auft:var(--ok)}
+.aufk{display:flex;gap:8px;align-items:center;width:100%;font:inherit;font-size:15px;text-align:left;color:var(--ink);background:none;border:0;padding:8px 0;cursor:pointer}
+.aufk b{color:var(--auft)}.aufz{flex:1}.aufa{color:var(--mute)}.aufk[aria-expanded=true] .aufa{transform:rotate(180deg)}
+.aufb p{margin:4px 0 8px}.aufr{margin:0 0 6px;font-weight:600;color:var(--ok)}.aufr:empty{display:none}
+.aufflash{animation:aufflash .7s ease-out}@keyframes aufflash{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+@media(prefers-reduced-motion:reduce){.aufflash{animation:none}}
+.wip{border-left:4px solid var(--amber)}.wip p{margin:2px 0 8px}
+.hqa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}@media(max-width:720px){.hqa{grid-template-columns:1fr}}
+.hqa>div{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:10px 12px;background:var(--card)}.hqa b{display:block}.hqa small{color:var(--mute)}
+/* Einleitungstext wie im Lernlabor (v301/v302): Blocksatz mit Silbentrennung, am Handy zweizeilig mit „…“ und mehr/weniger */
+.tdesc{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+.tdesc.cl{display:block;-webkit-line-clamp:unset;max-height:3em;line-height:1.5;overflow:hidden;position:relative;cursor:pointer}
+.tdesc.cl.ov{-webkit-mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));-webkit-mask-size:100% 1.5em,100% 1.5em;mask-size:100% 1.5em,100% 1.5em;-webkit-mask-position:0 0,0 1.5em;mask-position:0 0,0 1.5em;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.tdots{display:block;position:relative;height:0;pointer-events:none}.tdots::after{content:'…';position:absolute;right:0;bottom:6px;font-size:16px;line-height:24px}
+.tdesc:not(.cl.ov)+.tdots{display:none}
+@media(min-width:900px){.tdesc.cl{max-height:none;-webkit-mask-image:none;mask-image:none;cursor:auto}.tdots{display:none}}
+/* Fachrichtungen, Im Betrieb, Kästen */
+.box h2.bx2{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.ibc h3{margin:0 0 4px}.ibc .ibm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 10px}.ibc .ibm .tag,.tag.ibt{color:#fff}
+#fsel{max-width:100%;min-width:0;width:100%}.row label:has(#fsel){min-width:0;max-width:100%;flex:1 1 100%}
+
+/* Wischleisten unter „Thema wechseln“ wie im Lernlabor */
+.thm.wls{max-height:none;overflow:visible;padding:10px 8px}
+.wlw{position:relative;margin:2px 0}
+.wlw+.wlw{margin-top:8px}
+.thm .wl{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 4px}
+.thm .wl::-webkit-scrollbar{display:none}
+.thm .wl button{flex:none;white-space:nowrap;min-height:40px}
+.thm .wl[data-k=g] button{font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:var(--acc);border-color:transparent;background:transparent}
+.thm .wl[data-k=g] button[aria-pressed=true]{color:var(--ink);border-color:var(--acc);background:var(--card);box-shadow:inset 0 0 0 1px var(--acc)}
+.wla{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;line-height:1;display:none;place-items:center;cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.wla.l{left:-4px}.wla.r{right:-4px}
+.wlw.ml .wla.l,.wlw.mr .wla.r{display:grid}
+.wlw.ml .wl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px);mask-image:linear-gradient(90deg,transparent 0,#000 44px)}
+.wlw.mr .wl{-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 44px);mask-image:linear-gradient(270deg,transparent 0,#000 44px)}
+.wlw.ml.mr .wl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%)}
+/* Üben am Schluss, eingeklappt */
+.uebk{display:flex;align-items:center;gap:10px;width:100%;font:inherit;color:var(--ink);background:none;border:0;padding:2px 0;cursor:pointer;text-align:left;min-height:44px}
+.uebk .uebt{font-size:19px;font-weight:800;flex:none}
+.uebk .uebz{flex:1 1 auto;min-width:0;font-size:14px;color:var(--mute)}
+.uebk .ueba{flex:none;color:var(--mute)}
+.uebb{margin-top:8px}
+.thk{flex-wrap:nowrap;align-items:flex-start}
+.thk .crb{white-space:normal;text-align:left}
+.thm.wls{background:none;border:0;box-shadow:none;padding:0;margin:6px 0 10px;border-radius:0}
+.thm .wl[data-k=g] button{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600;padding:8px 14px}
+.thm .wl[data-k=g] button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff;box-shadow:none}
+.thm .wl[data-k=t] button{font-size:14px;border-radius:10px;padding:6px 12px}
+.thm.wls:not([hidden])+#ms5{display:none}
+
+/* ===== Version 4: Bedienung wie im Lernlabor ===== */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[data-ki]{display:none!important}
+@media(max-width:520px){#rfs{gap:3px}#rfs button{font-size:12px;gap:3px;padding:3px 4px;min-width:0}#rfs button .n{width:18px;height:18px;font-size:11px}#rfs button .t{overflow:hidden;text-overflow:ellipsis}}
+#fs button[aria-pressed=true]{background:var(--logo)!important;box-shadow:0 2px 10px color-mix(in srgb,var(--logo) 40%,transparent)!important}
+/* Regler */
+.psim>h2{margin-bottom:0}.psim .simn{margin:0 0 10px;font-size:14px}
+.psim .rg2{display:grid;grid-template-columns:minmax(0,1fr) 76px minmax(2.2em,auto);gap:2px 8px;align-items:center;margin:10px 0 4px;font-size:15px}
+.psim .rg2 .rgl{grid-column:1/-1;font-weight:700}
+.psim .rg2 input[type=range]{width:100%;height:28px;accent-color:var(--acc);margin:0}
+.psim .rg2 input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--acc) var(--p,50%),color-mix(in srgb,var(--mute) 35%,transparent) var(--p,50%))}
+.psim .rg2 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;margin-top:-9px;border-radius:50%;background:var(--card);border:3px solid var(--acc);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.psim .rg2 input[type=range]{-webkit-appearance:none;appearance:none;background:transparent}
+.psim .rg2 input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:color-mix(in srgb,var(--mute) 35%,transparent)}
+.psim .rg2 input[type=range]::-moz-range-progress{height:8px;border-radius:99px;background:var(--acc)}
+.psim .rg2 input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:3px solid var(--acc)}
+.psim .rgn{width:100%;min-width:0;font:inherit;font-weight:600;text-align:right;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 8px;min-height:36px}
+.psim .rgv{text-align:right}
+.psim .rgu{color:var(--mute);font-size:14px;white-space:nowrap}
+.psim .rgh{grid-column:1/-1;margin:2px 0 0;font-size:13.5px;color:var(--mute)}
+.psim .rghb{font:inherit;font-weight:700;color:var(--acc);background:none;border:1px solid var(--line);border-radius:8px;padding:2px 8px;cursor:pointer}
+.psim .simb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 10px}
+.psim .simb .btn{margin:0;min-height:40px}.psim .simb .ubb{background:var(--logo);color:#fff}
+.psim .more{position:relative}.psim .more>summary{list-style:none;font-weight:700;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;min-height:40px;display:inline-flex;align-items:center}
+.psim .more>summary::-webkit-details-marker{display:none}
+.psim .more .mm{position:absolute;z-index:5;left:0;top:calc(100% + 4px);min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:grid;gap:2px}
+.psim .more .mm button{font:inherit;text-align:left;color:var(--ink);background:none;border:0;border-radius:8px;padding:10px;cursor:pointer}.psim .more .mm button:hover{background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.psim .simk{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px}
+.psim .kc{border-left:4px solid var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--card));border-radius:10px;padding:8px 10px;min-width:0}
+.psim .kc b{display:block;font-size:17px;font-weight:800;white-space:nowrap}
+.psim .kc>span{display:block;font-size:13px;color:var(--mute);line-height:1.3;overflow-wrap:break-word;hyphens:auto}
+.psim .kc.tg{border-left-color:var(--ok)}.psim .kc.tg b{color:var(--ok)}.psim .kc.tr{border-left-color:var(--red)}.psim .kc.tr b{color:var(--red)}
+/* Auftrag-Kasten wie im Lernlabor */
+.aufk{display:grid;gap:2px;align-items:start}
+.aufk .aufh{display:flex;align-items:baseline;gap:8px}.aufk .aufh b{flex:none}.aufk .aufd{flex:1 1 auto;color:var(--ok);font-weight:700;font-size:14px}
+.aufk .aufa{flex:none;color:var(--auft);font-weight:700;transform:none!important}
+.aufk .aufz{color:var(--ink)}
+/* Nachschlagen */
+.nsl table{width:100%;border-collapse:collapse;font-size:15px;margin:4px 0 12px}.nsl td{padding:5px 4px;border-top:1px solid var(--line)}.nsl td:last-child{text-align:right;font-weight:600}
+.nsl tr.tg td:last-child{color:var(--ok)}.nsl tr.tr td:last-child{color:var(--red)}
+.nsl .ntz{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;resize:vertical}
+.nsl .ntzm{margin-left:auto;margin-right:8px;font-size:12px;font-weight:600;color:var(--ok)}
+.nsl li{margin:4px 0}
+.grid>.skz,.grid>div>.skz{max-width:820px}
+/* Favoriten */
+.favp .favl{display:flex;flex-wrap:wrap;gap:6px}.favp .chip{font:inherit;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+/* Fußzeile */
+#ft .ftl{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
+#ft .ftl button{font:inherit;color:inherit;background:none;border:0;padding:0 6px;min-height:44px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#ft .ftl button:first-child{padding-left:0}#ft .ftk{margin:0 0 2px}#ft .ft-c{margin:2px 0 0}
+#ft>details:not([open]){display:none}#ft details{margin:6px 0}#ft summary{cursor:pointer;font-weight:700;line-height:44px}#ft p{max-width:64ch}
+/* Einheiten als Bruch */
+.fr.fru{font-size:.86em;line-height:1.1;margin:0 .1em}.fr.fru>span{padding:0 .18em}
+
+/* ===== Version 8: Bedienung wie im Lernlabor ===== */
+/* Regler: Beschriftung, Regler und Zahlenfeld in einer Zeile */
+.psim .rg2.rg1{grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 80px minmax(1.6em,auto);gap:2px 8px;margin:4px 0}
+.psim .rg2.rg1 .rgl{grid-column:auto;font-size:14px;line-height:1.2;overflow-wrap:break-word;hyphens:auto}
+.psim .rg2.rg1 .rgh{grid-column:1/-1}
+@media(max-width:480px){.psim .rg2.rg1{grid-template-columns:minmax(0,6.4em) minmax(0,1fr) 68px minmax(1.3em,auto);gap:2px 6px}.psim .rg2.rg1 .rgl{font-size:13.5px}.psim .rg2.rg1 .rgu{font-size:14px}}
+/* Ergebnis-Kacheln zu dritt */
+.psim .simk{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:480px){.psim .simk{gap:6px}.psim .kc{padding:6px 7px}.psim .kc b{font-size:15px;white-space:normal}.psim .kc>span{font-size:12px}}
+/* eine Zeichnung: Erklärsatz der Skizze unter der bewegten Zeichnung */
+.psim .simcap{margin:6px 2px 0;font-size:14px}
+/* Mehr-Menü bleibt im Bild (Lage per Skript) */
+.psim .more .mm{right:auto}
+/* Schrittleiste am Handy: Nummer nur am aktuellen Schritt, „Probieren“ */
+#rfs .tsy{display:none}
+@media(max-width:400px){#rfs button:not(.on) .n{display:none}#rfs .tsx{display:none}#rfs .tsy{display:inline}}
+/* Rechenaufgaben */
+.q .plock{opacity:.75;cursor:not-allowed}
+.q .sol.hlp{background:color-mix(in srgb,var(--amber) 10%,var(--card));border-color:var(--amber)}
+/* Teilen, QR-Code, Hinweis */
+#qrd{border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);padding:18px;max-width:min(92vw,380px);box-shadow:0 8px 24px rgba(0,0,0,.25)}#qrd::backdrop{background:rgba(0,0,0,.45)}#qrd h2{margin:0 0 10px;font-size:19px}
+#qrd .qrb{background:#fff;border-radius:12px;padding:8px}#qrd .qrb svg{background:#fff;width:100%;height:auto;display:block}#qrd .qrb svg path,#qrd .qrb svg rect{shape-rendering:crispEdges}
+#qrd .qru{width:100%;font:inherit;font-size:13px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#lltoast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--card);padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:900;max-width:90vw}#lltoast.on{opacity:1}
+@media(min-width:900px){#lltoast{bottom:24px}}
+/* Zum Inhalt springen */
+.skipl{position:absolute;left:-9999px;top:0;z-index:1000;background:var(--card);color:var(--ink);padding:8px 12px;border-radius:8px;border:2px solid var(--acc);font-weight:700}.skipl:focus{left:8px;top:8px}
+/* Dunkel: dunkle Schrift auf dem hellen Orange (vorher weiß, 2,26 : 1) */
+:root[data-theme=dark].accb .btn:not(.sec):not(.nxt .btn):not(.ubb),:root[data-theme=dark].accb .seg button[aria-pressed=true],:root[data-theme=dark].accb #nm button[aria-current=true]{color:#1f2328}
+@media(prefers-color-scheme:dark){:root:not([data-theme]).accb .btn:not(.sec):not(.nxt .btn):not(.ubb),:root:not([data-theme]).accb .seg button[aria-pressed=true],:root:not([data-theme]).accb #nm button[aria-current=true]{color:#1f2328}}
+/* Safari: Auswahlfelder machen die Seite nicht breiter */
+.row label{min-width:0;max-width:100%}.row select{min-width:0;max-width:100%;contain:paint}
+/* Menüband unten bei 320 px: vier gleich breite Spalten, lange Namen umbrechen statt die Seite zu verbreitern */
+@media(max-width:899px){#fs{grid-template-columns:repeat(4,minmax(0,1fr))}#fs button>span:last-child{max-width:100%;line-height:1.15;overflow-wrap:break-word}}
+/* lange Themennamen (z. B. Blindleistungskompensation) bei 320 px trennen */
+#tht{overflow-wrap:break-word;hyphens:auto}
+/* Kacheln zu dritt: Werte dürfen umbrechen statt aus der Kachel zu ragen (Tablet: schmale Reglerspalte) */
+.psim .kc b{white-space:normal;overflow-wrap:break-word}
+@media(min-width:721px) and (max-width:1000px){.psim .kc b{font-size:15px}}
+@media(max-width:480px){.psim .rg2.rg1{grid-template-columns:minmax(0,6.2em) minmax(0,1fr) 74px minmax(1.3em,auto)}.psim .rg2.rg1 .rgn{padding:5px 6px}}
+/* Themenkopf bei 320 px: lange Gebietsnamen brechen um statt unter „Thema wechseln“ zu laufen */
+.thk .crb{overflow-wrap:break-word;hyphens:auto}
+@media(max-width:360px){.thw{font-size:14px!important;padding:5px 10px!important}}
+/* Rechenaufgabe: Antwort prüfen neben dem Feld, Rückmeldung, darunter Hilfe und Lösungsweg */
+.q .pb{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.q .pb .btn{margin:0}
+/* offenes Mehr-Menü liegt über der nächsten Karte */
+.psim.mmo{position:relative;z-index:40}
+.fr .fr.fru{font-size:.8em;margin:0 .08em}
+
+/* ===== Version 9 ===== */
+/* Regler: Formelzeichen vorn, Name klein darunter */
+.psim .rgl .rgs{display:block;font-size:16px;font-weight:800;line-height:1.1}
+.psim .rgl .rgs+.rgn2{display:block;font-size:12px;font-weight:600;color:var(--mute);line-height:1.2}
+/* Auswahlregler (z. B. Normdurchmesser): Wert im gleichen Kasten wie die Zahlenfelder */
+.psim .rg2 .rgv{display:flex;align-items:center;justify-content:flex-end;min-height:36px;border:1px dashed var(--line);border-radius:8px;padding:5px 8px;background:color-mix(in srgb,var(--card) 60%,transparent)}
+/* Woran lag es? */
+.q .wlr{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.q .wlr .wlh,.q .wlr .wlt{flex-basis:100%;margin:0}
+.q .wlr .chip{display:block;text-align:left;white-space:normal;line-height:1.45}.q .wlr .chip[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,var(--card))}
+/* Schrittleiste: Markierung folgt dem Lesen */
+#rfs.trk button.on:not(.cur){border-color:var(--line);box-shadow:none}
+#rfs.trk button.on:not(.cur) .n{background:var(--line);color:var(--ink)}
+#rfs.trk button.cur{border-color:var(--acc);color:var(--ink);box-shadow:inset 0 0 0 1px var(--acc)}
+#rfs.trk button.cur:not(.ok) .n{background:var(--acc);color:#fff}
+@media(max-width:400px){#rfs.trk button.on:not(.cur) .n{display:none}#rfs.trk button.cur .n{display:grid}}
+/* Antworten gespeichert, Rückweg */
+.ansv{margin:2px 0 6px;font-size:13px}.bkw{margin:0 0 10px}
+/* Startseite: Fachrichtung eingeklappt */
+.frt{display:flex;align-items:center;gap:8px;width:100%;font:inherit;font-size:17px;font-weight:600;color:var(--ink);background:none;border:0;padding:4px 0;cursor:pointer;text-align:left;flex-wrap:wrap}.frt .frta{margin-left:auto;color:var(--acc);font-weight:700;font-size:15px}
+/* Lernstand: Richtig / Falsch */
+.rr{color:var(--ok);font-weight:700}.rw{color:var(--red);font-weight:700}
+/* Glossar und Formelsammlung */
+.nsl .nsf{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);margin:6px 0 4px}
+.fsm h3,.gls h3{margin:18px 0 6px;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.fsi,.gli{padding:8px 0;border-top:1px solid var(--line)}.fsi ul{margin:4px 0 0;padding-left:20px}.gli p{margin:2px 0 0;color:var(--mute);font-size:15px}
+.nsl .lk{font:inherit;font-weight:700;background:none;border:0;padding:0;color:var(--acc);cursor:pointer;text-align:left}
+#nm h3.nmns{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+/* Kontraste hell: Brotkrumen, „mehr“, Zweitknöpfe eine Stufe dunkler; Kennzeichen dunkler */
+:root[data-theme=light] .crumb,:root[data-theme=light] .tmore,:root[data-theme=light] .btn.sec,:root[data-theme=light] .nsl .lk,:root[data-theme=light] .frt .frta{color:color-mix(in srgb,var(--acc) 78%,#000)}
+@media(prefers-color-scheme:light){:root:not([data-theme]) .crumb,:root:not([data-theme]) .tmore,:root:not([data-theme]) .btn.sec{color:color-mix(in srgb,var(--acc) 78%,#000)}}
+.tag.ibt,.ibm .tag{filter:brightness(.82)}
+/* Brotkrumen-Knopf mindestens 24 px hoch */
+.crb{min-height:24px;padding:2px 0!important}
+/* Regler: Üben, Favorit und Mehr in einer Zeile; vier Kacheln als 2 × 2 */
+.psim .simb{flex-wrap:nowrap}
+.psim .simb>*{flex:1 1 0;min-width:0;margin:0}
+.psim .simb .btn,.psim .simb>.more>summary{width:100%;justify-content:center;white-space:nowrap;padding-left:8px;padding-right:8px}
+.psim .simk:has(>.kc:nth-child(4):last-child),.psim .simk:has(>.kc:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+.psim .simk:has(>.kc:only-child){grid-template-columns:minmax(0,1fr)}
+.psim .simb>.more{flex:1 1 0}
+.psim .simb>.more>summary{display:flex;align-items:center;min-height:40px;box-sizing:border-box}
+@media(max-width:420px){.psim .simb{gap:5px}.psim .simb .btn,.psim .simb>.more>summary{font-size:15px;padding-left:4px;padding-right:4px}}
+@media(max-width:340px){.psim .simb .btn,.psim .simb>.more>summary{font-size:14px;padding-left:2px;padding-right:2px;letter-spacing:-.01em}}
+/* Blocksatz in allen Textfeldern (auch Vermuten, Auftrag, Aufgaben), mit Silbentrennung gegen Löcher */
+:where(#view,#nm) :where(p,li,.skc,.aufz,.tdesc){text-align:justify;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+:where(#view) :where(.kc,td,th,.chip,.simb,.mm,.wlh) :where(p,li){text-align:start}
+:where(#view) :where(.crumb,.crumb *){text-align:start;-webkit-hyphens:manual;hyphens:manual}
+/* Version 11: Silbentrennung überall nach Wörterbuch, kein Bruch mitten im Wort */
+#view,#nm{-webkit-hyphens:auto;hyphens:auto}
+#view input,#view textarea,#view select,#view code{-webkit-hyphens:manual;hyphens:manual}
+@media(max-width:380px){.ftile{grid-template-columns:minmax(0,1fr);row-gap:4px}.ftile .fi{grid-row:auto}.ftile small.fz,.ftile>*{grid-column:1}.ftile small{-webkit-hyphens:auto;hyphens:auto}}
+
+/* Bewegte Zeichnungen: Knopf zum Anhalten oben rechts im Bild */
+.psim .simsv{position:relative}
+.simpp{position:absolute;top:6px;right:6px;width:26px;height:26px;min-height:0;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 88%,transparent);color:var(--ink);font-size:11px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.simpp:hover{border-color:var(--acc)}
+.simpp:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* Version 15: „Weiter mit …“ wie im Lernlabor rechts neben Glossar und Formelsammlung */
+#nm .nmn{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px;align-items:center}#nm .nmn>div button{white-space:nowrap;padding-right:8px}
+#nm button.nmw{display:block!important;align-self:center;min-height:44px;font-size:13px;line-height:1.3;font-weight:700;color:var(--acc);background:color-mix(in srgb,var(--acc) 9%,transparent);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);border-radius:12px;padding:8px 10px;text-align:left;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+#nm button.nmw small{display:block;font-size:11px;font-weight:600;color:var(--mute);margin-bottom:2px;letter-spacing:.02em}
+@media(max-width:380px){#nm button.nmw{font-size:12px;padding:7px 8px}}
+
+/* Fachrichtungs-Wahl: gleich breite Kacheln im festen Raster, Symbol in eigener Spalte, nichts steht über.
+   Handy zwei Spalten mal drei Zeilen, ab 560 px drei Spalten mal zwei Zeilen. */
+.frp .frs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:6px;margin:6px 0 8px;width:100%;box-sizing:border-box}
+@media(min-width:560px){.frp .frs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.frp .frs button{display:grid;grid-template-columns:1.4em minmax(0,1fr);align-items:center;column-gap:6px;min-width:0;min-height:48px;margin:0;padding:8px;font-weight:700;font-size:14px;line-height:1.2;text-align:left;white-space:normal;overflow-wrap:normal;hyphens:manual;-webkit-hyphens:manual;border:1px solid var(--line);background:color-mix(in srgb,var(--ink) 3%,transparent)}
+.frp .frs button[aria-pressed=true]{border-color:transparent;background:var(--acc)}
+.frp .frs .fre{justify-self:center;font-size:1.15em;line-height:1}
+.frp .frs .frn{min-width:0}
+@media(max-width:360px){.frp .frs{gap:4px;padding:4px}}
+@media(min-width:560px){.frp .frs button{font-size:15px;padding:8px 12px;column-gap:8px}}
+</style>
+<script>/* ===== Lernlabor Betrieb, Version 8: Themenseite wie im Lernlabor (aus Lernlabor Betrieb übernommen, ohne Regler) ===== */
+(()=>{const X=ML5.X;
+const RFK='meisterlabor-rf',AK='meisterlabor-auf';
+const lsG=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')||{}}catch(e){return {}}},lsS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const FAVK='meisterlabor-fav',NOTK='meisterlabor-notiz';
+const favs=()=>{const a=lsG(FAVK);return Array.isArray(a)?a:[]};
+function paintRF(key){const o=lsG(RFK)[key]||{},bs=[...document.querySelectorAll('#rfs button')];let cur=bs.find(b=>!o[b.dataset.s]);bs.forEach(b=>{b.classList.toggle('ok',!!o[b.dataset.s]);b.classList.toggle('on',b===cur)})}
+
+const fach0=fach;
+fach=function(f){fach0(f);const m=modSel[f],mod=D[f].modules[m],Q=X[mod.t]||{},key=f+':'+m,v=$('#view');
+ /* Einleitung wie im Lernlabor: Blocksatz, am Handy zwei Zeilen mit „…“, Tippen oder mehr/weniger klappt auf */
+ {const ds=v.querySelector('.tdesc'),mr=v.querySelector('.tmore');if(ds&&mr){const dt=document.createElement('span');dt.className='tdots';dt.setAttribute('aria-hidden','true');ds.after(dt);
+  const lab=()=>{const c=ds.classList.contains('cl');mr.textContent=c?'mehr ▾':'weniger ▴';mr.setAttribute('aria-expanded',String(!c))};
+  const chk=()=>{const c=ds.classList.contains('cl'),ov=c&&ds.scrollHeight>ds.clientHeight+2;ds.classList.toggle('ov',ov);mr.hidden=c?!ov:false;lab()};
+  mr.onclick=()=>{ds.classList.toggle('cl');chk()};ds.onclick=()=>{if(innerWidth<900){ds.classList.toggle('cl');chk()}};ds.title='Tippen zum Ein- und Ausklappen';requestAnimationFrame(chk)}}
+ if(mod.wip){const ub=$('#ueb');if(ub)ub.remove();const mb=$('#mbx h2');if(mb)mb.textContent='🗺️ Geplant';
+  const b=el('<p><b>🚧 Dieses Thema ist geplant</b> (Arbeitspaket '+esc(mod.wip)+'). In '+esc(D[f].name)+' schon fertig:</p><div class="wipl"></div>','panel wip');
+  D[f].modules.forEach((x,i)=>{if(!x.wip){const c=el('<button type="button" class="chip">'+esc(x.t)+'</button>','');c.firstChild.onclick=()=>{modSel[f]=i;go(f);scrollTo(0,0)};b.querySelector('.wipl').append(c.firstChild)}});
+  const rf=$('#rfs');if(rf)rf.remove();const ds=v.querySelector('.tmore');(ds||v.firstChild).after(b)}
+ let simP=null,allBox=null,openUeb=()=>{};if(Q.sim){const p=simP=simPanel(key,Q.sim,{ueben:()=>openUeb(),all:h=>{if(allBox)allBox.innerHTML=h}}),ub=$('#ueb');ub?ub.before(p):v.append(p);
+  const rf=$('#rfs');if(rf){const bs=[...rf.querySelectorAll('button')],ia=bs.findIndex(b=>b.dataset.s==='u')-1;const nb=el('<button type="button" data-s="r"><span class="n"><b></b></span><span class="t">Ausprobieren</span></button>','').firstChild;
+   nb.onclick=()=>p.scrollIntoView({behavior:'smooth',block:'start'});(ia>=0?bs[ia]:bs[bs.length-1]).after(nb);rf.querySelectorAll('button').forEach((b,i)=>b.querySelector('.n b').textContent=i+1)}
+  paintRF(key)}
+ /* Thema wechseln wie im Lernlabor: zwei Wischleisten (Gebiete, Themen) statt einer langen Liste */
+ {const mn=v.querySelector('.thm'),G=GRP[f],ms=D[f].modules;if(mn&&G){let gs=Math.max(0,G.findIndex(g=>g[1].includes(m)));
+  mn.classList.add('wls');const W=(k,l)=>'<div class="wlw"><button type="button" class="wla l" aria-label="zurück" tabindex="-1">‹</button><div class="wl" data-k="'+k+'" role="group" aria-label="'+l+'"></div><button type="button" class="wla r" aria-label="weiter" tabindex="-1">›</button></div>';
+  mn.innerHTML=W('g','Gebiet wählen')+W('t','Thema wählen');
+  const bg=mn.querySelector('[data-k=g]'),bt=mn.querySelector('[data-k=t]');
+  const arr=w=>{const l=w.querySelector('.wl'),mx=l.scrollWidth-l.clientWidth;w.classList.toggle('ml',l.scrollLeft>4);w.classList.toggle('mr',l.scrollLeft<mx-4)};
+  const mid=l=>{const c=l.querySelector('[aria-pressed=true],[aria-current=true]')||l.firstChild;if(c)l.scrollLeft=c.offsetLeft-(l.clientWidth-c.offsetWidth)/2;arr(l.parentNode)};
+  const topics=()=>{bt.innerHTML=G[gs][1].map(j=>'<button type="button" data-i="'+j+'" aria-current="'+(j===m)+'">'+esc(ms[j].t)+'</button>').join('');
+   bt.querySelectorAll('button').forEach(b=>b.onclick=()=>{modSel[f]=+b.dataset.i;go(f);scrollTo(0,0)});bt.scrollLeft=0;mid(bt)};
+  bg.innerHTML=G.map((g,i)=>'<button type="button" data-g="'+i+'" aria-pressed="'+(i===gs)+'">'+esc(g[0])+'</button>').join('');
+  bg.querySelectorAll('button').forEach(b=>b.onclick=()=>{gs=+b.dataset.g;bg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));topics()});
+  mn.querySelectorAll('.wlw').forEach(w=>{const l=w.querySelector('.wl');l.addEventListener('scroll',()=>arr(w),{passive:true});
+   w.querySelector('.wla.l').onclick=()=>l.scrollBy({left:-l.clientWidth*.7,behavior:'smooth'});w.querySelector('.wla.r').onclick=()=>l.scrollBy({left:l.clientWidth*.7,behavior:'smooth'})});
+  topics();const op=()=>{const t=v.querySelector('#thd .thw');if(t)t.textContent='Thema wechseln '+(mn.hidden?'▾':'▴');if(!mn.hidden)requestAnimationFrame(()=>{mid(bg);mid(bt)})};
+  v.querySelectorAll('#thd .crb,#thd .thw').forEach(b=>b.addEventListener('click',op));
+  document.onkeydown=e=>{if(e.key==='Escape'&&mn.isConnected&&!mn.hidden){const t=v.querySelector('#thd .crb');t&&t.click()}}}}
+ /* Üben steht am Schluss der Themenseite und ist eingeklappt */
+ {const ub=$('#ueb');if(ub&&!mod.wip){v.append(ub);const h=ub.querySelector('h2'),nq=mod.mcq.length,nc=C.filter(x=>x.f===f&&x.m===m).length;
+  const bd=document.createElement('div');bd.className='uebb';while(h.nextSibling)bd.append(h.nextSibling);bd.hidden=true;
+  const bt=document.createElement('button');bt.type='button';bt.className='uebk';bt.setAttribute('aria-expanded','false');
+  bt.innerHTML='<span class="uebt">✏️ Üben</span><span class="uebz">'+nq+' Check-Fragen'+(nc?' · '+nc+' Rechenaufgabe'+(nc>1?'n':''):'')+'</span><span class="ueba" aria-hidden="true">▾</span>';
+  const set=o=>{bd.hidden=!o;bt.setAttribute('aria-expanded',String(o));bt.querySelector('.ueba').textContent=o?'▴':'▾'};
+  bt.onclick=()=>set(bd.hidden);h.replaceWith(bt);ub.append(bd);
+  const rb=v.querySelector('#rfs [data-s=u]');if(rb)rb.addEventListener('click',()=>set(true));
+  openUeb=()=>{set(true);ub.scrollIntoView({behavior:'smooth',block:'start'})}}}
+ /* Schrittleiste wie im Lernlabor: ohne „Merken“, vier Schritte in einer Zeile */
+ {const rf=$('#rfs');if(rf){const mb=rf.querySelector('[data-s=m]');if(mb)mb.remove();rf.querySelectorAll('button').forEach((b,i)=>b.querySelector('.n b').textContent=i+1);paintRF(key)}}
+ /* Nachschlagen wie im Lernlabor: alles eingeklappt, dazu „Alle Werte“ und „Meine Notiz“ */
+ if(!mod.wip){const E=ERK[mod.t],GL=mod.fo||mod.pts.filter(x=>x.includes('=')),WI=mod.fo?mod.pts:mod.pts.filter(x=>!GL.includes(x)),ul=a=>'<ul>'+a.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>';
+  const mb=$('#mbx'),gr=mb&&mb.closest('.grid');if(mb){const sd=mb.parentNode;mb.remove();if(sd.classList.contains('side')&&!sd.childNodes.length){sd.remove();if(gr)gr.style.gridTemplateColumns='minmax(0,1fr)'}}
+  let ns=v.querySelector('.nsl');if(!ns){ns=el('','panel nsl');v.append(ns)}
+  const D1=(sm,h)=>'<details><summary>'+sm+'</summary>'+h+'</details>';
+  ns.innerHTML='<h2>Nachschlagen</h2>'+(simP&&simP._fix?D1('📏 Rechenweg und Hintergrund','<p>'+esc(simP._fix)+'</p>'):'')+(simP?D1('🗃️ Alle Werte','<div class="allw"></div>'):'')+(WI.length?D1('📌 Wichtiges','<div class="wib">'+ul(WI)+'</div>'):'')+(GL.length?D1('📜 Grundgleichungen',ul(GL)):'')+(E?D1('💡 Verstehen und typische Fehler','<p>'+esc(E[0])+'</p>'+(E[1]?'<p><b>🏭 Im Betrieb:</b> '+esc(E[1])+'</p>':'')+(E[2]?'<p><b>Typische Fehler:</b></p>'+ul(E[2]):'')):'')+D1('📝 Meine Notiz','<textarea class="ntz" rows="4" aria-label="Meine Notiz zu diesem Thema" placeholder="Deine Notiz zu diesem Thema. Sie bleibt auf Deinem Gerät."></textarea><p class="sub ntzs" aria-live="polite"></p>');
+  {const rb=KI.readBtn(mod.t+'. '+mod.pts.join(' '),'w'),wb=ns.querySelector('.wib');if(rb&&wb)wb.append(rb)}
+  allBox=ns.querySelector('.allw');if(allBox&&simP)allBox.innerHTML=simP._all();
+  const ta=ns.querySelector('.ntz'),nst=ns.querySelector('.ntzs'),N=lsG(NOTK);ta.value=N[key]||'';if(ta.value){const sm=ta.closest('details').querySelector('summary');sm.insertAdjacentHTML('beforeend','<span class="ntzm">vorhanden</span>')}
+  let tm=0;ta.oninput=()=>{clearTimeout(tm);tm=setTimeout(()=>{const o=lsG(NOTK);if(ta.value.trim())o[key]=ta.value;else delete o[key];lsS(NOTK,o);nst.textContent='Gespeichert auf diesem Gerät.'},400)};
+  const ub=$('#ueb');if(ub)v.append(ub)}};
+/* Einheiten mit echtem Bruchstrich (m/s wird zu m über s), nur im Text, nicht in Zeichnungen und Eingabefeldern */
+{const NU=['m³','m²','cm³','cm²','mm²','mm','cm','km','µm','m','kg','mg','g','t','ml','l','kJ','MJ','J','kWh','MWh','Wh','kW','MW','W','kN','Nm','N','€','ct','kmol','mol','Stück','Teile','U','kvar','K','mbar','bar','Pa','A','h','min','s','1','Mbit','kbit','Liter','Behälter'],
+ DE=['m³','m²','cm³','cm²','mm²','mm','cm','m','kmol','mol','kg','g','t','ml','l','s²','s','min','h','a','d','K','kWh','MWh','kW','Stück','Jahr','Tag','Woche','Monat','Schicht','Teil','Zahn','U','km','mbar','10 min'],
+ W='A-Za-zÄÖÜäöüßµΩ0-9_',rq=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),
+ RE=new RegExp('(^|[^'+W+'/€²³])('+NU.map(rq).join('|')+')/('+DE.map(rq).join('|')+'|\\([^()/]{1,16}\\))(?![/²³'+W+'])','g'),
+ SKIP=/^(svg|input|textarea|select|option|script|style|code)$/i;
+ const walk=root=>{if(!root)return;const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{if(n.nodeValue.indexOf('/')<0)return NodeFilter.FILTER_REJECT;for(let e=n.parentNode;e&&e!==root.parentNode;e=e.parentNode){if(e.nodeType===1&&(SKIP.test(e.nodeName)||e.classList.contains('fru')||e.isContentEditable))return NodeFilter.FILTER_REJECT}return NodeFilter.FILTER_ACCEPT}}),L=[];
+  while(tw.nextNode())L.push(tw.currentNode);
+  L.forEach(n=>{const t=n.nodeValue;RE.lastIndex=0;if(!RE.test(t))return;RE.lastIndex=0;const fr=document.createDocumentFragment();let last=0,m;
+   while((m=RE.exec(t))){const st=m.index+m[1].length;fr.append(t.slice(last,st));const sp=document.createElement('span');sp.className='fr fru';const a=document.createElement('span'),b=document.createElement('span');a.textContent=m[2];b.textContent=m[3].replace(/^\((.*)\)$/,'$1');sp.append(a,b);sp.setAttribute('aria-label',m[2]+' pro '+b.textContent);fr.append(sp);last=m.index+m[0].length}
+   fr.append(t.slice(last));n.parentNode.replaceChild(fr,n)})};
+ /* dasselbe in Zeichnungen: Zähler und Nenner als kleine Zeilen übereinander, Bruchstrich als Linie */
+ const NS='http://www.w3.org/2000/svg',svgFr=root=>{root.querySelectorAll('svg text').forEach(t=>{if(t.children.length||t.hasAttribute('data-fru'))return;const s=t.textContent;if(s.indexOf('/')<0)return;RE.lastIndex=0;if(!RE.test(s))return;RE.lastIndex=0;
+   const seg=[];let last=0,m;while((m=RE.exec(s))){const st=m.index+m[1].length;seg.push(s.slice(last,st),[m[2],m[3].replace(/^\((.*)\)$/,'$1')]);last=m.index+m[0].length}seg.push(s.slice(last));
+   const cs=getComputedStyle(t),fs=parseFloat(cs.fontSize)||12,sm=fs*.74,x0=parseFloat(t.getAttribute('x'))||0,y0=parseFloat(t.getAttribute('y'))||0,an=cs.textAnchor||t.getAttribute('text-anchor')||'start';
+   const meas=(str,size)=>{if(!str)return 0;t.textContent='';const p=document.createElementNS(NS,'tspan');p.textContent=str;if(size)p.setAttribute('font-size',size);p.setAttribute('xml:space','preserve');p.style.whiteSpace='pre';t.append(p);let w=0;try{w=p.getComputedTextLength()}catch(e){}return w};
+   const sp=meas('a b')-meas('ab'),parts=seg.map(g=>typeof g==='string'?{s:g,w:meas(g)+((/\s$/.test(g)?sp:0))+((/^\s/.test(g)?sp:0))}:{n:g[0],d:g[1],wn:meas(g[0],sm),wd:meas(g[1],sm)});
+   let W=0;parts.forEach(p=>{if(p.n){p.w=Math.max(p.wn,p.wd)+fs*.24}W+=p.w});
+   let x=an==='middle'?x0-W/2:an==='end'?x0-W:x0;t.textContent='';t.setAttribute('data-fru','1');t.setAttribute('text-anchor','start');t.style.textAnchor='start';
+   const mk=(str,xx,yy,size)=>{const p=document.createElementNS(NS,'tspan');const um=/^(.*?[A-Za-zητσβμ])_([A-Za-z0-9]+)(.*)$/.exec(str);if(um){p.append(um[1]);const u=document.createElementNS(NS,'tspan');u.setAttribute('baseline-shift','sub');u.setAttribute('font-size','.7em');u.textContent=um[2];p.append(u,um[3])}else p.textContent=str;p.setAttribute('x',xx.toFixed(2));p.setAttribute('y',yy.toFixed(2));if(size)p.setAttribute('font-size',size.toFixed(2));p.style.whiteSpace='pre';t.append(p)};
+   const g=t.parentNode;parts.forEach(p=>{if(p.n){const c=x+p.w/2;mk(p.n,c-p.wn/2,y0-fs*.42,sm);mk(p.d,c-p.wd/2,y0+fs*.36,sm);
+     const l=document.createElementNS(NS,'line');l.setAttribute('x1',(x+fs*.06).toFixed(2));l.setAttribute('x2',(x+p.w-fs*.06).toFixed(2));l.setAttribute('y1',(y0-fs*.3).toFixed(2));l.setAttribute('y2',(y0-fs*.3).toFixed(2));l.setAttribute('stroke',cs.fill&&cs.fill!=='none'?cs.fill:'currentColor');l.setAttribute('stroke-width',Math.max(.8,fs*.075).toFixed(2));if(t.hasAttribute('transform'))l.setAttribute('transform',t.getAttribute('transform'));l.setAttribute('class','frl');g.insertBefore(l,t.nextSibling)}
+    else if(p.s){mk(p.s.replace(/^\s+/,''),x+(/^\s/.test(p.s)?sp:0),y0)}x+=p.w})})};
+ const vw=document.getElementById('view');let q=0;const run=()=>{q=0;walk(vw);svgFr(vw)};
+ new MutationObserver(()=>{if(!q)q=requestAnimationFrame(run)}).observe(vw,{childList:true,subtree:true,characterData:true});window.frUnits=walk}
+go(tab);
+})();
+</script>
+<script>/* QR-Code-Generator: qrcode-generator 1.4.4, Copyright (c) 2009 Kazuhiko Arase, MIT-Lizenz */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,(function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1}))},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(t,r){var e=n("友");if(2!=e.length||38726!=(e[0]<<8|e[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}((function(){return qrcode}));
+</script>
+<script>/* ===== Version 8: Bedienung wie im Lernlabor v310 =====
+   Adressen je Ansicht (Zurück, Neuladen, Teilen, QR-Code), eine Zeichnung statt zwei, Regler einzeilig,
+   Kacheln zu dritt, Rechenaufgaben mit Rückfrage, Tendenz, Hilfe und Lösungsweg nach dem 2. Versuch,
+   Menüs Lernen / Üben & Prüfen / Ich, heller Standard, Skizzenschrift am Handy (MOB-01). */
+(()=>{
+const q=s=>document.querySelector(s);
+const LG=(k,d)=>{try{const v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},LS=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const toast=t=>{let o=q('#lltoast');if(!o){o=document.createElement('div');o.id='lltoast';o.setAttribute('role','status');document.body.append(o)}o.textContent=t;o.classList.add('on');clearTimeout(o._t);o._t=setTimeout(()=>o.classList.remove('on'),2600)};
+
+/* ---------- Darstellung: startet hell, Dunkel wählbar unter Ich → Sonstiges ---------- */
+const TK='meisterlabor-ansicht';
+const thApply=()=>{const m=LG(TK,'hell'),r=document.documentElement;if(m==='geraet')r.removeAttribute('data-theme');else r.setAttribute('data-theme',m==='dunkel'?'dark':'light')};
+thApply();
+const accL=setAcc;setAcc=function(f){accL(f);document.documentElement.classList.toggle('accb',!(f&&D[f]))};setAcc(FACH.includes(tab)?tab:null);
+
+/* ---------- Adressen: #thema/<name>, #ueben, #im-betrieb … ---------- */
+const slug=t=>t.toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+const SL={},SN={};FACH.forEach(f=>D[f].modules.forEach((m,i)=>{let s=slug(m.t);if(SL[s])s=f+'-'+s;SL[s]=[f,i];SN[f+':'+i]=s}));
+const RN={uben:'ueben',betrieb:'im-betrieb',fall:'pruefungsaufgaben',glossar:'glossar',formeln:'formelsammlung',oral:'muendlich',sim:'simulation',stand:'lernstand',kurs:'kurstermine',sonst:'sonstiges',doz:'dozent'};
+const RT=Object.fromEntries(Object.entries(RN).map(([a,b])=>[b,a]));
+let ROUT=false;
+const route=()=>FACH.includes(tab)?'thema/'+SN[tab+':'+modSel[tab]]:tab==='fall'?'pruefungsaufgaben/'+(fIdx+1):tab==='stand'&&KMV?'kurstermine':(RN[tab]||'');
+const link=r=>location.origin+location.pathname+(r?'#'+r:'');
+function sync(){if(ROUT)return;const r=route(),want=r?'#'+r:'';if(location.hash===want||(!want&&!location.hash))return;
+ try{history.replaceState(Object.assign({},history.state,{y:scrollY}),'');history.pushState({y:0},'',want||location.pathname+location.search)}catch(e){}}
+function openRoute(h){h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
+ if(a==='thema'&&SL[r]){modSel[SL[r][0]]=SL[r][1];go(SL[r][0])}
+ else if(a==='pruefungsaufgaben'){const n=parseInt(r,10);if(n>=1&&n<=CASES.length)fIdx=n-1;go('fall')}
+ else if(RT[a]&&(a!=='dozent'||DOZENT))go(RT[a]);else go('home')}
+window.llSync=sync;window.llRoute=route;
+addEventListener('popstate',e=>{ROUT=true;try{openRoute(location.hash)}finally{ROUT=false}const y=e.state&&e.state.y||0;requestAnimationFrame(()=>scrollTo(0,y))});
+
+/* ---------- Ich: Lernstand, Lernfortschritt senden, Meine Kurstermine, Tutorial, Sonstiges ---------- */
+let KMV=false;
+Object.assign(TL,{stand:'📈 Lernstand',kurs:'📅 Meine Kurstermine',tour:'🧭 Tutorial',sonst:'⚙️ Sonstiges'});
+const goL=go;go=function(t){if(t==='kurs'){KMV=true;ROUT=true;try{goL('stand')}finally{ROUT=false}const k=q('#kmp');if(k)k.scrollIntoView({block:'start'});sync();return}
+ KMV=false;goL(t);if(t!=='tour'&&t!=='send')sync()};
+const drawL=draw;draw=function(){if(tab==='sonst'){const v=q('#view');v.innerHTML='';sonst(v);return}drawL()};
+function sonst(v){const m=LG(TK,'hell');
+ const p=el('<h2>⚙️ Sonstiges</h2><h3>Darstellung</h3><div class="seg" role="group" aria-label="Darstellung">'+[['hell','☀️ Hell'],['dunkel','🌙 Dunkel'],['geraet','📱 Wie das Gerät']].map(x=>'<button type="button" data-m="'+x[0]+'" aria-pressed="'+(x[0]===m)+'">'+x[1]+'</button>').join('')+'</div><p class="sub">Lernlabor Betrieb startet hell. „Wie das Gerät“ folgt der Einstellung Deines Handys oder Laptops.</p><h3 id="vers">Version</h3><p class="vnr">🆕 Version '+APPV+' vom '+APPD+'</p><details class="vneu"><summary>Was ist neu</summary>'+NEU+'</details><p class="sub">Neue Versionen lädt Lernlabor Betrieb von selbst. Ist eine da, erscheint unten der Hinweis „Jetzt laden“.</p>','panel');
+ p.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{LS(TK,b.dataset.m);thApply();p.querySelectorAll('[data-m]').forEach(x=>x.setAttribute('aria-pressed',x===b))});v.append(p)}
+
+/* ---------- Menüs: Lernen (mit „Weiter mit …“), Üben & Prüfen, Ich ---------- */
+const lastTopic=()=>{let L=null;try{L=JSON.parse(LG('meisterlabor-last','null'))}catch(e){}return L&&D[L[0]]&&D[L[0]].modules[L[1]]?L:null};
+const navL=nav;nav=function(){navL.apply(this,arguments);
+ const bs=q('#fs').querySelectorAll('button');
+ bs.forEach(b=>{const g=+b.dataset.g;if(g===1&&!FACH.includes(tab))b.lastChild.textContent='Lernen';
+  if(g)b.addEventListener('click',()=>{const m=q('#nm');if(m.hidden)return;const h=m.querySelector('h3');
+   if(g===1){h.textContent='Lernen';const L=lastTopic();if(L&&!(tab===L[0]&&modSel[L[0]]===L[1])){const w=document.createElement('button');w.type='button';w.setAttribute('role','menuitem');w.className='nmw';w.innerHTML='<span class="mi">↩</span><span>Weiter mit '+esc(D[L[0]].modules[L[1]].t)+'</span>';w.onclick=()=>{nmClose();modSel[L[0]]=L[1];go(L[0]);scrollTo(0,0)};h.after(w)}}
+   if(g===2)h.textContent='Üben & Prüfen';
+   if(g===3){h.textContent='Ich';if(!m.querySelector('[data-k=kurs]')){const sd=m.querySelector('[data-k=send]');const mk=k=>{const l=TL[k],sp=l.indexOf(' '),x=document.createElement('button');x.type='button';x.setAttribute('role','menuitem');x.dataset.k=k;x.setAttribute('aria-current',String(tab===k));x.innerHTML='<span class="mi">'+l.slice(0,sp)+'</span><span>'+l.slice(sp+1)+'</span>';x.onclick=()=>{nmClose();go(k);if(k!=='kurs')scrollTo(0,0)};return x};
+    if(sd)sd.after(mk('kurs'));m.append(mk('sonst'))}}})});
+ if(tab==='sonst'){const b=q('#fs [data-g="3"]');if(b)b.setAttribute('aria-pressed','true')}};
+
+/* ---------- Teilen und QR-Code ---------- */
+function share(t,u){if(navigator.share&&matchMedia('(pointer:coarse)').matches){navigator.share({title:'Lernlabor Betrieb: '+t,url:u}).catch(()=>{});return}
+ const done=()=>toast('Link kopiert: '+t);if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(done,()=>qrShow(t,u));else qrShow(t,u)}
+function qrShow(t,u){let d=q('#qrd');if(!d){d=document.createElement('dialog');d.id='qrd';document.body.appendChild(d)}
+ let svg='';try{const x=qrcode(0,'M');x.addData(u);x.make();svg=x.createSvgTag({cellSize:8,margin:2,scalable:true})}catch(e){svg='<p>QR-Code konnte nicht erstellt werden.</p>'}
+ d.innerHTML='<h2>'+esc(t)+'</h2><div class="qrb">'+svg+'</div><p class="sub">Mit der Handy-Kamera scannen. Der Link öffnet genau dieses Thema.</p><input class="qru" readonly value="'+esc(u)+'" aria-label="Link"><p class="qrbtn"><button type="button" class="btn" id="qrc">Link kopieren</button> <button type="button" class="btn sec" id="qrx">Schließen</button></p>';
+ d.querySelector('#qrx').onclick=()=>d.close();d.querySelector('#qrc').onclick=()=>{const i=d.querySelector('.qru');i.select();(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('Link kopiert'),()=>{try{document.execCommand('copy');toast('Link kopiert')}catch(e){}})};
+ d.onclick=e=>{if(e.target===d)d.close()};d.showModal?d.showModal():d.setAttribute('open','')}
+
+/* ---------- Themenseite ---------- */
+/* Themen, in denen die Skizze dieselbe (20) oder fast dieselbe (15) Zeichnung ist wie unter „Werte einstellen“:
+   nur noch die bewegte Zeichnung, der Erklärsatz der Skizze steht darunter. Prinzipskizzen (30 Themen) bleiben. */
+const ONE=new Set(['Amortisation & Rentabilität','Plankosten & Abweichungen','Leitungen bemessen & Spannungsfall','Thermische Trennverfahren','Stöchiometrie & Stoffbilanz','Gasgesetze','Wärmeleitung & Dämmung','Kreisprozesse & Wirkungsgrad','Kältemaschine & Wärmepumpe','Temperieren & Kühlen von Werkzeugen','Trocknen, Fördern & Dosieren','Spritzgießen: Zyklus & Einstellung','Werkzeug- & Formenbau','Extrusion & Blasformen','Positionierantriebe & Servotechnik','Beschaffung & Bestandsmanagement','Flurförderzeuge & Fördertechnik','Ladeeinheiten & Verpackung','Logistikkosten & Lagerkennzahlen','Fuhrpark oder Spedition',
+ 'Ladungssicherung','Deckungsbeitrag & Gewinnschwelle','Transformator & Blindleistungskompensation','Konvektion & Strahlung','Reaktionswärme & Enthalpie','Kautschuk: Mischung & Vulkanisation','FMEA: Risiken bewerten','Personalbedarf ermitteln','Zustandsänderungen','Sieden & Kondensieren','Wärme & Energiebilanz','Reaktionstechnik: Umsatz & Ausbeute','Systematische Fehlersuche & Diagnose']);
+const fachL=fach;fach=function(f){fachL(f);const v=q('#view'),m=modSel[f],mod=D[f].modules[m],sp=q('#sim');
+ /* eine Zeichnung */
+ if(sp&&ONE.has(mod.t)){const sk=v.querySelector('.skz');if(sk){const c=sk.querySelector('.skc'),g=sk.closest('.grid');sk.remove();
+  if(c){c.classList.add('simcap');sp.querySelector('.simsv').after(c)}
+  if(g&&!g.querySelector('.panel'))g.remove()}}
+ /* Schrittleiste: „Probieren“ am Handy, aktueller Schritt für Bildschirmleser */
+ const rf=q('#rfs');if(rf){const r=rf.querySelector('[data-s=r] .t');if(r)r.innerHTML='<span class="tsx">Ausprobieren</span><span class="tsy">Probieren</span>';stepCur()}
+ /* Mehr: Teilen und QR-Code, Menü bleibt im Bild */
+ if(sp){const mm=sp.querySelector('.mm'),mo=sp.querySelector('.more');if(mm){const u=link(route());
+  const a=el('<button type="button" data-a="t">🔗 Teilen</button><button type="button" data-a="q">▦ QR-Code</button>','');
+  a.querySelector('[data-a=t]').onclick=()=>{mo.open=false;share(mod.t,u)};a.querySelector('[data-a=q]').onclick=()=>{mo.open=false;qrShow(mod.t,u)};mm.prepend(...a.childNodes)}
+  if(mo){mo.addEventListener('toggle',()=>{sp.classList.toggle('mmo',mo.open);if(!mo.open)return;mm.style.left='0';mm.style.right='auto';const r=mm.getBoundingClientRect();if(r.right>innerWidth-8){mm.style.left='auto';mm.style.right='0';const r2=mm.getBoundingClientRect();if(r2.left<8){mm.style.right='auto';mm.style.left=(8-mo.getBoundingClientRect().left)+'px'}}});
+   mo.addEventListener('keydown',e=>{if(e.key==='Escape'&&mo.open){mo.open=false;mo.querySelector('summary').focus()}})}
+  /* Regler: Beschriftung, Regler und Zahl in einer Zeile */
+  sp.querySelectorAll('.rg2').forEach(r=>{r.classList.add('rg1');const l=r.querySelector('.rgl');if(l)l.title=l.textContent})}
+ /* Üben: „Neue Zahlen“ wie im Lernlabor */
+ v.querySelectorAll('#ueb .btn.sec').forEach(b=>{if(b.textContent==='Neue Zahlen')b.textContent='🔁 Gleiche Art, neue Zahlen'})};
+document.addEventListener('click',e=>{const o=q('#sim .more[open]');if(o&&!o.contains(e.target))o.open=false});
+function stepCur(){const rf=q('#rfs');if(!rf)return;rf.querySelectorAll('button').forEach(b=>{if(b.classList.contains('on'))b.setAttribute('aria-current','step');else b.removeAttribute('aria-current')})}
+new MutationObserver(ms=>{if(ms.some(x=>x.target.closest&&x.target.closest('#rfs')))stepCur()}).observe(q('#view'),{subtree:true,attributes:true,attributeFilter:['class']});
+
+/* ---------- Rechenaufgaben wie im Lernlabor ---------- */
+const nzz=x=>String(x).replace('.',',');
+function hint(u,a,un){if(!isFinite(u)||!isFinite(a)||a===0)return'Prüfe Formel und eingesetzte Werte.';
+ if(u===0)return'Du hast 0 eingegeben. Prüfe, ob das Ergebnis wirklich null sein kann.';
+ if(Math.abs(u+a)<=.02*Math.abs(a))return'Das Vorzeichen ist falsch (Richtung, Zu- oder Abnahme prüfen).';
+ const r=Math.abs(u/a),lg=Math.log10(r),k=Math.round(lg);
+ if(k!==0&&Math.abs(lg-k)<.03)return'Dein Wert ist etwa um den Faktor '+Math.pow(10,Math.abs(k)).toLocaleString('de-DE')+' '+(k>0?'zu groß':'zu klein')+'. Prüfe die Einheiten und Umrechnungen.';
+ const near=x=>Math.abs(r/x-1)<.03;
+ if(near(2)||near(.5))return'Faktor 2: Hast Du einen Wert doppelt oder nur halb gerechnet? Prüfe jeden Faktor in der Formel.';
+ if(near(4)||near(.25))return'Faktor 4: Prüfe, ob Du einen Wert quadrieren musst oder doppelt geteilt hast.';
+ if(near(Math.sqrt(3))||near(1/Math.sqrt(3)))return'Faktor √3: Stern und Dreieck oder Außenleiter- und Strangspannung verwechselt?';
+ if(near(9.81)||near(1/9.81))return'Faktor 9,81: Masse und Gewichtskraft verwechselt (F = m · g)?';
+ if(near(3.6)||near(1/3.6))return'Faktor 3,6: km/h und m/s oder kWh und MJ verwechselt?';
+ if(near(60)||near(1/60)||near(3600)||near(1/3600))return'Zeiteinheit prüfen: Sekunden, Minuten und Stunden umrechnen.';
+ if(near(100)||near(.01))return'Faktor 100: Prozent als Zahl eingesetzt (25 % = 0,25)?';
+ if(a!==1&&Math.abs(u*a-1)<.03)return'Du hast den Kehrwert berechnet. Prüfe, ob Du richtig geteilt hast.';
+ if(Math.abs(u-a)/Math.abs(a)<.1)return'Fast richtig. Runde erst am Ende und rechne mit mindestens 4 Stellen weiter.';
+ return r>1?'Dein Wert ist deutlich zu groß. Prüfe Formel und eingesetzte Werte.':'Dein Wert ist deutlich zu klein. Prüfe Formel und eingesetzte Werte.'}
+const calcL=calcHTML;calcHTML=function(c,onDone,mod){const w=calcL(c,onDone,mod);if(mod==='sim')return w;
+ const t=w.t,row=w.querySelector('.row'),bs=row.querySelectorAll('button'),pb=bs[0],lb=bs[1],inp=w.querySelector('input'),fb=w.querySelector('.fb'),sol=w.querySelector('.sol');
+ pb.textContent='Antwort prüfen';let fails=0,solved=false;
+ const lock=()=>{lb.disabled=true;lb.classList.add('plock');lb.textContent='🔒 Lösungsweg nach dem 2. Versuch'},unlock=()=>{lb.disabled=false;lb.classList.remove('plock');lb.textContent='Lösungsweg'};
+ /* Hilfe: Schritt für Schritt aus dem Lösungsweg, ohne das Ergebnis */
+ const st=(t.sol||[]).slice(0,-1);let hs=0;const hb=document.createElement('button');hb.type='button';hb.className='btn sec hlpb';hb.textContent='💡 Hilfe';
+ const hl=document.createElement('div');hl.className='sol hlp';hl.hidden=true;
+ const pbx=document.createElement('div');pbx.className='pb';fb.after(pbx);if(st.length){pbx.append(hb);pbx.after(hl)}pbx.append(lb);
+ hb.onclick=()=>{if(hs>=st.length)return;const d=document.createElement('div');d.textContent=st[hs++];hl.append(d);hl.hidden=false;hb.textContent=hs<st.length?'💡 Nächster Schritt':'💡 Hilfe';if(hs>=st.length)hb.disabled=true};
+ inp.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();pb.click()}});
+ /* „1.250“: nachfragen statt still zu deuten */
+ w.addEventListener('click',e=>{if(e.target!==pb||t.dt)return;const v=inp.value.trim().replace(/\s/g,'');const m=v.match(/^(-?)(\d{1,3})\.(\d{3})$/);
+  if(m){e.stopPropagation();fb.style.color='var(--red)';fb.textContent='Meinst Du '+nzz(parseFloat(v))+' oder '+v.replace('.','')+'? Bitte schreib Dezimalzahlen mit Komma ('+nzz(parseFloat(v))+') und große Zahlen ohne Punkt ('+v.replace('.','')+').'}},true);
+ w.addEventListener('click',e=>{if(e.target!==pb||solved)return;const tx=fb.textContent;
+  if(/^Richtig/.test(tx)){solved=true;unlock();fb.prepend('✓ ');return}
+  if(!/^Nicht ganz/.test(tx))return;fails++;
+  let u=NaN;if(!t.dt){let s=inp.value.trim();s=s.indexOf(',')>=0?s.replace(/\./g,'').replace(',','.'):s;u=parseFloat(s)}
+  fb.textContent='✗ Noch nicht. '+(t.dt?'Prüfe Startdatum, Fristbeginn und Feiertage.':hint(u,t.a,t.u));
+  if(fails===1&&!w.querySelector('.wlr')){const mt=D[c.f]&&D[c.f].modules[c.m],E=mt&&typeof ERK!=='undefined'&&ERK[mt.t];if(E&&E[2]&&E[2].length){const wl=document.createElement('div');wl.className='wlr';wl.innerHTML='<p class="wlh"><b>Woran lag es?</b> Tippe an, was passiert sein könnte.</p>'+E[2].map(x=>'<button type="button" class="chip" aria-pressed="false">'+esc(x).replace(/([A-Za-zσλμϑΔεηṁ])_([A-Za-z0-9äöü]+)/g,'$1<sub>$2</sub>')+'</button>').join('')+'<p class="sub wlt" hidden>Gut erkannt. Rechne mit diesem Punkt im Kopf noch einmal.</p>';wl.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{wl.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));wl.querySelector('.wlt').hidden=false});fb.after(wl)}}
+  if(fails===1){sol.hidden=true;lock()}else{sol.hidden=true;unlock();fb.textContent+=' Jetzt kannst Du den Lösungsweg ansehen.'}});
+ return w};
+
+/* ---------- MOB-01: Skizzenschrift am Handy (aus dem Lernlabor, für alle Zeichnungen der Themenseite) ---------- */
+const MIN=11,CAP=2,GP=2,hit=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>-GP&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>-GP;
+const hit0=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>.5&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>.5;
+const sym=t=>{const x=t.textContent.trim();return x.length<=2&&!/[A-Za-zÄÖÜäöü]/.test(x)};
+function boost(s){if(innerWidth>700)return;const vb=s.viewBox&&s.viewBox.baseVal;if(!vb||!vb.width)return;
+ const S=s.getBoundingClientRect(),cm=s.getScreenCTM(),k=cm?Math.hypot(cm.a,cm.b):0;if(!k||!S.width)return;
+ const T=[...s.querySelectorAll('text')].filter(t=>t.textContent.trim());if(!T.length||T.length>150)return;
+ T.forEach(t=>{if(t.dataset.fb!=null){t.style.fontSize=t.dataset.fb;delete t.dataset.fb}});
+ const fs0=T.map(t=>parseFloat(getComputedStyle(t).fontSize)||12);
+ const sz=(t,v)=>{if(t.dataset.fb==null)t.dataset.fb=t.style.fontSize;t.style.fontSize=v},un=t=>{if(t.dataset.fb!=null){t.style.fontSize=t.dataset.fb;delete t.dataset.fb}};
+ let f=fs0.map((x,i)=>x*k<MIN&&!sym(T[i])&&!T[i].querySelector('.fru,[data-fru]')&&!T[i].hasAttribute('data-fru')?Math.min(MIN/k,x*CAP)/x:1);if(f.every(x=>x===1))return;
+ const P=T.map((_,i)=>i),fd=i=>P[i]===i?i:(P[i]=fd(P[i])),fw=T.map(t=>getComputedStyle(t).fontWeight),ax=T.map(t=>parseFloat(t.getAttribute('x'))),ay=T.map(t=>parseFloat(t.getAttribute('y')));
+ for(let i=0;i<T.length;i++)for(let j=i+1;j<T.length;j++)if(fs0[i]===fs0[j]&&fw[i]===fw[j]&&(Math.abs(ay[i]-ay[j])<1||Math.abs(ax[i]-ax[j])<1))P[fd(i)]=fd(j);
+ const eq=()=>{const m={};f.forEach((x,i)=>{const r=fd(i);m[r]=Math.min(m[r]??9,x)});f=f.map((_,i)=>m[fd(i)])};eq();
+ const ia=(a,b)=>Math.max(0,Math.min(a.right,b.right)-Math.max(a.left,b.left))*Math.max(0,Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top));
+ const rc=()=>T.map(t=>t.getBoundingClientRect());const R0=rc(),old=new Set();
+ const ov0={};for(let i=0;i<T.length;i++)for(let j=i+1;j<T.length;j++)if(hit0(R0[i],R0[j])){old.add(i*4096+j);ov0[i*4096+j]=ia(R0[i],R0[j])}
+ const A=S.width*S.height,B=[...s.querySelectorAll('rect,circle,ellipse,polygon,path,image,use')].map(e=>e.getBoundingClientRect()).filter(r=>r.width>2&&r.height>2&&r.width*r.height<A*.12&&r.width<S.width*.45&&r.height<S.height*.45);
+ const ins=(r,b)=>r.left>=b.left-.5&&r.right<=b.right+.5&&r.top>=b.top-.5&&r.bottom<=b.bottom+.5;
+ const box=R0.map(r=>{let m=null;for(const b of B)if(ins(r,b)&&(!m||b.width*b.height<m.width*m.height))m=b;return m});
+ const pts=[];for(const e of s.querySelectorAll('path,line,polyline,polygon,rect,circle,ellipse')){if(e.closest('defs,pattern,clipPath,mask,marker,symbol'))continue;const cs=getComputedStyle(e);if(cs.display==='none'||cs.visibility==='hidden'||parseFloat(cs.opacity)<.25)continue;
+  const st=cs.stroke&&cs.stroke!=='none'&&parseFloat(cs.strokeWidth)>0&&parseFloat(cs.strokeOpacity)>.25,fl=cs.fill&&cs.fill!=='none'&&parseFloat(cs.fillOpacity)>.25;if(!st&&!fl)continue;
+  const r=e.getBoundingClientRect();if(r.width>=S.width*.9&&r.height>=S.height*.9)continue;if(fl&&!st&&r.width*r.height<A*.12&&r.width<S.width*.45&&r.height<S.height*.45)continue;
+  let L=0;try{L=e.getTotalLength()}catch(x){continue}if(!L||!isFinite(L))continue;const em=e.getScreenCTM();if(!em)continue;const n=Math.min(400,Math.ceil(L*k/3)),hw=st?parseFloat(cs.strokeWidth)*k/2:0;
+  for(let j=0;j<=n;j++){const p=e.getPointAtLength(L*j/n);pts.push(em.a*p.x+em.c*p.y+em.e,em.b*p.x+em.d*p.y+em.f,hw)}}
+ const inR=(x,y,r,m)=>x>r.left-m&&x<r.right+m&&y>r.top-m&&y<r.bottom+m;
+ const lin=(r,i)=>{const o=R0[i];for(let j=0;j<pts.length;j+=3){const x=pts[j],y=pts[j+1],h=pts[j+2];if(inR(x,y,r,.5+h)&&!inR(x,y,o,1.5+h))return true}return false};
+ const pd=R0.map((r,i)=>{const b=box[i];return b?Math.max(0,Math.min(3,r.left-b.left,b.right-r.right)):0});
+ const ob=R0.map((r,i)=>B.filter(b=>b!==box[i]&&!ins(b,r)&&hit(r,b)).map(b=>[b,ia(r,b)]));
+ for(let it=0;it<4;it++){T.forEach((t,i)=>{if(f[i]>1)sz(t,(fs0[i]*f[i])+'px');else un(t)});const R=rc(),bad=new Set();
+  for(let i=0;i<T.length;i++){if(f[i]===1)continue;const r=R[i];if(r.left<S.left-1||r.right>S.right+1||r.top<S.top-1||r.bottom>S.bottom+1){bad.add(i);continue}
+   if(box[i]){const b=box[i],p=pd[i];if(r.left<b.left+p||r.right>b.right-p||r.top<b.top+p*.5||r.bottom>b.bottom-p*.5){bad.add(i);continue}}
+   if(ob[i].some(([b,a])=>ia(r,b)>a*1.3+6)){bad.add(i);continue}
+   if(lin(r,i)){bad.add(i);continue}
+   for(const b of B){if(b===box[i]||ob[i].some(x=>x[0]===b)||ins(b,R0[i]))continue;if(Math.min(r.right,b.right)-Math.max(r.left,b.left)>1&&Math.min(r.bottom,b.bottom)-Math.max(r.top,b.top)>1&&!ins(b,r)){bad.add(i);break}}}
+  for(let i=0;i<T.length;i++)for(let j=i+1;j<T.length;j++){if(f[i]===1&&f[j]===1)continue;const kk=i*4096+j;if(old.has(kk)?ia(R[i],R[j])>ov0[kk]*1.05+.5:hit(R[i],R[j])){bad.add(i);bad.add(j)}}
+  if(!bad.size)break;bad.forEach(i=>{f[i]=it<3?1+(f[i]-1)/2:1;if(f[i]<1.04)f[i]=1});eq();if(it===3)T.forEach((t,i)=>{if(f[i]>1)sz(t,(fs0[i]*f[i])+'px');else un(t)})}}
+let BQ=new Set(),BF=0;const bq=s=>{BQ.add(s);if(!BF)BF=requestAnimationFrame(()=>requestAnimationFrame(()=>{BF=0;const a=[...BQ];BQ.clear();a.forEach(x=>{if(x.isConnected){try{boost(x)}catch(e){}try{if(window.llFitSvg)llFitSvg(x)}catch(e){}}})}))};
+const SVQ='.skb svg.mlsk,.simsv svg';
+new MutationObserver(ms=>{if(innerWidth>700)return;for(const m of ms)for(const n of m.addedNodes){if(n.nodeType!==1)continue;
+ if(n.matches(SVQ))bq(n);else if(n.querySelector&&n.querySelector('svg'))n.querySelectorAll(SVQ).forEach(bq)}}).observe(q('#view'),{childList:true,subtree:true});
+let RW=innerWidth;addEventListener('resize',()=>{if(innerWidth===RW)return;RW=innerWidth;document.querySelectorAll('#view '+SVQ.split(',').join(',#view ')).forEach(bq)});
+
+/* ---------- Kopf: „Suchen …“ am Handy, Link „Zum Inhalt springen“ ---------- */
+const sq=q('#q');const ph=()=>{if(sq)sq.placeholder=innerWidth<480?'Suchen …':'Thema oder Formel …'};ph();addEventListener('resize',ph);
+{const a=document.createElement('a');a.className='skipl';a.href='#';a.textContent='Zum Inhalt springen';a.onclick=e=>{e.preventDefault();const h=q('#view h2,#view h3');if(h){if(!h.hasAttribute('tabindex'))h.setAttribute('tabindex','-1');h.scrollIntoView({block:'start'});h.focus({preventScroll:true})}};document.body.prepend(a)}
+
+/* ---------- Start: Adresse aus dem Link öffnen ---------- */
+if(location.hash&&!/^#(glossar|formelsammlung)$/.test(location.hash)){ROUT=true;try{openRoute(location.hash)}finally{ROUT=false}}else nav();
+})();
+</script>
+<script>/* ===== Version 9: übrige Punkte aus dem UI-Audit =====
+   Antworten merken, Formelzeichen an den Reglern, Glossar und Formelsammlung, Schrittleiste folgt dem Lesen,
+   Rückweg aus Im Betrieb, Lernstand am Handy, Kontraste, aria-pressed, Startseite, Reglerwerte behalten. */
+(()=>{
+const q=s=>document.querySelector(s);
+const LG=k=>{try{return JSON.parse(localStorage.getItem(k)||'{}')||{}}catch(e){return {}}},LS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const SG=k=>{try{return JSON.parse(sessionStorage.getItem(k)||'{}')||{}}catch(e){return {}}},SS=(k,v)=>{try{sessionStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const sub=s=>esc(s).replace(/([A-Za-zσλμϑΔεṁ])_([A-Za-z0-9äöü]+)/g,'$1<sub>$2</sub>');
+
+/* ---------- 1 Antworten in Situationsaufgaben und Im Betrieb merken (auf diesem Gerät) ---------- */
+const AK='meisterlabor-antw';
+const akey=ta=>{const tas=[...q('#view').querySelectorAll('.q textarea')];return CASES[fIdx].t+'|'+tas.indexOf(ta)};
+document.addEventListener('input',e=>{const ta=e.target;if(tab!=='fall'||!ta.matches||!ta.matches('#view .q textarea'))return;const o=LG(AK),k=akey(ta);if(ta.value.trim())o[k]=ta.value;else delete o[k];LS(AK,o);
+ const n=ta.nextElementSibling;if(n&&n.classList.contains('ansv'))n.textContent='Gespeichert auf diesem Gerät.'});
+function restoreAnswers(){if(tab!=='fall')return;const o=LG(AK);q('#view').querySelectorAll('.q textarea').forEach(ta=>{if(ta.dataset.rs)return;ta.dataset.rs=1;const v=o[akey(ta)];if(v)ta.value=v;
+ const n=document.createElement('p');n.className='sub ansv';n.textContent=v?'Deine gespeicherte Antwort.':'Wird auf diesem Gerät gespeichert.';ta.after(n)})}
+new MutationObserver(()=>restoreAnswers()).observe(q('#view'),{childList:true,subtree:true});
+
+/* ---------- 7 Rückweg aus Im Betrieb ---------- */
+let FROMIB=false;
+document.addEventListener('click',e=>{if(tab==='betrieb'&&e.target.closest&&e.target.closest('#view .ibc .btn, #view .panel .btn'))FROMIB=true},true);
+const fall9=fall;fall=function(v){fall9(v);if(FROMIB){const b=el('<button type="button" class="chip bkib">‹ Zurück zu Im Betrieb</button>','bkw');b.firstChild.onclick=()=>{go('betrieb');scrollTo(0,0)};v.prepend(b)}
+ const s=q('#fsel');if(s)s.addEventListener('change',()=>{try{history.replaceState(history.state,'','#pruefungsaufgaben/'+(fIdx+1))}catch(e){}})};
+const go9=go;go=function(t){if(t!=='fall')FROMIB=false;go9(t)};
+
+/* ---------- 2 Formelzeichen an den Reglern ---------- */
+const SYM={'Saugerdurchmesser':'Saugerdurchmesser d','Zahl der Sauger':'Zahl der Sauger n','Schnittgeschwindigkeit vc':'Schnittgeschwindigkeit v_c','Schnitttiefe ap':'Schnitttiefe a_p','Zahnvorschub fz':'Zahnvorschub f_z',
+ 'Länge der Schnittlinie':'Länge der Schnittlinie l','Blechdicke':'Blechdicke s','Zugfestigkeit Rm':'Zugfestigkeit R_m','Schichtdicke':'Schichtdicke s','Taktzeit':'Taktzeit t_T','Nutzungsdauer':'Nutzungsdauer n','Laufzeit':'Laufzeit t',
+ 'variable Kosten kv':'variable Kosten k_v','Stückzahl':'Stückzahl m','Zeit je Einheit':'Zeit je Einheit t_e','Bestellmenge':'Bestellmenge x','Rüstzeit':'Rüstzeit t_r','Grundzeit je Stück':'Grundzeit je Stück t_g','Zeit je Stück':'Zeit je Stück t_e',
+ 'Mittelwert':'Mittelwert x̄','Leitungslänge':'Leitungslänge l','Querschnitt':'Querschnitt A','Strom':'Strom I','Wirkleistung':'Wirkleistung P','Kondensatorleistung':'Kondensatorleistung Q_C','Strom in der Schleife':'Strom in der Schleife I','Verstärkung KP':'Verstärkung K_P',
+ 'Schwere der Verletzung':'Schwere der Verletzung S','Aufenthalt im Gefahrenbereich':'Aufenthalt im Gefahrenbereich F','Gefahr vermeiden':'Gefahr vermeiden P','Produktstrom':'Produktstrom ṁ','Eintritt Produkt':'Eintritt Produkt ϑ_ein','Austritt Kühlwasser':'Austritt Kühlwasser ϑ_aus',
+ 'Förderstrom':'Förderstrom Q','Leichtsieder im Zulauf':'Leichtsieder im Zulauf x_F','Reinheit Destillat':'Reinheit Destillat x_D','Leichtsieder im Sumpf':'Leichtsieder im Sumpf x_B','Gehalt der Lauge':'Gehalt der Lauge w',
+ 'Reaktionstemperatur':'Reaktionstemperatur ϑ','Reaktionszeit':'Reaktionszeit t','Fülldruck bei 20 °C':'Fülldruck p_1 bei 20 °C','Temperatur':'Temperatur ϑ','Exponent (Kühlung)':'Exponent n (Kühlung)','Dicke der Dämmung':'Dicke der Dämmung d','Temperatur innen':'Temperatur innen ϑ_i',
+ 'Emissionsgrad der Oberfläche':'Emissionsgrad der Oberfläche ε','Obere Temperatur':'Obere Temperatur T_o','Untere Temperatur':'Untere Temperatur T_u','Vorlauftemperatur':'Vorlauftemperatur ϑ_V','Druck im Verdampfer':'Druck im Verdampfer p','Verdampfte Menge':'Verdampfte Menge m',
+ 'Edukt je Charge':'Edukt je Charge m','Ansatzmasse':'Ansatzmasse m','Kühlmitteltemperatur':'Kühlmitteltemperatur ϑ_K','Schussgewicht':'Schussgewicht m','Zykluszeit':'Zykluszeit t_Z','Massetemperatur':'Massetemperatur ϑ_M','Wanddicke':'Wanddicke s','Werkzeugtemperatur':'Werkzeugtemperatur ϑ_W',
+ 'Projizierte Fläche je Kavität':'Projizierte Fläche je Kavität A','Werkzeuginnendruck':'Werkzeuginnendruck p_i','Kavitäten':'Kavitäten n','Schneckendrehzahl':'Schneckendrehzahl n','Abzugsgeschwindigkeit':'Abzugsgeschwindigkeit v','Heiztemperatur':'Heiztemperatur ϑ','Heizzeit':'Heizzeit t',
+ 'Weg':'Weg s','Höchstgeschwindigkeit':'Höchstgeschwindigkeit v_max','Beschleunigung':'Beschleunigung a','Lastschwerpunktabstand':'Lastschwerpunktabstand c','Hubhöhe':'Hubhöhe h','Kartonhöhe':'Kartonhöhe h','Masse der Ladung':'Masse der Ladung m',
+ 'Gleitreibbeiwert':'Gleitreibbeiwert μ_Gleit','Zurrgurte':'Zurrgurte n','Zurrwinkel':'Zurrwinkel α'};
+/* Name und Formelzeichen trennen: das Zeichen steht vorn und fett, der Name klein daneben */
+const SYMX=/^(.*?)\s+((?:Δ[A-Za-z]|x̄|[A-Za-zσλμϑεṁα])(?:_[A-Za-z0-9äöü]+)?|DN)(\s.*)?$/;
+function symLabels(sp){sp.querySelectorAll('.rgl').forEach(l=>{if(l.dataset.sym)return;l.dataset.sym=1;const t=l.textContent.trim(),n=SYM[t]||t.replace(/\b(v|a|f|R|k|K)(c|p|z|m|v|P)\b/,'$1_$2'),m=n.match(SYMX);
+ if(!m||/^(Auslösefaktor|cos)/.test(n)){l.innerHTML='<span class="rgn2">'+sub(n)+'</span>';return}
+ l.innerHTML='<span class="rgs">'+sub(m[2])+'</span><span class="rgn2">'+sub(m[1]+(m[3]||''))+'</span>';l.title=n.replace(/_/g,'')})}
+
+/* ---------- 15 Reglerwerte behalten, solange die App offen ist ---------- */
+const RVK='meisterlabor-regler';
+function keepValues(sp,key){const S=SG(RVK)[key];const rs=[...sp.querySelectorAll('input[type=range]')];
+ if(S)rs.forEach(r=>{const v=S[r.id];if(v!=null&&String(v)!==r.value){r.value=v;r.dispatchEvent(new Event('input'))}});
+ const snap=()=>{const o=SG(RVK);o[key]=Object.fromEntries(rs.map(r=>[r.id,r.value]));SS(RVK,o)};
+ sp.addEventListener('input',e=>{if(e.target.type==='range')snap()});sp.addEventListener('change',e=>{if(e.target.classList.contains('rgn'))setTimeout(snap,0)});
+ const w=sp.querySelector('.mm [data-a=w]');if(w)w.addEventListener('click',()=>{const o=SG(RVK);delete o[key];SS(RVK,o)})}
+
+/* ---------- 5 Schrittleiste folgt dem Lesen ---------- */
+let STO=null;
+function stepTrack(){const rf=q('#rfs');if(!rf)return;rf.classList.add('trk');const T={v:'#pred',a:'#ein',r:'#sim',u:'#ueb'};
+ const bs=[...rf.querySelectorAll('button')].filter(b=>q(T[b.dataset.s]));
+ const set=b=>{rf.querySelectorAll('button').forEach(x=>{x.classList.toggle('cur',x===b);if(x===b)x.setAttribute('aria-current','step');else x.removeAttribute('aria-current')})};
+ let lock=0;bs.forEach(b=>b.addEventListener('click',()=>{set(b);lock=Date.now()}));
+ const upd=()=>{if(Date.now()-lock<900||!rf.isConnected)return;const y=innerHeight*.4;let c=bs[0];bs.forEach(b=>{const t=q(T[b.dataset.s]);if(t&&t.getBoundingClientRect().top<y)c=b});set(c)};
+ if(STO)removeEventListener('scroll',STO);STO=()=>requestAnimationFrame(upd);addEventListener('scroll',STO,{passive:true});upd()}
+
+/* ---------- Themenseite: Formelzeichen, Werte, Schrittleiste ---------- */
+const fach9=fach;fach=function(f){fach9(f);const sp=q('#sim');if(sp){symLabels(sp);keepValues(sp,f+':'+modSel[f])}stepTrack()};
+
+/* ---------- 10 Auswahlfragen: gewählte Antwort für Bildschirmleser ---------- */
+const mcq9=mcqHTML;mcqHTML=function(){const w=mcq9.apply(this,arguments);w.querySelectorAll('.opt').forEach(b=>{b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>b.setAttribute('aria-pressed','true'))});return w};
+
+/* ---------- 8 Lernstand-Tabelle: Richtig und Falsch in einer Spalte ---------- */
+const stand9=stand;stand=function(v){stand9(v);v.querySelectorAll('.dtw table, table').forEach(t=>{const h=t.rows[0];if(!h||!h.cells[1]||h.cells[1].textContent!=='Richtig'||!h.cells[2]||h.cells[2].textContent!=='Falsch')return;
+ [...t.rows].forEach((r,i)=>{if(r.cells.length<4)return;r.cells[1].innerHTML=i?'<span class="rr">'+r.cells[1].textContent+'</span> / <span class="rw">'+r.cells[2].textContent+'</span>':'Richtig / Falsch';r.cells[2].remove()})})};
+
+/* ---------- 11 Startseite: nächster Schritt zuerst, Fachrichtung eingeklappt ---------- */
+const chosen=()=>{try{return !!localStorage.getItem('meisterlabor-fr')||new URLSearchParams(location.search).has('fr')}catch(e){return false}};
+const home9=home;home=function(v){home9(v);if(!chosen())return;const fr=v.querySelector('.frs'),p=fr&&fr.closest('.panel');if(!p)return;
+ const h=p.querySelector('h2'),rest=[...p.children].filter(x=>x!==h);p.classList.add('frp2');
+ const b=el('<button type="button" class="frt" aria-expanded="false"><span aria-hidden="true">🎓</span> Fachrichtung: <b>'+'Lernlabor Betrieb'+'</b> <span class="frta">ändern ▾</span></button>','').firstChild;
+ rest.forEach(x=>x.hidden=true);h.replaceWith(b);b.onclick=()=>{const o=b.getAttribute('aria-expanded')!=='true';b.setAttribute('aria-expanded',String(o));rest.forEach(x=>x.hidden=!o);b.querySelector('.frta').textContent=o?'zuklappen ▴':'ändern ▾'};
+ const nx=v.querySelector('.nxt');if(nx){const fv=v.querySelector('.favp');(fv||nx).after(p)}};
+
+/* ---------- 4 Glossar und Formelsammlung ---------- */
+Object.assign(TL,{glossar:'📖 Glossar',formeln:'📐 Formelsammlung'});
+const draw9=draw;draw=function(){if(tab==='glossar'||tab==='formeln'){const v=q('#view');v.innerHTML='';(tab==='glossar'?glossar:formeln)(v);return}draw9()};
+const openT=(f,i)=>{modSel[f]=i;go(f);scrollTo(0,0)};
+const filt=(p,ph)=>{const i=el('<input type="search" class="nsf" placeholder="'+ph+'" aria-label="'+ph+'" autocomplete="off">','').firstChild;i.oninput=()=>{const t=i.value.trim().toLowerCase();p.querySelectorAll('[data-s]').forEach(x=>x.hidden=!!t&&!x.dataset.s.includes(t));p.querySelectorAll('.nsg').forEach(g=>g.hidden=![...g.querySelectorAll('[data-s]')].some(x=>!x.hidden))};return i};
+function formeln(v){const p=el('<h2>📐 Formelsammlung</h2><p class="sub">Alle Grundgleichungen aus den Themen von '+'Lernlabor Betrieb'+', geordnet wie im Menü Lernen. Tippe auf ein Thema, um es zu öffnen.</p>','panel nsl fsm');
+ p.append(filt(p,'Formel oder Thema suchen …'));
+ FACH.forEach(f=>GRP[f].forEach(g=>{const it=g[1].map(i=>{const m=D[f].modules[i];if(m.wip)return'';const GL=m.fo||m.pts.filter(x=>x.includes('='));if(!GL.length)return'';
+   return '<div class="fsi" data-s="'+esc((m.t+' '+GL.join(' ')).toLowerCase())+'"><button type="button" class="lk" data-f="'+f+'" data-i="'+i+'">'+esc(m.t)+'</button><ul>'+GL.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'}).join('');
+  if(it)p.append(el('<h3>'+esc(D[f].kurz)+' · '+esc(g[0])+'</h3>'+it,'nsg'))}));
+ p.querySelectorAll('.lk').forEach(b=>b.onclick=()=>openT(b.dataset.f,+b.dataset.i));v.append(p)}
+function glossar(v){const A=[];FACH.forEach(f=>D[f].modules.forEach((m,i)=>{if(m.wip)return;const s=(m.intro||'').split(/(?<=[.!?])\s/)[0];A.push([m.t,s,f,i])}));
+ A.sort((a,b)=>a[0].localeCompare(b[0],'de'));const p=el('<h2>📖 Glossar</h2><p class="sub">Alle Themen von A bis Z mit einem Satz zur Einordnung. Tippe auf einen Begriff, um das Thema zu öffnen.</p>','panel nsl gls');
+ p.append(filt(p,'Begriff suchen …'));const L={};A.forEach(a=>{const k=a[0][0].toUpperCase();(L[k]=L[k]||[]).push(a)});
+ Object.keys(L).forEach(k=>p.append(el('<h3>'+k+'</h3>'+L[k].map(a=>'<div class="gli" data-s="'+esc((a[0]+' '+a[1]).toLowerCase())+'"><button type="button" class="lk" data-f="'+a[2]+'" data-i="'+a[3]+'">'+esc(a[0])+'</button><p>'+esc(a[1])+'</p></div>').join(''),'nsg')));
+ p.querySelectorAll('.lk').forEach(b=>b.onclick=()=>openT(b.dataset.f,+b.dataset.i));v.append(p)}
+/* Menü Lernen: Abschnitt „Nachschlagen“ */
+const nav9=nav;nav=function(){nav9.apply(this,arguments);const b1=q('#fs [data-g="1"]');if(!b1)return;
+ if(tab==='glossar'||tab==='formeln')b1.setAttribute('aria-pressed','true');
+ b1.addEventListener('click',()=>{const m=q('#nm');if(m.hidden||m.querySelector('.nmns'))return;const h=el('<h3 class="nmns">Nachschlagen</h3>','').firstChild;m.append(h);
+  ['glossar','formeln'].forEach(k=>{const l=TL[k],sp=l.indexOf(' '),x=document.createElement('button');x.type='button';x.setAttribute('role','menuitem');x.dataset.k=k;x.setAttribute('aria-current',String(tab===k));x.innerHTML='<span class="mi">'+l.slice(0,sp)+'</span><span>'+l.slice(sp+1)+'</span>';x.onclick=()=>{nmClose();go(k);scrollTo(0,0)};m.append(x)});
+  /* „Weiter mit …“ wie im Lernlabor: klein und zweizeilig rechts neben Glossar und Formelsammlung */
+  const w=m.querySelector('.nmw');if(w){const n=document.createElement('div');n.className='nmn';const l=document.createElement('div');m.querySelectorAll('[data-k="glossar"],[data-k="formeln"]').forEach(x=>l.append(x));const t=w.querySelector('span:last-child').textContent.replace(/^Weiter mit /,'');w.innerHTML='<small>↩ Weiter mit</small>'+esc(t);w.setAttribute('aria-label','Weiter mit '+t);n.append(l,w);m.append(n)}})};
+/* Suche findet auch Glossar und Formelsammlung nicht doppelt: nichts zu tun. Start mit Adresse: */
+if(/^#(glossar|formelsammlung)$/.test(location.hash)){const h=location.hash;go(h==='#glossar'?'glossar':'formeln')}else nav();
+if(FACH.includes(tab)){const sp=q('#sim');if(sp){symLabels(sp);keepValues(sp,tab+':'+modSel[tab])}stepTrack()}
+if(tab==='fall'&&/^#pruefungsaufgaben/.test(location.hash))restoreAnswers();
+if(tab==='home'&&!q('#view .frt')&&chosen()){const y=scrollY;go('home');scrollTo(0,y)}
+})();
+</script>
+<script>/* ===== Version 11: Zahl und Einheit nie trennen =====
+   Leerzeichen zwischen Zahl und Einheit (auch %, °C, €) und zwischen Tausendergruppen werden geschützt,
+   eine Zahl mit Bruch-Einheit (.fru) samt folgendem Satzzeichen steht in einem nicht umbrechenden Kasten. */
+(()=>{
+const U=['%','‰','°C','°F','°','K','V','kV','mV','µV','A','mA','kA','µA','W','kW','MW','GW','mW','Wh','kWh','MWh','GWh','Ah','mAh','Hz','kHz','MHz','GHz','Ω','kΩ','MΩ','mΩ','VA','kVA','MVA','var','kvar','Mvar','F','µF','nF','pF','mF','H','mH','T','mT','N','kN','MN','mN','Nm','N·m','kNm','kN·m','Pa','kPa','MPa','GPa','hPa','bar','mbar','m','mm','cm','dm','km','µm','μm','nm','m²','m³','mm²','mm³','cm²','cm³','dm²','dm³','km²','l','L','ml','dl','cl','hl','Liter','g','kg','mg','µg','t','s','ms','µs','min','h','d','a','mol','kmol','mmol','J','kJ','MJ','GJ','cal','kcal','€','ct','Cent','Euro','EUR','dB','dB(A)','lx','lm','cd','U','Stück','Stk.','Teile','Teil','Jahre','Jahren','Jahr','Tage','Tagen','Tag','Monate','Monaten','Monat','Wochen','Woche','Stunden','Stunde','Minuten','Minute','Sekunden','Sekunde','Schichten','Schicht','Prozent','Prozentpunkte','Grad','Mbit','kbit','bit','Byte','kB','MB','GB','HRC','HB','HV','ppm','rad','sr','Bq','Gy','Sv','eV','K⁻¹','1/K','mol/l','Nm³','daN','phr','Vol.-%','Gew.-%','Ma.-%','Vol.%','Mio.','Mio','Mrd.','Mrd','Tsd.','Millionen','Milliarden','Uhr','Mitarbeiter','Mitarbeitern','Mitarbeitende','Vollarbeiter','Vollarbeitern','Personen','Betriebsstunden','Laufstunden','Arbeitsstunden','Produktionsstunden','Maschinenstunden','Arbeitstage','Arbeitstagen','Werktage','Werktagen','Liter','Litern','Positionen','Paletten','Europaletten','Stellplätze','Kartons','Pakete','Zyklen','Takte','Umdrehungen','Kavitäten','Sauger','Saugern','Stationen','Messungen','Schneiden','Zähne','Achsen','Gurte','Gurten','Geräte','Adressen','Pos.','Pos./h','Teilen','Fässer','Kommissionierer','Rechnungseinheiten','Verschlusskappen'];
+const rq=x=>x.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),L='A-Za-zÄÖÜäöüßµμΩ0-9_²³';
+const RU=new RegExp('(\\d)[ \\u2009](?=(?:'+U.slice().sort((a,b)=>b.length-a.length).map(rq).join('|')+')(?!['+L+']))','g');
+const RS=new RegExp('^[ \\u00a0](?:'+U.slice().sort((a,b)=>b.length-a.length).map(rq).join('|')+')(?!['+L+'])');
+const RT=/(^|[^\d,.])(\d{1,3})((?:[  ]\d{3})+)(?![\d,])/g;
+const SKIP=/^(svg|input|textarea|select|option|script|style|code)$/i;
+const fix0=s=>s.replace(RU,'$1 ').replace(RT,(m,a,b,c)=>a+b+c.replace(/[  ]/g,' '));
+/* Version 19: kurze Formeln zusammenhalten. „=“ bleibt an einem kurzen Formelzeichen (bis 12 Zeichen) und, wenn beide Seiten zusammen kurz sind (bis 20 Zeichen), auch am Wert (r = 2257, Q = m · c · ΔT), ebenso um Malpunkte zwischen Formelzeichen und Zahlen (m · c · ΔT, √3 · U · I · cos φ) */
+const GR='ΔΦΩΨΣΘΛΠαβγδεζηϑθικλμνξπρσςτυφχψω\u1e00-\u1eff',SY='(?:cos ?|sin ?|tan ?)?[A-Za-z'+GR+'][A-Za-z0-9_\\u0307\\u0304'+GR+'\\u2019\']{0,3}',NB='[^A-Za-zÄÖÜäöüß0-9_'+GR+'\\u0307\\u0304]';
+const RE2=new RegExp('(^|'+NB+')('+SY+'|[\\d,]*\\d) ([·×]) (?=[-−+]?[\\d√(]|'+SY+'(?:'+NB+'|$))','g');
+const feq=s=>{if(!/[=·×]/.test(s))return s;s=s.replace(/(^|[^A-Za-z])(cos|sin|tan) (?=[α-ωϑφ])/g,'$1$2\u00a0');
+ s=s.replace(/([^\s\u00a0]+) = (?=([^\s\u00a0]+))/g,(m,a,b)=>a+(a.length<=12?'\u00a0':' ')+'='+(a.length+b.length<=20?'\u00a0':' '));for(let i=0;i<4;i++)s=s.replace(RE2,(m,a,b,c)=>a+b+'\u00a0'+c+'\u00a0');return s};
+const fix=s=>feq(fix0(s));
+const glue=root=>{if(!root)return;
+ const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{if(!/\d[ \u2009]| [=·×] /.test(n.nodeValue))return NodeFilter.FILTER_REJECT;for(let e=n.parentNode;e&&e!==root.parentNode;e=e.parentNode){if(e.nodeType===1&&(SKIP.test(e.nodeName)||e.isContentEditable))return NodeFilter.FILTER_REJECT}return NodeFilter.FILTER_ACCEPT}}),T=[];
+ while(tw.nextNode())T.push(tw.currentNode);
+ T.forEach(n=>{const v=fix(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v});
+ /* Zahl am Textende, danach eine Einheit in eigenem Element (zum Beispiel <b>12</b> kW oder 12 <span>kW</span>): Leerzeichen schützen */
+ root.querySelectorAll('*').forEach(e=>{if(SKIP.test(e.nodeName)||e.closest('svg'))return;const a=e.previousSibling,b=e.nextSibling;
+  if(b&&b.nodeType===3&&/^(SUB|SUP|VAR|I|EM)$/.test(e.nodeName)&&/^ [=·×] /.test(b.nodeValue)&&e.textContent.length<=4)b.nodeValue='\u00a0'+b.nodeValue[1]+'\u00a0'+b.nodeValue.slice(3);
+  if(a&&a.nodeType===3&&/\d $/.test(a.nodeValue)&&RS.test(' '+e.textContent))a.nodeValue=a.nodeValue.slice(0,-1)+' ';
+  if(b&&b.nodeType===3&&/\d$/.test(e.textContent)&&RS.test(b.nodeValue))b.nodeValue=' '+b.nodeValue.slice(1)});
+ /* Zahl mit Bruch-Einheit (.fr aus [[…||…]] und .fru aus kJ/kg): Zahl, Bruch und folgendes Satzzeichen in einen nicht umbrechenden Kasten */
+ root.querySelectorAll('.fr').forEach(f=>{if(f.parentElement.closest('.fr,.nw'))return;
+  let t=f;const pa=f.parentElement;if(pa&&pa.tagName==='SPAN'&&pa.style.display==='inline-block'&&pa.firstChild===f)t=pa;
+  if(t!==f&&t.parentElement.closest('.nw'))return;
+  let p=t.previousSibling,lead=null,num='';
+  if(p&&p.nodeType===3){const m=/((?:[^\s\u00a0\u202f]*[\u00a0\u202f])*[^\s\u00a0\u202f]*\d)(\s?)$/.exec(p.nodeValue);
+   if(m){num=m[1]+(m[2]?' ':'');p.nodeValue=p.nodeValue.slice(0,m.index)}
+   else if(/^[\s  ]$/.test(p.nodeValue)&&p.previousSibling&&p.previousSibling.nodeType===1&&!SKIP.test(p.previousSibling.nodeName)&&/\d$/.test(p.previousSibling.textContent)){lead=p.previousSibling;num=' ';p.remove()}
+   else return}
+  else if(p&&p.nodeType===1&&!SKIP.test(p.nodeName)&&/\d$/.test(p.textContent))lead=p;
+  else return;
+  const w=document.createElement('span');w.className='nw';t.before(w);if(lead)w.append(lead);if(num)w.append(num);w.append(t);
+  const nx=w.nextSibling;if(nx&&nx.nodeType===3){const k=/^[.,;:!?)»“]+/.exec(nx.nodeValue);if(k){w.append(k[0]);nx.nodeValue=nx.nodeValue.slice(k[0].length)}}})};
+/* ---------- Texte stehen nicht über: lieber etwas kleinere Schrift als ein Wort mitten im Wort brechen ---------- */
+const BLK=/^(block|list-item|flex|grid|inline-block|inline-flex|inline-grid|table-cell|table-caption|flow-root)$/;
+const leaf=e=>{for(const c of e.children){const d=getComputedStyle(c).display;if(d==='block'||d==='list-item'||d==='flex'||d==='grid'||d==='table'||d==='flow-root'||c.tagName==='svg'||c.tagName==='IMG'||c.tagName==='TABLE'||c.tagName==='INPUT'||c.tagName==='SELECT'||c.tagName==='TEXTAREA')return false}return true};
+const own=e=>[...e.childNodes].some(n=>n.nodeType===3&&n.nodeValue.trim())||[...e.children].some(c=>getComputedStyle(c).display==='inline'&&c.textContent.trim());
+function fitHtml(root){if(!root||!root.isConnected)return;
+ const E=[root,...root.querySelectorAll('*')].filter(e=>{if(e.closest('svg,script,style,textarea,select,option,input'))return false;if(!e.offsetParent&&getComputedStyle(e).position!=='fixed')return false;
+  const cs=getComputedStyle(e);if(!BLK.test(cs.display)||cs.overflowX!=='visible'||cs.textOverflow==='ellipsis')return false;return own(e)&&leaf(e)});
+ E.forEach(e=>{if(e.dataset.ow==null)e.dataset.ow=e.style.overflowWrap||'';e.style.overflowWrap='normal';e.style.wordBreak='normal'});
+ let O=E.filter(e=>e.scrollWidth>e.clientWidth+1);
+ for(let i=0;i<6&&O.length;i++){O.forEach(e=>{const f=parseFloat(getComputedStyle(e).fontSize);if(e.dataset.fs0==null)e.dataset.fs0=f;if(f>e.dataset.fs0*.72)e.style.fontSize=(f*.94).toFixed(2)+'px'});O=O.filter(e=>e.scrollWidth>e.clientWidth+1)}
+ O.forEach(e=>{e.style.overflowWrap='anywhere'});window.llNoFit=O}
+const SVQ='.skb svg.mlsk,.simsv svg';
+function fitSvg(s){if(!s||!s.isConnected)return;const S=s.getBoundingClientRect();if(!S.width)return;const A=S.width*S.height;
+ const sh=[...s.querySelectorAll('circle,ellipse,rect')].filter(e=>!e.closest('defs,pattern,clipPath,mask,marker,symbol')).map(e=>({e,r:e.getBoundingClientRect(),c:e.tagName!=='rect'})).filter(o=>o.r.width>6&&o.r.height>6&&o.r.width*o.r.height<A*.25);
+ s.querySelectorAll('text').forEach(t=>{if(!t.textContent.trim()||t.hasAttribute('data-fru')||t.closest('defs'))return;let r=t.getBoundingClientRect();if(!r.width)return;
+  const cx=(r.left+r.right)/2,cy=(r.top+r.bottom)/2;let av=Infinity,best=null;
+  for(const o of sh){const b=o.r;if(cx<b.left||cx>b.right||cy<b.top||cy>b.bottom||b.height<r.height*.8)continue;if(best&&b.width*b.height>=best.width*best.height)continue;best=b;
+   if(o.c){const R=b.height/2,dy=Math.min(R,Math.abs(cy-(b.top+R))+r.height*.3);av=b.width*Math.sqrt(Math.max(0,1-(dy/R)**2))-2}else av=b.width-3}
+  let k=1;if(best&&r.width>av+.5)k=Math.min(k,av/r.width);
+  const an=getComputedStyle(t).textAnchor;const room=an==='middle'?2*Math.min(cx-S.left,S.right-cx):an==='end'?r.right-S.left:S.right-r.left;if(r.width>room+.5)k=Math.min(k,room/r.width);
+  if(k<.995){const f=parseFloat(getComputedStyle(t).fontSize);t.style.fontSize=(f*Math.max(.6,k)).toFixed(2)+'px'}})}
+window.llFitSvg=fitSvg;
+const st=document.createElement('style');st.textContent='.nw{white-space:nowrap}';document.head.append(st);
+const R=new Set();let q=0;
+const run=()=>{q=0;let roots=[...R];R.clear();if(roots.some(x=>x.id==='view'||x.id==='nm')||roots.length>40)roots=['view','nm'].map(id=>document.getElementById(id)).filter(Boolean);
+ roots=roots.filter(x=>x.isConnected&&!roots.some(y=>y!==x&&y.contains(x)));
+ roots.forEach(x=>{glue(x)});roots.forEach(x=>{const b=x.closest('p,li,div,section,details,td,button,label')||x;fitHtml(b)});
+ const sv=new Set();roots.forEach(x=>{if(x.closest('svg'))sv.add(x.closest('svg'));else x.querySelectorAll('svg').forEach(v=>sv.add(v))});
+ const mine=[...sv].filter(v=>!(innerWidth<=700&&v.matches(SVQ)));if(mine.length)requestAnimationFrame(()=>requestAnimationFrame(()=>requestAnimationFrame(()=>mine.forEach(fitSvg))))};
+const mo=new MutationObserver(ms=>{for(const m of ms){const t=m.target.nodeType===1?m.target:m.target.parentElement;if(t)R.add(t)}if(!q)q=requestAnimationFrame(run)});
+['view','nm'].forEach(id=>{const e=document.getElementById(id);if(e){mo.observe(e,{childList:true,subtree:true,characterData:true});R.add(e)}});
+let RW=innerWidth;addEventListener('resize',()=>{if(innerWidth===RW)return;RW=innerWidth;document.querySelectorAll('#view [data-fs0]').forEach(e=>{e.style.fontSize=''});R.add(document.getElementById('view'));if(!q)q=requestAnimationFrame(run)});
+window.llGlue=glue;run();
+})();
+</script>
+<script>/* ===== Version 14: Neue Version wie im Lernlabor =====
+   Der Service Worker (sw.js, aus werkzeug/sw-vorlage.js) hat je Version einen eigenen Cache-Namen.
+   Ist eine neue Version aktiv geworden, erscheint unten der Hinweis mit „Jetzt laden“.
+   Während „Prüfung üben“ mit laufender Zeit wartet der Hinweis, bis die Zeit vorbei ist. */
+(()=>{const css=document.createElement('style');css.textContent='#upd{position:fixed;left:12px;right:12px;bottom:calc(88px + env(safe-area-inset-bottom));z-index:950;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 14px;background:var(--card);color:var(--ink);border:2px solid var(--brand,var(--acc));border-radius:14px;padding:10px 14px;box-shadow:var(--sh);max-width:560px;margin:0 auto;font-weight:600}#upd .btn{margin:0}@media(min-width:900px){#upd{bottom:24px}}@media print{#upd{display:none!important}}.vnr{font-weight:700;margin:4px 0}.vneu summary{cursor:pointer;font-weight:700;line-height:44px}.vneu h3{font-size:15px;margin:10px 0 4px}';document.head.append(css)})();
+let UPD=false,UPDT=null;
+function upShow(){if(typeof simTimer!=='undefined'&&simTimer){UPD=true;if(!UPDT)UPDT=setInterval(()=>{if(!simTimer){clearInterval(UPDT);UPDT=null;upShow()}},5000);return}
+ UPD=false;if(document.getElementById('upd'))return;const e=document.createElement('div');e.id='upd';e.setAttribute('role','status');e.innerHTML='<span>Eine neue Version von Lernlabor Betrieb ist da.</span> <button type="button" class="btn" id="updb">Jetzt laden</button>';document.body.appendChild(e);document.getElementById('updb').onclick=()=>location.reload()}
+window.llUpdate=upShow;
+</script>
+<!--/LL8-->
 <style>/* ===== Version 6: Fußzeile mit Impressum, Datenschutz, Hinweisen und „Fehler melden“ wie im Lernlabor ===== */
 #ft .ftl{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
 #ft .ftl button,#ft .ftrep{font:inherit;color:inherit;background:none;border:0;padding:0 6px;min-height:44px;display:inline-flex;align-items:center;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
@@ -2550,7 +3265,7 @@ if(typeof tab!=='undefined'&&FACH.includes(tab))go(tab)})();
 .bpro{display:inline-block;font-size:.42em;font-weight:800;letter-spacing:.06em;background:var(--logo2);color:var(--logo);border-radius:6px;padding:.22em .4em .18em;margin-left:.35em;vertical-align:.6em}
 </style>
 <script>/* ===== Version 6: Impressum, Datenschutz, Hinweise, Fehler melden ===== */
-(()=>{const APPV=7,OW='Dr. rer. nat. Markus Baum',MAIL=['baum.ma91','yahoo.de'].join('@'),AD='Am alten Schlachthof 2<br>93053 Regensburg';
+(()=>{const OW='Dr. rer. nat. Markus Baum',MAIL=['baum.ma91','yahoo.de'].join('@'),AD='Am alten Schlachthof 2<br>93053 Regensburg';
  const dev=()=>'Gerät: '+innerWidth+' × '+innerHeight+' px, '+(navigator.userAgent||'').slice(0,120);
  const mail=(sub,lines)=>{location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('Fehler im Lernlabor Betrieb: '+sub)+'&body='+encodeURIComponent(lines.concat(['Version: '+APPV,dev(),'','Was ist falsch?','']).join('\n'))};
  /* Fußzeile */

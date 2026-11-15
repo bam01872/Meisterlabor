@@ -1,0 +1,246 @@
+/* ===== Lernlabor Betrieb, Version 8: Gestaltung wie im Lernlabor (aus Lernlabor Pro übernommen) ===== */
+.brand .bpro{display:inline-block;font-size:.42em;font-weight:800;letter-spacing:.06em;background:var(--logo2);color:var(--logo);border-radius:6px;padding:.22em .4em .18em;margin-left:.35em;vertical-align:.6em}
+body.subpg .brand .bpro{font-size:.5em}
+.fr{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 .15em;font-size:.95em}
+.fr>span:first-child{border-bottom:1.5px solid currentColor;padding:0 .25em}.fr>span:last-child{padding:0 .25em}
+#mbx li,.sol div{white-space:normal}
+.psim .simg{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:720px){.psim .simg{grid-template-columns:minmax(0,1fr)}}
+.psim .simsv svg{width:100%;height:auto;display:block;background:color-mix(in srgb,var(--bg) 60%,var(--card));border:1px solid var(--line);border-radius:12px}
+.psim .rg{display:grid;grid-template-columns:1fr auto;gap:2px 8px;margin:10px 0 4px;font-size:15px}
+.psim .rg input{grid-column:1/-1;width:100%;accent-color:var(--acc)}
+
+.psim table{width:100%;border-collapse:collapse;margin-top:10px;font-size:15px}
+.psim td{padding:5px 4px;border-top:1px solid var(--line)}.psim td:last-child{text-align:right;font-weight:600}
+.psim tr.tg td:last-child{color:var(--ok)}.psim tr.tr td:last-child{color:var(--red)}
+.psim .simfx{font-size:13px;margin-top:8px}
+.auf{--aufc:#4f46e5;--auft:#4338ca;border:1px solid color-mix(in srgb,var(--aufc) 40%,var(--line));border-left:4px solid var(--aufc);background:color-mix(in srgb,var(--aufc) 8%,var(--card));border-radius:12px;padding:2px 12px;margin-bottom:6px}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]) .auf{--aufc:#818cf8;--auft:#a5b4fc}}
+:root[data-theme=dark] .auf{--aufc:#818cf8;--auft:#a5b4fc}
+.auf.aufok{--aufc:var(--ok);--auft:var(--ok)}
+.aufk{display:flex;gap:8px;align-items:center;width:100%;font:inherit;font-size:15px;text-align:left;color:var(--ink);background:none;border:0;padding:8px 0;cursor:pointer}
+.aufk b{color:var(--auft)}.aufz{flex:1}.aufa{color:var(--mute)}.aufk[aria-expanded=true] .aufa{transform:rotate(180deg)}
+.aufb p{margin:4px 0 8px}.aufr{margin:0 0 6px;font-weight:600;color:var(--ok)}.aufr:empty{display:none}
+.aufflash{animation:aufflash .7s ease-out}@keyframes aufflash{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--ok) 60%,transparent)}100%{box-shadow:0 0 0 14px transparent}}
+@media(prefers-reduced-motion:reduce){.aufflash{animation:none}}
+.wip{border-left:4px solid var(--amber)}.wip p{margin:2px 0 8px}
+.hqa{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}@media(max-width:720px){.hqa{grid-template-columns:1fr}}
+.hqa>div{border:1px solid var(--line);border-left:4px solid var(--c);border-radius:12px;padding:10px 12px;background:var(--card)}.hqa b{display:block}.hqa small{color:var(--mute)}
+/* Einleitungstext wie im Lernlabor (v301/v302): Blocksatz mit Silbentrennung, am Handy zweizeilig mit „…“ und mehr/weniger */
+.tdesc{text-align:justify;-webkit-hyphens:auto;hyphens:auto}
+.tdesc.cl{display:block;-webkit-line-clamp:unset;max-height:3em;line-height:1.5;overflow:hidden;position:relative;cursor:pointer}
+.tdesc.cl.ov{-webkit-mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));mask-image:linear-gradient(#000,#000),linear-gradient(to right,#000 calc(100% - 2.4em),transparent calc(100% - 1.3em));-webkit-mask-size:100% 1.5em,100% 1.5em;mask-size:100% 1.5em,100% 1.5em;-webkit-mask-position:0 0,0 1.5em;mask-position:0 0,0 1.5em;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.tdots{display:block;position:relative;height:0;pointer-events:none}.tdots::after{content:'…';position:absolute;right:0;bottom:6px;font-size:16px;line-height:24px}
+.tdesc:not(.cl.ov)+.tdots{display:none}
+@media(min-width:900px){.tdesc.cl{max-height:none;-webkit-mask-image:none;mask-image:none;cursor:auto}.tdots{display:none}}
+/* Fachrichtungen, Im Betrieb, Kästen */
+.box h2.bx2{margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+.ibc h3{margin:0 0 4px}.ibc .ibm{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 10px}.ibc .ibm .tag,.tag.ibt{color:#fff}
+#fsel{max-width:100%;min-width:0;width:100%}.row label:has(#fsel){min-width:0;max-width:100%;flex:1 1 100%}
+
+/* Wischleisten unter „Thema wechseln“ wie im Lernlabor */
+.thm.wls{max-height:none;overflow:visible;padding:10px 8px}
+.wlw{position:relative;margin:2px 0}
+.wlw+.wlw{margin-top:8px}
+.thm .wl{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:2px 4px}
+.thm .wl::-webkit-scrollbar{display:none}
+.thm .wl button{flex:none;white-space:nowrap;min-height:40px}
+.thm .wl[data-k=g] button{font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:var(--acc);border-color:transparent;background:transparent}
+.thm .wl[data-k=g] button[aria-pressed=true]{color:var(--ink);border-color:var(--acc);background:var(--card);box-shadow:inset 0 0 0 1px var(--acc)}
+.wla{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:18px;line-height:1;display:none;place-items:center;cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.18)}
+.wla.l{left:-4px}.wla.r{right:-4px}
+.wlw.ml .wla.l,.wlw.mr .wla.r{display:grid}
+.wlw.ml .wl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px);mask-image:linear-gradient(90deg,transparent 0,#000 44px)}
+.wlw.mr .wl{-webkit-mask-image:linear-gradient(270deg,transparent 0,#000 44px);mask-image:linear-gradient(270deg,transparent 0,#000 44px)}
+.wlw.ml.mr .wl{-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 44px,#000 calc(100% - 44px),transparent 100%)}
+/* Üben am Schluss, eingeklappt */
+.uebk{display:flex;align-items:center;gap:10px;width:100%;font:inherit;color:var(--ink);background:none;border:0;padding:2px 0;cursor:pointer;text-align:left;min-height:44px}
+.uebk .uebt{font-size:19px;font-weight:800;flex:none}
+.uebk .uebz{flex:1 1 auto;min-width:0;font-size:14px;color:var(--mute)}
+.uebk .ueba{flex:none;color:var(--mute)}
+.uebb{margin-top:8px}
+.thk{flex-wrap:nowrap;align-items:flex-start}
+.thk .crb{white-space:normal;text-align:left}
+.thm.wls{background:none;border:0;box-shadow:none;padding:0;margin:6px 0 10px;border-radius:0}
+.thm .wl[data-k=g] button{font-size:15px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600;padding:8px 14px}
+.thm .wl[data-k=g] button[aria-pressed=true]{background:var(--acc);border-color:var(--acc);color:#fff;box-shadow:none}
+.thm .wl[data-k=t] button{font-size:14px;border-radius:10px;padding:6px 12px}
+.thm.wls:not([hidden])+#ms5{display:none}
+
+/* ===== Version 4: Bedienung wie im Lernlabor ===== */
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+[data-ki]{display:none!important}
+@media(max-width:520px){#rfs{gap:3px}#rfs button{font-size:12px;gap:3px;padding:3px 4px;min-width:0}#rfs button .n{width:18px;height:18px;font-size:11px}#rfs button .t{overflow:hidden;text-overflow:ellipsis}}
+#fs button[aria-pressed=true]{background:var(--logo)!important;box-shadow:0 2px 10px color-mix(in srgb,var(--logo) 40%,transparent)!important}
+/* Regler */
+.psim>h2{margin-bottom:0}.psim .simn{margin:0 0 10px;font-size:14px}
+.psim .rg2{display:grid;grid-template-columns:minmax(0,1fr) 76px minmax(2.2em,auto);gap:2px 8px;align-items:center;margin:10px 0 4px;font-size:15px}
+.psim .rg2 .rgl{grid-column:1/-1;font-weight:700}
+.psim .rg2 input[type=range]{width:100%;height:28px;accent-color:var(--acc);margin:0}
+.psim .rg2 input[type=range]::-webkit-slider-runnable-track{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--acc) var(--p,50%),color-mix(in srgb,var(--mute) 35%,transparent) var(--p,50%))}
+.psim .rg2 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;margin-top:-9px;border-radius:50%;background:var(--card);border:3px solid var(--acc);box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.psim .rg2 input[type=range]{-webkit-appearance:none;appearance:none;background:transparent}
+.psim .rg2 input[type=range]::-moz-range-track{height:8px;border-radius:99px;background:color-mix(in srgb,var(--mute) 35%,transparent)}
+.psim .rg2 input[type=range]::-moz-range-progress{height:8px;border-radius:99px;background:var(--acc)}
+.psim .rg2 input[type=range]::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--card);border:3px solid var(--acc)}
+.psim .rgn{width:100%;min-width:0;font:inherit;font-weight:600;text-align:right;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 8px;min-height:36px}
+.psim .rgv{text-align:right}
+.psim .rgu{color:var(--mute);font-size:14px;white-space:nowrap}
+.psim .rgh{grid-column:1/-1;margin:2px 0 0;font-size:13.5px;color:var(--mute)}
+.psim .rghb{font:inherit;font-weight:700;color:var(--acc);background:none;border:1px solid var(--line);border-radius:8px;padding:2px 8px;cursor:pointer}
+.psim .simb{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:14px 0 10px}
+.psim .simb .btn{margin:0;min-height:40px}.psim .simb .ubb{background:var(--logo);color:#fff}
+.psim .more{position:relative}.psim .more>summary{list-style:none;font-weight:700;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;min-height:40px;display:inline-flex;align-items:center}
+.psim .more>summary::-webkit-details-marker{display:none}
+.psim .more .mm{position:absolute;z-index:5;left:0;top:calc(100% + 4px);min-width:220px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.18);display:grid;gap:2px}
+.psim .more .mm button{font:inherit;text-align:left;color:var(--ink);background:none;border:0;border-radius:8px;padding:10px;cursor:pointer}.psim .more .mm button:hover{background:color-mix(in srgb,var(--acc) 12%,transparent)}
+.psim .simk{display:grid;grid-template-columns:repeat(auto-fit,minmax(128px,1fr));gap:8px}
+.psim .kc{border-left:4px solid var(--acc);background:color-mix(in srgb,var(--acc) 8%,var(--card));border-radius:10px;padding:8px 10px;min-width:0}
+.psim .kc b{display:block;font-size:17px;font-weight:800;white-space:nowrap}
+.psim .kc>span{display:block;font-size:13px;color:var(--mute);line-height:1.3;overflow-wrap:break-word;hyphens:auto}
+.psim .kc.tg{border-left-color:var(--ok)}.psim .kc.tg b{color:var(--ok)}.psim .kc.tr{border-left-color:var(--red)}.psim .kc.tr b{color:var(--red)}
+/* Auftrag-Kasten wie im Lernlabor */
+.aufk{display:grid;gap:2px;align-items:start}
+.aufk .aufh{display:flex;align-items:baseline;gap:8px}.aufk .aufh b{flex:none}.aufk .aufd{flex:1 1 auto;color:var(--ok);font-weight:700;font-size:14px}
+.aufk .aufa{flex:none;color:var(--auft);font-weight:700;transform:none!important}
+.aufk .aufz{color:var(--ink)}
+/* Nachschlagen */
+.nsl table{width:100%;border-collapse:collapse;font-size:15px;margin:4px 0 12px}.nsl td{padding:5px 4px;border-top:1px solid var(--line)}.nsl td:last-child{text-align:right;font-weight:600}
+.nsl tr.tg td:last-child{color:var(--ok)}.nsl tr.tr td:last-child{color:var(--red)}
+.nsl .ntz{width:100%;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;resize:vertical}
+.nsl .ntzm{margin-left:auto;margin-right:8px;font-size:12px;font-weight:600;color:var(--ok)}
+.nsl li{margin:4px 0}
+.grid>.skz,.grid>div>.skz{max-width:820px}
+/* Favoriten */
+.favp .favl{display:flex;flex-wrap:wrap;gap:6px}.favp .chip{font:inherit;font-weight:600;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:40px}
+/* Fußzeile */
+#ft .ftl{display:flex;flex-wrap:wrap;align-items:center;gap:0 2px}
+#ft .ftl button{font:inherit;color:inherit;background:none;border:0;padding:0 6px;min-height:44px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+#ft .ftl button:first-child{padding-left:0}#ft .ftk{margin:0 0 2px}#ft .ft-c{margin:2px 0 0}
+#ft>details:not([open]){display:none}#ft details{margin:6px 0}#ft summary{cursor:pointer;font-weight:700;line-height:44px}#ft p{max-width:64ch}
+/* Einheiten als Bruch */
+.fr.fru{font-size:.86em;line-height:1.1;margin:0 .1em}.fr.fru>span{padding:0 .18em}
+
+/* ===== Version 8: Bedienung wie im Lernlabor ===== */
+/* Regler: Beschriftung, Regler und Zahlenfeld in einer Zeile */
+.psim .rg2.rg1{grid-template-columns:minmax(0,9.5em) minmax(0,1fr) 80px minmax(1.6em,auto);gap:2px 8px;margin:4px 0}
+.psim .rg2.rg1 .rgl{grid-column:auto;font-size:14px;line-height:1.2;overflow-wrap:break-word;hyphens:auto}
+.psim .rg2.rg1 .rgh{grid-column:1/-1}
+@media(max-width:480px){.psim .rg2.rg1{grid-template-columns:minmax(0,6.4em) minmax(0,1fr) 68px minmax(1.3em,auto);gap:2px 6px}.psim .rg2.rg1 .rgl{font-size:13.5px}.psim .rg2.rg1 .rgu{font-size:14px}}
+/* Ergebnis-Kacheln zu dritt */
+.psim .simk{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:480px){.psim .simk{gap:6px}.psim .kc{padding:6px 7px}.psim .kc b{font-size:15px;white-space:normal}.psim .kc>span{font-size:12px}}
+/* eine Zeichnung: Erklärsatz der Skizze unter der bewegten Zeichnung */
+.psim .simcap{margin:6px 2px 0;font-size:14px}
+/* Mehr-Menü bleibt im Bild (Lage per Skript) */
+.psim .more .mm{right:auto}
+/* Schrittleiste am Handy: Nummer nur am aktuellen Schritt, „Probieren“ */
+#rfs .tsy{display:none}
+@media(max-width:400px){#rfs button:not(.on) .n{display:none}#rfs .tsx{display:none}#rfs .tsy{display:inline}}
+/* Rechenaufgaben */
+.q .plock{opacity:.75;cursor:not-allowed}
+.q .sol.hlp{background:color-mix(in srgb,var(--amber) 10%,var(--card));border-color:var(--amber)}
+/* Teilen, QR-Code, Hinweis */
+#qrd{border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--ink);padding:18px;max-width:min(92vw,380px);box-shadow:0 8px 24px rgba(0,0,0,.25)}#qrd::backdrop{background:rgba(0,0,0,.45)}#qrd h2{margin:0 0 10px;font-size:19px}
+#qrd .qrb{background:#fff;border-radius:12px;padding:8px}#qrd .qrb svg{background:#fff;width:100%;height:auto;display:block}#qrd .qrb svg path,#qrd .qrb svg rect{shape-rendering:crispEdges}
+#qrd .qru{width:100%;font:inherit;font-size:13px;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+#lltoast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--ink);color:var(--card);padding:8px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:900;max-width:90vw}#lltoast.on{opacity:1}
+@media(min-width:900px){#lltoast{bottom:24px}}
+/* Zum Inhalt springen */
+.skipl{position:absolute;left:-9999px;top:0;z-index:1000;background:var(--card);color:var(--ink);padding:8px 12px;border-radius:8px;border:2px solid var(--acc);font-weight:700}.skipl:focus{left:8px;top:8px}
+/* Dunkel: dunkle Schrift auf dem hellen Orange (vorher weiß, 2,26 : 1) */
+:root[data-theme=dark].accb .btn:not(.sec):not(.nxt .btn):not(.ubb),:root[data-theme=dark].accb .seg button[aria-pressed=true],:root[data-theme=dark].accb #nm button[aria-current=true]{color:#1f2328}
+@media(prefers-color-scheme:dark){:root:not([data-theme]).accb .btn:not(.sec):not(.nxt .btn):not(.ubb),:root:not([data-theme]).accb .seg button[aria-pressed=true],:root:not([data-theme]).accb #nm button[aria-current=true]{color:#1f2328}}
+/* Safari: Auswahlfelder machen die Seite nicht breiter */
+.row label{min-width:0;max-width:100%}.row select{min-width:0;max-width:100%;contain:paint}
+/* Menüband unten bei 320 px: vier gleich breite Spalten, lange Namen umbrechen statt die Seite zu verbreitern */
+@media(max-width:899px){#fs{grid-template-columns:repeat(4,minmax(0,1fr))}#fs button>span:last-child{max-width:100%;line-height:1.15;overflow-wrap:break-word}}
+/* lange Themennamen (z. B. Blindleistungskompensation) bei 320 px trennen */
+#tht{overflow-wrap:break-word;hyphens:auto}
+/* Kacheln zu dritt: Werte dürfen umbrechen statt aus der Kachel zu ragen (Tablet: schmale Reglerspalte) */
+.psim .kc b{white-space:normal;overflow-wrap:break-word}
+@media(min-width:721px) and (max-width:1000px){.psim .kc b{font-size:15px}}
+@media(max-width:480px){.psim .rg2.rg1{grid-template-columns:minmax(0,6.2em) minmax(0,1fr) 74px minmax(1.3em,auto)}.psim .rg2.rg1 .rgn{padding:5px 6px}}
+/* Themenkopf bei 320 px: lange Gebietsnamen brechen um statt unter „Thema wechseln“ zu laufen */
+.thk .crb{overflow-wrap:break-word;hyphens:auto}
+@media(max-width:360px){.thw{font-size:14px!important;padding:5px 10px!important}}
+/* Rechenaufgabe: Antwort prüfen neben dem Feld, Rückmeldung, darunter Hilfe und Lösungsweg */
+.q .pb{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.q .pb .btn{margin:0}
+/* offenes Mehr-Menü liegt über der nächsten Karte */
+.psim.mmo{position:relative;z-index:40}
+.fr .fr.fru{font-size:.8em;margin:0 .08em}
+
+/* ===== Version 9 ===== */
+/* Regler: Formelzeichen vorn, Name klein darunter */
+.psim .rgl .rgs{display:block;font-size:16px;font-weight:800;line-height:1.1}
+.psim .rgl .rgs+.rgn2{display:block;font-size:12px;font-weight:600;color:var(--mute);line-height:1.2}
+/* Auswahlregler (z. B. Normdurchmesser): Wert im gleichen Kasten wie die Zahlenfelder */
+.psim .rg2 .rgv{display:flex;align-items:center;justify-content:flex-end;min-height:36px;border:1px dashed var(--line);border-radius:8px;padding:5px 8px;background:color-mix(in srgb,var(--card) 60%,transparent)}
+/* Woran lag es? */
+.q .wlr{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.q .wlr .wlh,.q .wlr .wlt{flex-basis:100%;margin:0}
+.q .wlr .chip{display:block;text-align:left;white-space:normal;line-height:1.45}.q .wlr .chip[aria-pressed=true]{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 14%,var(--card))}
+/* Schrittleiste: Markierung folgt dem Lesen */
+#rfs.trk button.on:not(.cur){border-color:var(--line);box-shadow:none}
+#rfs.trk button.on:not(.cur) .n{background:var(--line);color:var(--ink)}
+#rfs.trk button.cur{border-color:var(--acc);color:var(--ink);box-shadow:inset 0 0 0 1px var(--acc)}
+#rfs.trk button.cur:not(.ok) .n{background:var(--acc);color:#fff}
+@media(max-width:400px){#rfs.trk button.on:not(.cur) .n{display:none}#rfs.trk button.cur .n{display:grid}}
+/* Antworten gespeichert, Rückweg */
+.ansv{margin:2px 0 6px;font-size:13px}.bkw{margin:0 0 10px}
+/* Startseite: Fachrichtung eingeklappt */
+.frt{display:flex;align-items:center;gap:8px;width:100%;font:inherit;font-size:17px;font-weight:600;color:var(--ink);background:none;border:0;padding:4px 0;cursor:pointer;text-align:left;flex-wrap:wrap}.frt .frta{margin-left:auto;color:var(--acc);font-weight:700;font-size:15px}
+/* Lernstand: Richtig / Falsch */
+.rr{color:var(--ok);font-weight:700}.rw{color:var(--red);font-weight:700}
+/* Glossar und Formelsammlung */
+.nsl .nsf{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);margin:6px 0 4px}
+.fsm h3,.gls h3{margin:18px 0 6px;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--mute)}
+.fsi,.gli{padding:8px 0;border-top:1px solid var(--line)}.fsi ul{margin:4px 0 0;padding-left:20px}.gli p{margin:2px 0 0;color:var(--mute);font-size:15px}
+.nsl .lk{font:inherit;font-weight:700;background:none;border:0;padding:0;color:var(--acc);cursor:pointer;text-align:left}
+#nm h3.nmns{margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+/* Kontraste hell: Brotkrumen, „mehr“, Zweitknöpfe eine Stufe dunkler; Kennzeichen dunkler */
+:root[data-theme=light] .crumb,:root[data-theme=light] .tmore,:root[data-theme=light] .btn.sec,:root[data-theme=light] .nsl .lk,:root[data-theme=light] .frt .frta{color:color-mix(in srgb,var(--acc) 78%,#000)}
+@media(prefers-color-scheme:light){:root:not([data-theme]) .crumb,:root:not([data-theme]) .tmore,:root:not([data-theme]) .btn.sec{color:color-mix(in srgb,var(--acc) 78%,#000)}}
+.tag.ibt,.ibm .tag{filter:brightness(.82)}
+/* Brotkrumen-Knopf mindestens 24 px hoch */
+.crb{min-height:24px;padding:2px 0!important}
+/* Regler: Üben, Favorit und Mehr in einer Zeile; vier Kacheln als 2 × 2 */
+.psim .simb{flex-wrap:nowrap}
+.psim .simb>*{flex:1 1 0;min-width:0;margin:0}
+.psim .simb .btn,.psim .simb>.more>summary{width:100%;justify-content:center;white-space:nowrap;padding-left:8px;padding-right:8px}
+.psim .simk:has(>.kc:nth-child(4):last-child),.psim .simk:has(>.kc:nth-child(2):last-child){grid-template-columns:repeat(2,minmax(0,1fr))}
+.psim .simk:has(>.kc:only-child){grid-template-columns:minmax(0,1fr)}
+.psim .simb>.more{flex:1 1 0}
+.psim .simb>.more>summary{display:flex;align-items:center;min-height:40px;box-sizing:border-box}
+@media(max-width:420px){.psim .simb{gap:5px}.psim .simb .btn,.psim .simb>.more>summary{font-size:15px;padding-left:4px;padding-right:4px}}
+@media(max-width:340px){.psim .simb .btn,.psim .simb>.more>summary{font-size:14px;padding-left:2px;padding-right:2px;letter-spacing:-.01em}}
+/* Blocksatz in allen Textfeldern (auch Vermuten, Auftrag, Aufgaben), mit Silbentrennung gegen Löcher */
+:where(#view,#nm) :where(p,li,.skc,.aufz,.tdesc){text-align:justify;-webkit-hyphens:auto;hyphens:auto;overflow-wrap:break-word}
+:where(#view) :where(.kc,td,th,.chip,.simb,.mm,.wlh) :where(p,li){text-align:start}
+:where(#view) :where(.crumb,.crumb *){text-align:start;-webkit-hyphens:manual;hyphens:manual}
+/* Version 11: Silbentrennung überall nach Wörterbuch, kein Bruch mitten im Wort */
+#view,#nm{-webkit-hyphens:auto;hyphens:auto}
+#view input,#view textarea,#view select,#view code{-webkit-hyphens:manual;hyphens:manual}
+@media(max-width:380px){.ftile{grid-template-columns:minmax(0,1fr);row-gap:4px}.ftile .fi{grid-row:auto}.ftile small.fz,.ftile>*{grid-column:1}.ftile small{-webkit-hyphens:auto;hyphens:auto}}
+
+/* Bewegte Zeichnungen: Knopf zum Anhalten oben rechts im Bild */
+.psim .simsv{position:relative}
+.simpp{position:absolute;top:6px;right:6px;width:26px;height:26px;min-height:0;padding:0;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--card) 88%,transparent);color:var(--ink);font-size:11px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.simpp:hover{border-color:var(--acc)}
+.simpp:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+
+/* Version 15: „Weiter mit …“ wie im Lernlabor rechts neben Glossar und Formelsammlung */
+#nm .nmn{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px;align-items:center}#nm .nmn>div button{white-space:nowrap;padding-right:8px}
+#nm button.nmw{display:block!important;align-self:center;min-height:44px;font-size:13px;line-height:1.3;font-weight:700;color:var(--acc);background:color-mix(in srgb,var(--acc) 9%,transparent);border:1px solid color-mix(in srgb,var(--acc) 35%,transparent);border-radius:12px;padding:8px 10px;text-align:left;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+#nm button.nmw small{display:block;font-size:11px;font-weight:600;color:var(--mute);margin-bottom:2px;letter-spacing:.02em}
+@media(max-width:380px){#nm button.nmw{font-size:12px;padding:7px 8px}}
+
+/* Fachrichtungs-Wahl: gleich breite Kacheln im festen Raster, Symbol in eigener Spalte, nichts steht über.
+   Handy zwei Spalten mal drei Zeilen, ab 560 px drei Spalten mal zwei Zeilen. */
+.frp .frs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:6px;margin:6px 0 8px;width:100%;box-sizing:border-box}
+@media(min-width:560px){.frp .frs{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.frp .frs button{display:grid;grid-template-columns:1.4em minmax(0,1fr);align-items:center;column-gap:6px;min-width:0;min-height:48px;margin:0;padding:8px;font-weight:700;font-size:14px;line-height:1.2;text-align:left;white-space:normal;overflow-wrap:normal;hyphens:manual;-webkit-hyphens:manual;border:1px solid var(--line);background:color-mix(in srgb,var(--ink) 3%,transparent)}
+.frp .frs button[aria-pressed=true]{border-color:transparent;background:var(--acc)}
+.frp .frs .fre{justify-self:center;font-size:1.15em;line-height:1}
+.frp .frs .frn{min-width:0}
+@media(max-width:360px){.frp .frs{gap:4px;padding:4px}}
+@media(min-width:560px){.frp .frs button{font-size:15px;padding:8px 12px;column-gap:8px}}
