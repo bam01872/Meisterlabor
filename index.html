@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>const APPV=10,APPD='16.11.2026'</script>
+<script>const APPV=11,APPD='16.11.2026'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lernlabor Betrieb</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -167,6 +167,13 @@ body.tour #fs{z-index:950}
 body.tour #nw{z-index:950}
 @media(min-width:900px){.tour{padding-top:260px}.tbox{margin-top:0}}
 .kurs{border-top:4px solid var(--kc,var(--acc))}.kurs h2{font-size:18px;margin:0 0 4px}.kurs p{margin:0}.kurs small{color:var(--mute)}.kurs .btn{margin:8px 0 0}
+</style>
+<style>/* Version 11: bearbeitete Prüfungsaufgaben */
+.pexs{font-size:14px;color:var(--mute);margin:-4px 0 10px;display:flex;gap:8px;align-items:baseline}.pexs>span:last-child{flex:1 1 auto;min-width:0}.pexs b{font-weight:700;color:var(--ink)}.exi{font-weight:700}.ex2{color:var(--ok)}.ex1{color:var(--amber)}.ex0{color:var(--mute)}
+#pexo{margin-top:10px;min-width:0;max-width:min(100%,560px)}#pexo>summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line);border-radius:12px;font-size:14px;font-weight:600;color:var(--ink)}#pexo>summary::-webkit-details-marker{display:none}#pexo>summary .exbar{flex:1 1 60px;max-width:140px;height:6px;border-radius:3px;background:var(--line);overflow:hidden}#pexo>summary .exbar i{display:block;height:100%;background:var(--ok)}#pexo>summary .exarr{margin-left:auto;color:var(--acc);font-size:13px}#pexo[open]>summary .exarr{transform:rotate(180deg)}
+#pexo .exf{display:flex;gap:5px;flex-wrap:wrap;margin:10px 0 6px}#pexo .exf button{font:inherit;font-size:13px;padding:6px 9px;white-space:nowrap;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}#pexo .exf button[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:#fff}@media (max-width:520px){#pexo .exf{display:grid;grid-template-columns:1fr 1fr}}
+#pexo .exl{max-height:min(60vh,520px);overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}#pexo .exg{padding:8px 12px 4px;font-size:12px;font-weight:700;color:var(--mute);display:flex;justify-content:space-between;gap:8px;position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line)}
+#pexo .exr{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;font:inherit;font-size:14px;line-height:1.3;padding:9px 12px;border:0;border-bottom:1px solid color-mix(in srgb,var(--line) 50%,transparent);background:none;color:var(--ink);cursor:pointer}#pexo .exr:last-child{border-bottom:0}#pexo .exr[aria-current="true"]{background:color-mix(in srgb,var(--acc) 12%,transparent)}#pexo .exr .exi{flex:0 0 1.1em;text-align:center}#pexo .exr .ext{flex:1 1 auto;min-width:0;overflow-wrap:anywhere;hyphens:auto}#pexo .exr .exd{flex:0 0 auto;font-size:12px;color:var(--mute);white-space:nowrap;padding-top:1px}#pexo .exr.ex2s .ext{color:var(--mute)}#pexo .exe{padding:14px 12px;font-size:14px;color:var(--mute);margin:0}#pexo .exk{font-size:12px;color:var(--mute);margin:6px 2px 0;text-align:left;hyphens:manual}
 </style>
 </head>
 <body>
@@ -1315,8 +1322,8 @@ function repPanel(){const s=load(),id=s.id||{name:'',kurs:''};const p=el(`<h3>�
  return p}
 function dl(txt,fn,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=fn;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800)}
 function backupPanel(){const p=el('<h3>💾 Lernstand sichern</h3><p class="sub">Dein Lernstand liegt nur in diesem Browser. Sichere ihn, um ihn auf ein anderes Gerät zu übertragen.</p><div class="row"><button class="btn sec" id="bex">Sichern (Datei)</button><label class="btn sec">Wiederherstellen<input type="file" id="bim" accept="application/json,.json" hidden></label></div><p class="sub" id="bmsg" aria-live="polite"></p>','panel');
- p.querySelector('#bex').onclick=()=>{try{dl(JSON.stringify({typ:'meisterlabor-sicherung',v:1,data:load()}),'meisterlabor-lernstand-'+today()+'.json','application/json');p.querySelector('#bmsg').textContent='Gespeichert.'}catch(e){p.querySelector('#bmsg').textContent='Speichern ist hier nicht möglich.'}};
- p.querySelector('#bim').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||o.typ!=='meisterlabor-sicherung'||!o.data)throw 0;save(o.data);draw()}catch(x){p.querySelector('#bmsg').textContent='Die Datei konnte nicht gelesen werden.'}};r.readAsText(f)};return p}
+ p.querySelector('#bex').onclick=()=>{try{dl(JSON.stringify({typ:'meisterlabor-sicherung',v:1,data:load(),pa:paD()}),'meisterlabor-lernstand-'+today()+'.json','application/json');p.querySelector('#bmsg').textContent='Gespeichert.'}catch(e){p.querySelector('#bmsg').textContent='Speichern ist hier nicht möglich.'}};
+ p.querySelector('#bim').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(!o||o.typ!=='meisterlabor-sicherung'||!o.data)throw 0;save(o.data);if(o.pa&&typeof o.pa==='object')paW(o.pa);draw()}catch(x){p.querySelector('#bmsg').textContent='Die Datei konnte nicht gelesen werden.'}};r.readAsText(f)};return p}
 
 /* ----- Kursübersicht (Dozent) ----- */
 const DK='meisterlabor-dozent-v1';let DOZK='*',DOZD=null;
@@ -1534,19 +1541,52 @@ function uben(v){
   area.append(x[0]==='w'?mcqHTML(x[1]):calcHTML(x[1]))};
  $('#uf').onchange=e=>{uF=e.target.value;setAcc(uF==='alle'?null:uF);next()};$('#ut').onchange=e=>{uT=e.target.value;next()};$('#nx').onclick=next;next()}
 /* Fallaufgaben */
-let fIdx=0;
+let fIdx=0,PAF='alle';
+/* Version 11: bearbeitete Prüfungsaufgaben merken (meisterlabor-pa, nur in diesem Browser). ✓ bearbeitet (Selbstbewertung fertig), ✎ begonnen, ○ offen */
+const PAK='meisterlabor-pa';
+function paD(){let X=null;try{X=JSON.parse(localStorage.getItem(PAK))}catch(e){}if(X&&typeof X==='object')return X;X={};
+ try{/* einmalig: früher bewertete Fallaufgaben und gespeicherte Antworten übernehmen */const s=load(),cs=s.c||{};Object.keys(cs).forEach(k=>{const t=k.slice(k.indexOf(':')+1);if(CASES.some(c=>c.t===t))X[t]={n:1,g:cs[k].g,m:cs[k].m,alt:1}});
+  const A=JSON.parse(localStorage.getItem('meisterlabor-antw')||'{}')||{};Object.keys(A).forEach(k=>{const t=k.slice(0,k.lastIndexOf('|'));if(!X[t]&&CASES.some(c=>c.t===t))X[t]={alt:1}})}catch(e){}
+ paW(X);return X}
+function paW(X){try{localStorage.setItem(PAK,JSON.stringify(X))}catch(e){}}
+const paP=g=>nf(g,g%1?1:0),paSt=(X,t)=>{const e=X[t];return !e?0:e.n?2:1};
+const paDay=d=>{if(!d)return'';const T=today(),y=new Date();y.setDate(y.getDate()-1);if(d===T)return'heute';if(d===dKey(y))return'gestern';const p=d.split('-');return +p[2]+'.'+(+p[1])+'.'};
 function fall(v){
- const sel=el('<div class="row"><label>Aufgabe <select id="fs">'+FACH.map(f=>'<optgroup label="'+esc(D[f].name)+'">'+CASES.map((c,i)=>c.f===f?'<option value="'+i+'">'+esc(c.t)+'</option>':'').join('')+'</optgroup>').join('')+'</select></label></div>','panel');
- const area=el('','');v.append(sel,area);$('#fs').value=fIdx;
- const show=()=>{area.innerHTML='';const c=CASES[fIdx];setAcc(c.f);let got=Array(c.tasks.length).fill(null);const max=c.tasks.reduce((s,t)=>s+t.p,0);
-  area.append(el('<h2>'+D[c.f].icon+' '+esc(c.t)+'</h2><p>'+esc(c.txt)+'</p><p class="sub">Schreibe Deine Antwort, öffne dann den Erwartungshorizont und hake ab, welche Aspekte Du genannt hast. Daraus ergeben sich Deine Punkte.</p>','panel'));
-  const tot=el('','panel');const upd=()=>{const g=got.reduce((s,x)=>s+(x||0),0);tot.innerHTML='<b>Punkte: '+nf(g,1)+' von '+max+'</b> ('+Math.round(g/max*100)+' %)'+(got.some(x=>x===null)?' <span class="sub">· noch nicht alle Teilaufgaben bewertet</span>':'');if(got.every(x=>x!==null))recCase(c.f,c.t,g,max)};
+ const sel=el('<div class="row"><label>Aufgabe <select id="fsel"></select></label></div><details id="pexo"><summary></summary><div class="exf" role="group" aria-label="Aufgaben filtern"></div><div class="exl"></div><p class="exk">✓ bearbeitet (Selbstbewertung fertig) · ✎ begonnen · ○ offen. Gespeichert nur in diesem Browser.</p></details>','panel');
+ const area=el('','');v.append(sel,area);const fs=sel.querySelector('#fsel'),ov=sel.querySelector('#pexo');
+ const opts=()=>{const X=paD(),open=CASES.filter(c=>paSt(X,c.t)<2).length;
+  fs.innerHTML='<option value="r">🎲 Zufällige offene Aufgabe ('+(open?open+' offen':'alle bearbeitet')+')</option>'+FACH.map(f=>{const L=CASES.map((c,i)=>[c,i]).filter(x=>x[0].f===f),g=L.filter(x=>paSt(X,x[0].t)===2).length;
+   return '<optgroup label="'+esc(D[f].name)+(g?' · '+g+' von '+L.length+' ✓':'')+'">'+L.map(([c,i])=>'<option value="'+i+'">'+['','✎ ','✓ '][paSt(X,c.t)]+esc(c.t)+'</option>').join('')+'</optgroup>'}).join('');fs.value=fIdx};
+ const overview=()=>{const X=paD(),N=CASES.length,n2=CASES.filter(c=>paSt(X,c.t)===2).length,n1=CASES.filter(c=>paSt(X,c.t)===1).length;
+  ov.querySelector('summary').innerHTML='<span>📋 '+n2+' von '+N+' bearbeitet</span><span class="exbar" aria-hidden="true"><i style="width:'+Math.round(100*n2/N)+'%"></i></span><span class="exarr" aria-hidden="true">▾</span>';
+  ov.querySelector('.exf').innerHTML=[['alle','Alle',N],['offen','Offen',N-n2-n1],['ang','Begonnen',n1],['ok','Bearbeitet',n2]].map(([k,t,z])=>'<button type="button" data-f="'+k+'" aria-pressed="'+(k===PAF)+'">'+t+' ('+z+')</button>').join('');
+  const keep=s=>PAF==='alle'||(PAF==='offen'&&!s)||(PAF==='ang'&&s===1)||(PAF==='ok'&&s===2);
+  const h=FACH.map(f=>{const L=CASES.map((c,i)=>[c,i]).filter(x=>x[0].f===f),K=L.filter(x=>keep(paSt(X,x[0].t)));if(!K.length)return'';const z=L.filter(x=>paSt(X,x[0].t)===2).length;
+   return '<div class="exg"><span>'+D[f].icon+' '+esc(D[f].name)+'</span><span>'+(z?z+' von '+L.length+' ✓':L.length+' offen')+'</span></div>'+K.map(([c,i])=>{const s=paSt(X,c.t),e=X[c.t]||{};
+    return '<button type="button" class="exr'+(s===2?' ex2s':'')+'" data-i="'+i+'"'+(i===fIdx?' aria-current="true"':'')+'><span class="exi ex'+s+'" aria-label="'+['offen','begonnen','bearbeitet'][s]+'">'+['○','✎','✓'][s]+'</span><span class="ext">'+esc(c.t)+'</span><span class="exd">'+(s===2?(e.m?paP(e.g)+'/'+e.m+' P.':'')+(e.d?' · '+paDay(e.d):''):s===1?paDay(e.s):'')+'</span></button>'}).join('')}).join('');
+  ov.querySelector('.exl').innerHTML=h||'<p class="exe">'+(PAF==='ok'?'Noch keine Aufgabe bearbeitet.':PAF==='ang'?'Keine begonnenen Aufgaben.':'Alle Aufgaben sind bearbeitet. 🎉')+'</p>';
+  ov.querySelectorAll('.exf button').forEach(b=>b.onclick=()=>{PAF=b.dataset.f;overview()});
+  ov.querySelectorAll('.exr').forEach(b=>b.onclick=()=>{ov.open=false;fs.value=b.dataset.i;fs.dispatchEvent(new Event('change'));sel.scrollIntoView({block:'start'})})};
+ ov.addEventListener('toggle',()=>{if(ov.open){const a=ov.querySelector('.exr[aria-current="true"]');if(a)a.scrollIntoView({block:'nearest'})}});
+ const refresh=()=>{opts();overview()};
+ const show=()=>{area.innerHTML='';const c=CASES[fIdx];setAcc(c.f);let got=Array(c.tasks.length).fill(null),done=false;const max=c.tasks.reduce((s,t)=>s+t.p,0);
+  const mark=fin=>{const X=paD(),e=X[c.t]||(X[c.t]={}),T=today(),g=got.reduce((s,x)=>s+(x||0),0);
+   if(fin){if(!done){done=true;e.n=(e.n||0)+1}e.d=T;e.g=g;e.m=max;delete e.alt}else if(!e.n&&(!e.s||e.alt)){e.s=T;delete e.alt}else return;paW(X);line();refresh()};
+  const head=el('<h2>'+D[c.f].icon+' '+esc(c.t)+'</h2><p class="pexs" id="pexs" aria-live="polite"></p><p>'+esc(c.txt)+'</p><p class="sub">Schreibe Deine Antwort, öffne dann den Erwartungshorizont und hake ab, welche Aspekte Du genannt hast. Daraus ergeben sich Deine Punkte.</p>','panel');area.append(head);
+  const line=()=>{const X=paD(),e=X[c.t]||{},s=paSt(X,c.t);let h;
+   if(s===2)h='<span class="exi ex2">✓</span><span><b>Schon bearbeitet</b>'+(e.n>1?' ('+e.n+'×)':'')+(e.d?', zuletzt '+paDay(e.d):'')+(e.m?' · '+paP(e.g)+' von '+e.m+' Punkten ('+Math.round(e.g/e.m*100)+' %)':'')+'</span>';
+   else if(s===1)h='<span class="exi ex1">✎</span><span>'+(e.alt?'Antworten gespeichert, Selbstbewertung noch offen':'Begonnen '+paDay(e.s)+', Selbstbewertung noch offen')+'</span>';
+   else h='<span class="exi ex0">○</span><span>Noch nicht bearbeitet</span>';
+   head.querySelector('#pexs').innerHTML=h};line();
+  const tot=el('','panel');const upd=()=>{const g=got.reduce((s,x)=>s+(x||0),0);tot.innerHTML='<b>Punkte: '+nf(g,1)+' von '+max+'</b> ('+Math.round(g/max*100)+' %)'+(got.some(x=>x===null)?' <span class="sub">· noch nicht alle Teilaufgaben bewertet</span>':'');if(got.every(x=>x!==null)){recCase(c.f,c.t,g,max);mark(1)}else if(got.some(x=>x!==null))mark(0)};
   c.tasks.forEach((t,i)=>{const q=el('<p>'+(i+1)+'. '+esc(t.q)+' <span class="tag">'+t.p+' P.</span></p><textarea aria-label="Deine Antwort"></textarea><div class="row"><button class="btn sec">Erwartungshorizont zeigen</button></div><div class="kg"></div><div class="sol" hidden></div>','q');
    const eh=ehBox(t,p=>{got[i]=p;upd()});q.querySelector('.sol').append(eh);
+   q.querySelector('textarea').addEventListener('input',e=>{if(e.target.value.trim())mark(0)});
    q.querySelector('.btn').onclick=()=>{q.querySelector('.sol').hidden=false;if(got[i]===null){got[i]=eh.points();upd()}};
    area.append(q)});
-  area.append(tot);upd()};
- $('#fs').onchange=e=>{fIdx=+e.target.value;show()};show()}
+  area.append(tot);tot.innerHTML='<b>Punkte: 0 von '+max+'</b> (0 %) <span class="sub">· noch nicht alle Teilaufgaben bewertet</span>'};
+ fs.onchange=()=>{if(fs.value==='r'){const X=paD();let P=CASES.map((c,i)=>i).filter(i=>paSt(X,CASES[i].t)<2&&i!==fIdx);if(!P.length)P=CASES.map((c,i)=>i).filter(i=>i!==fIdx);fIdx=P[Math.floor(Math.random()*P.length)];fs.value=fIdx}else fIdx=+fs.value;show();refresh();try{history.replaceState(history.state,'','#pruefungsaufgaben/'+(fIdx+1))}catch(e){}};
+ refresh();show()}
 /* Mündlich */
 let oF='alle';
 function oral(v){
@@ -1595,7 +1635,7 @@ function stand(v){
  const cs=s.c||{};const ck=Object.keys(cs);h+='<h3>Fallaufgaben</h3>'+(ck.length?'<ul>'+ck.map(k=>'<li>'+esc(k.split(':')[1])+': '+nf(cs[k].g,1)+' von '+cs[k].m+' Punkten</li>').join('')+'</ul>':'<p class="sub">Noch keine Fallaufgabe vollständig bewertet.</p>');
  const ss=(s.s||[]).slice(-8).reverse();h+='<h3>Simulationen</h3>'+(ss.length?'<ul>'+ss.map(x=>'<li>'+D[x.f].kurz+': '+x.pct+' % ('+new Date(x.t).toLocaleDateString('de-DE')+')</li>').join('')+'</ul>':'<p class="sub">Noch keine Simulation.</p>');
  h+='<button class="btn sec" id="rs">Lernstand zurücksetzen</button>';
- let nm=0,nb=0,TR=0,TW=0;FACH.forEach(f=>D[f].modules.forEach((m,i)=>{nm++;const o=q[f+':'+i];if(o&&(o.r+o.w)){nb++;TR+=o.r;TW+=o.w}}));const ls=(s.s||[]).slice(-1)[0],pc=n=>'<div class="bar"><i style="width:'+Math.max(0,Math.min(100,n))+'%"></i></div>';const lt=document.createElement('div');lt.innerHTML='<div class="lt" role="img" aria-label="Leitstand"><span class="bw"><svg class="g" viewBox="0 0 64 54" aria-hidden="true"><path d="M4 49 H60" stroke="#F8FAFC" stroke-width="5" stroke-linecap="round"/><rect x="8" y="32" width="10" height="13" rx="2" fill="#F8FAFC"/><rect x="24" y="24" width="10" height="21" rx="2" fill="#F8FAFC"/><rect x="40" y="16" width="10" height="29" rx="2" fill="#F8FAFC"/><path d="M6 26 L22 14 L34 19 L54 5" fill="none" stroke="var(--bc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 4 H55 V15" fill="none" stroke="var(--bc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="b1">LEIT</span><span class="b2">STAND</span></span><span class="bs">Kalkulieren · Steuern · Entscheiden</span></div>'+'<div class="kp"><div class="k"><b>'+nb+' / '+nm+'</b><span>Module bearbeitet</span>'+pc(nb/nm*100)+'</div>'+'<div class="k"><b>'+((TR+TW)?Math.round(TR/(TR+TW)*100)+' %':'–')+'</b><span>Richtig gesamt</span>'+pc((TR+TW)?TR/(TR+TW)*100:0)+'</div>'+'<div class="k"><b>'+ck.length+'</b><span>Fallaufgaben bewertet</span>'+pc(ck.length/CASES.length*100)+'</div>'+'<div class="k"><b>'+(ls?ls.pct+' %':'–')+'</b><span>Letzte Simulation</span>'+pc(ls?ls.pct:0)+'</div></div>';v.append(lt,el(h,'panel'),repPanel(),backupPanel());$('#rs').onclick=()=>{if(confirm('Lernstand wirklich löschen?')){save({});draw()}}}
+ let nm=0,nb=0,TR=0,TW=0;FACH.forEach(f=>D[f].modules.forEach((m,i)=>{nm++;const o=q[f+':'+i];if(o&&(o.r+o.w)){nb++;TR+=o.r;TW+=o.w}}));const ls=(s.s||[]).slice(-1)[0],pc=n=>'<div class="bar"><i style="width:'+Math.max(0,Math.min(100,n))+'%"></i></div>';const lt=document.createElement('div');lt.innerHTML='<div class="lt" role="img" aria-label="Leitstand"><span class="bw"><svg class="g" viewBox="0 0 64 54" aria-hidden="true"><path d="M4 49 H60" stroke="#F8FAFC" stroke-width="5" stroke-linecap="round"/><rect x="8" y="32" width="10" height="13" rx="2" fill="#F8FAFC"/><rect x="24" y="24" width="10" height="21" rx="2" fill="#F8FAFC"/><rect x="40" y="16" width="10" height="29" rx="2" fill="#F8FAFC"/><path d="M6 26 L22 14 L34 19 L54 5" fill="none" stroke="var(--bc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M44 4 H55 V15" fill="none" stroke="var(--bc)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="b1">LEIT</span><span class="b2">STAND</span></span><span class="bs">Kalkulieren · Steuern · Entscheiden</span></div>'+'<div class="kp"><div class="k"><b>'+nb+' / '+nm+'</b><span>Module bearbeitet</span>'+pc(nb/nm*100)+'</div>'+'<div class="k"><b>'+((TR+TW)?Math.round(TR/(TR+TW)*100)+' %':'–')+'</b><span>Richtig gesamt</span>'+pc((TR+TW)?TR/(TR+TW)*100:0)+'</div>'+'<div class="k"><b>'+ck.length+'</b><span>Fallaufgaben bewertet</span>'+pc(ck.length/CASES.length*100)+'</div>'+'<div class="k"><b>'+(ls?ls.pct+' %':'–')+'</b><span>Letzte Simulation</span>'+pc(ls?ls.pct:0)+'</div></div>';v.append(lt,el(h,'panel'),repPanel(),backupPanel());$('#rs').onclick=()=>{if(confirm('Lernstand wirklich löschen?')){save({});paW({});draw()}}}
 /* ===== Kurstermine: Monatskalender, Kalender-Export, vorbelegter Kurs (wie Lernlabor v88/v89) ===== */
 const KURS0={id:'IMKO-1TRST261101',n:'IM TZ 11/2026 Regenstauf',z:'8:00–15:45',
  f:{reha:['2027-02-06','2027-03-06','2027-04-17','2027-07-24','2027-09-11','2027-10-04','2027-10-06'],
@@ -3869,7 +3909,7 @@ const drawT=draw;draw=function(){if(tab==='tour'){const v=q('#view');v.innerHTML
 window.tutOpen=k=>{TUK=Math.max(0,Math.min(K.length-1,k|0));go('tour');scrollTo(0,0)};
 
 /* Was ist neu (Ich → Sonstiges) */
-setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
+setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
 
 /* FN-01: Größe, „=“ und Wert nicht trennen (geschütztes Leerzeichen um = und ≈ in sichtbaren Texten) */
 (()=>{const RX=/ ([=≈]) /g,SKIP='SCRIPT,STYLE,TEXTAREA,INPUT,OPTION,svg,text,tspan';
