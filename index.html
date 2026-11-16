@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>const APPV=14,APPD='16.11.2026'</script>
+<script>const APPV=15,APPD='16.11.2026'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lernlabor Betrieb</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -64,6 +64,7 @@ table{border-collapse:collapse;width:100%;font-size:15px}th,td{border-bottom:1px
 .vz{margin:0}.vz svg{width:100%;height:auto;display:block}.vz svg text{fill:var(--ink);font-family:inherit;font-size:14px}.vz figcaption{font-size:13px;color:var(--mute);margin-top:4px}.vz label{font-size:14px}.vz input[type=range]{accent-color:var(--acc);max-width:150px}.warn{background:color-mix(in srgb,var(--amber) 15%,var(--card));border:1px solid var(--amber);border-radius:8px;padding:8px 12px;font-size:14px}
 div.vz{overflow-x:auto}.vz table{font-size:13px}.cols>*,.panel{min-width:0;max-width:100%}.row label input{font:inherit;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:inherit;margin-left:4px}#rtxt textarea,#dtx{width:100%;box-sizing:border-box;font:13px/1.4 ui-monospace,monospace;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:inherit;margin:6px 0}label.btn{display:inline-block}.dtw{overflow-x:auto;-webkit-overflow-scrolling:touch}.dtab{width:max-content;min-width:100%;font-size:14px}.dtab th,.dtab td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top;white-space:nowrap;overflow-wrap:normal;word-break:normal}.dtab td:nth-last-child(2){white-space:normal;min-width:200px;max-width:280px}.dtab .btn{margin:0;padding:4px 10px}.dwarn td{background:color-mix(in srgb,#e3a21a 12%,transparent)}.dbar{display:inline-block;width:60px;height:8px;border-radius:6px;background:var(--line);overflow:hidden;vertical-align:middle}.dbar i{display:block;height:100%}.dx{border:0;background:transparent;color:var(--mute);cursor:pointer;font-size:16px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0}.kpis div{border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column}.kpis span{font-size:13px;color:var(--mute)}.kpis b{font-size:24px;color:var(--acc)}.hint{background:color-mix(in srgb,#e3a21a 14%,transparent);border-radius:8px;padding:6px 10px}.dl{list-style:none;padding:0;margin:6px 0}.dl li{display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)}.dl small{color:var(--mute)}.dl li>span:last-child{white-space:nowrap}
 #view .dzp :is(p,li,td,th){text-align:left;-webkit-hyphens:manual;hyphens:manual}
+#kgen .kgl{display:block;margin:10px 0 4px}#kgen textarea{width:100%;font:15px/1.5 inherit;font-family:inherit}#kgen .qru{width:100%;margin:8px 0;font-size:14px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}#kgen .row input[type=text]{max-width:100%}
 .dtab small{color:var(--mute);font-size:12px}
 .dmlw textarea{width:100%;font:14px/1.5 inherit;font-family:inherit;margin:8px 0}.dmlw input{width:5em}/* ===== Design wie im Lernlabor (Formen, Schrift, Menüs) ===== */
 @font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/schibsted-grotesk-latin-400-normal.woff2) format("woff2")}
@@ -4081,7 +4082,7 @@ const drawT=draw;draw=function(){if(tab==='tour'){const v=q('#view');v.innerHTML
 window.tutOpen=k=>{TUK=Math.max(0,Math.min(K.length-1,k|0));go('tour');scrollTo(0,0)};
 
 /* Was ist neu (Ich → Sonstiges) */
-setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 14</h3><ul><li>„Lernfortschritt senden“ enthält jetzt auch, wie viele Prüfungsaufgaben Du bearbeitet (✓) und begonnen (✎) hast.</li></ul><h3>Version 13</h3><ul><li>Technische Vorbereitung für Kurslinks Deines Dozenten. Für Dich ändert sich nichts.</li></ul><h3>Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
+setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 15</h3><ul><li>Kurslink: Öffnest Du den Link oder QR-Code Deines Dozenten, richtet Lernlabor Betrieb Deinen Kurs mit allen Kurstagen ein. Der nächste Termin steht auf der Startseite, mit Knopf „In den Kalender“. Deine eigenen Termine bleiben.</li></ul><h3>Version 14</h3><ul><li>„Lernfortschritt senden“ enthält jetzt auch, wie viele Prüfungsaufgaben Du bearbeitet (✓) und begonnen (✎) hast.</li></ul><h3>Version 13</h3><ul><li>Technische Vorbereitung für Kurslinks Deines Dozenten. Für Dich ändert sich nichts.</li></ul><h3>Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
 
 /* FN-01: Größe, „=“ und Wert nicht trennen (geschütztes Leerzeichen um = und ≈ in sichtbaren Texten) */
 (()=>{const RX=/ ([=≈]) /g,SKIP='SCRIPT,STYLE,TEXTAREA,INPUT,OPTION,svg,text,tspan';
@@ -4120,7 +4121,7 @@ const base=()=>location.protocol==='file:'?PAGES:(location.origin+location.pathn
 const link=r=>base()+(r?'#'+r:'');
 function sync(){if(ROUT)return;const r=route(),want=r?'#'+r:'';if(location.hash===want||(!want&&!location.hash))return;
  try{history.replaceState(Object.assign({},history.state,{y:scrollY}),'');history.pushState({y:0},'',want||location.pathname+location.search)}catch(e){}}
-function openRoute(h){h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
+function openRoute(h){{const raw=(h||'').replace(/^#/,'');if(/^kurs\//.test(raw)){const m=kursImport(raw.slice(5));go('home');try{history.replaceState({y:0},'',location.pathname+location.search)}catch(e){}if(m)setTimeout(()=>toast(m),300);return}}h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
  if(a==='thema'&&SL[r]){modSel[SL[r][0]]=SL[r][1];go(SL[r][0])}
  else if(a==='pruefungsaufgaben'){const n=parseInt(r,10);if(n>=1&&n<=CASES.length)fIdx=n-1;go('fall')}
  else if(RT[a]&&(a!=='dozent'||DOZENT))go(RT[a]);else go('home')}
@@ -4152,9 +4153,9 @@ const navL=nav;nav=function(){navL.apply(this,arguments);
 /* ---------- Teilen und QR-Code ---------- */
 function share(t,u){if(navigator.share&&matchMedia('(pointer:coarse)').matches){navigator.share({title:'Lernlabor Betrieb: '+t,url:u}).catch(()=>{});return}
  const done=()=>toast('Link kopiert: '+t);if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(u).then(done,()=>qrShow(t,u));else qrShow(t,u)}
-function qrShow(t,u){let d=q('#qrd');if(!d){d=document.createElement('dialog');d.id='qrd';document.body.appendChild(d)}
+function qrShow(t,u,h){let d=q('#qrd');if(!d){d=document.createElement('dialog');d.id='qrd';document.body.appendChild(d)}
  let svg='';try{const x=qrcode(0,'M');x.addData(u);x.make();svg=x.createSvgTag({cellSize:8,margin:2,scalable:true})}catch(e){svg='<p>QR-Code konnte nicht erstellt werden.</p>'}
- d.innerHTML='<h2>'+esc(t)+'</h2><div class="qrb">'+svg+'</div><p class="sub">Mit der Handy-Kamera scannen. Der Link öffnet genau dieses Thema.</p><input class="qru" readonly value="'+esc(u)+'" aria-label="Link"><p class="qrbtn"><button type="button" class="btn" id="qrc">Link kopieren</button> <button type="button" class="btn sec" id="qrx">Schließen</button></p>';
+ d.innerHTML='<h2>'+esc(t)+'</h2><div class="qrb">'+svg+'</div><p class="sub">'+esc(h||'Mit der Handy-Kamera scannen. Der Link öffnet genau dieses Thema.')+'</p><input class="qru" readonly value="'+esc(u)+'" aria-label="Link"><p class="qrbtn"><button type="button" class="btn" id="qrc">Link kopieren</button> <button type="button" class="btn sec" id="qrx">Schließen</button></p>';
  d.querySelector('#qrx').onclick=()=>d.close();d.querySelector('#qrc').onclick=()=>{const i=d.querySelector('.qru');i.select();(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('Link kopiert'),()=>{try{document.execCommand('copy');toast('Link kopiert')}catch(e){}})};
  d.onclick=e=>{if(e.target===d)d.close()};d.showModal?d.showModal():d.setAttribute('open','')}
 
@@ -4270,6 +4271,40 @@ let RW=innerWidth;addEventListener('resize',()=>{if(innerWidth===RW)return;RW=in
 /* ---------- Kopf: „Suchen …“ am Handy, Link „Zum Inhalt springen“ ---------- */
 const sq=q('#q');const ph=()=>{if(sq)sq.placeholder=innerWidth<480?'Suchen …':'Thema oder Formel …'};ph();addEventListener('resize',ph);
 {const a=document.createElement('a');a.className='skipl';a.href='#';a.textContent='Zum Inhalt springen';a.onclick=e=>{e.preventDefault();const h=q('#view h2,#view h3');if(h){if(!h.hasAttribute('tabindex'))h.setAttribute('tabindex','-1');h.scrollIntoView({block:'start'});h.focus({preventScroll:true})}};document.body.prepend(a)}
+
+/* ---------- Version 15: Kurslink #kurs/<Name>/<JJJJMMTTf,…>/<Uhrzeit> (wie Lernlabor) ----------
+   f: r ReHa, b BeHa, m MIKP, z ZiB, p Prüfung (~Text, zählt nicht als Einheit), ohne Buchstabe: Kurstag.
+   Der Link richtet bei den Teilnehmenden Kursnamen und Kurstage ein; eigene Termine bleiben. */
+const KF={r:'reha',b:'beha',m:'mikp',z:'zib'},KFR=Object.fromEntries(Object.entries(KF).map(([a,b])=>[b,a]));
+const kDec=x=>{try{return decodeURIComponent(x)}catch(e){return x}};
+function kursImport(raw){const P=raw.split('/'),n=kDec(P[0]||'').trim().slice(0,60),z=kDec(P[2]||'').trim().slice(0,30);if(!n)return'';
+ const L=(P[1]||'').split(',').slice(0,120).map(x=>{const m=x.match(/^(\d{4})(\d{2})(\d{2})([rbmzp]?)(?:~(.*))?$/);return m?{d:m[1]+'-'+m[2]+'-'+m[3],c:m[4],t:m[5]?kDec(m[5]).slice(0,80):''}:null}).filter(x=>x&&!isNaN(new Date(x.d+'T12:00:00'))).sort((a,b)=>a.d<b.d?-1:1);
+ const k=kGet(),e={};k.d.forEach(d=>{const o=k.e[d];if(o&&o.own&&!o.k&&!(KURS0.x[d]&&o.t===KURS0.x[d]))e[d]=o});
+ const U=L.filter(x=>x.c!=='p'),cnt={};U.forEach(x=>{cnt[x.c]=(cnt[x.c]||0)+1});const idx={};
+ L.forEach(x=>{if(x.c==='p'){e[x.d]={t:x.t||'Prüfung',own:1,k:'p'};return}idx[x.c]=(idx[x.c]||0)+1;const f=KF[x.c];
+  e[x.d]=Object.assign({t:(f?D[f].kurz+', Einheit ':'Kurstag ')+idx[x.c]+' von '+cnt[x.c]+(x.t?' · '+x.t:'')},z?{z}:{},f?{f}:{})});
+ kSet({n,d:Object.keys(e),e});try{localStorage.setItem(KK0,KURS0.id)}catch(x){}
+ const s=load();s.id=Object.assign({name:''},s.id||{},{kurs:n});save(s);
+ return'Kurs „'+n+'“ eingerichtet'+(U.length?' mit '+U.length+' Kurstagen':'')+'.'}
+if(DOZENT){const KGK='meisterlabor-dozkl';
+ const kgDef=()=>{const r=[];FACH.forEach(f=>KURS0.f[f].forEach(d=>r.push([d,KFR[f].toUpperCase()])));Object.entries(KURS0.x).forEach(([d,t])=>r.push([d,'P '+t]));
+  return{n:KURS0.n,z:KURS0.z,t:r.sort((a,b)=>a[0]<b[0]?-1:1).map(([d,c])=>d.split('-').reverse().join('.')+' '+c).join('\n')}};
+ const kgLoad=()=>{try{return JSON.parse(localStorage.getItem(KGK))||kgDef()}catch(e){return kgDef()}};
+ const kgLink=(n,z,txt)=>{const bad=[],d=txt.split(/\n/).map((l,i)=>{l=l.trim();if(!l)return null;const x=l.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})\s*([RBMZPrbmzp])?\b\s*(.*)$/);if(!x){bad.push(i+1);return null}
+   const y=x[3].length===2?'20'+x[3]:x[3],c=(x[4]||'').toLowerCase(),t=x[5].trim();return y+x[2].padStart(2,'0')+x[1].padStart(2,'0')+c+(t?'~'+encodeURIComponent(t):'')}).filter(Boolean);
+  return{u:base()+'#kurs/'+encodeURIComponent(n)+'/'+d.join(',')+(z?'/'+encodeURIComponent(z):''),n:d.length,bad}};
+ const dz0=doz;doz=function(v,msg){dz0(v,msg);const g=kgLoad(),p=document.createElement('div');p.className='panel dzp';p.id='kgen';
+  p.innerHTML=`<h2>🔗 Kurslink für Teilnehmer</h2><p class="sub">Der Link richtet bei den Teilnehmenden den Kursnamen und alle Kurstage ein. Auf der Startseite steht dann der nächste Termin mit dem Knopf „In den Kalender“. Eigene Termine der Teilnehmenden bleiben erhalten.</p>
+  <div class="row"><label>Kurs <input type="text" id="kgn" maxlength="60" value="${rEsc(g.n)}"></label><label>Uhrzeit <input type="text" id="kgz" maxlength="30" value="${rEsc(g.z)}" placeholder="8:00–15:45"></label></div>
+  <label class="kgl">Kurstage, einer pro Zeile: Datum und Fach<textarea id="kgd" rows="10" spellcheck="false">${rEsc(g.t)}</textarea></label>
+  <p class="sub">Fach: <b>R</b> ReHa · <b>B</b> BeHa · <b>M</b> MIKP · <b>Z</b> ZiB · <b>P</b> Prüfung mit Text dahinter (zählt nicht als Einheit). Ohne Buchstabe heißt der Termin „Kurstag“. Die Teilnehmenden sehen „BeHa, Einheit 1 von 9“.</p>
+  <div class="row"><button class="btn" id="kgb">Link erstellen</button><button class="btn sec" id="kgr">Vorbelegten Kurs einsetzen</button></div><div id="kgo" aria-live="polite"></div>`;
+  v.append(p);const $k=x=>p.querySelector(x);
+  $k('#kgr').onclick=()=>{const d=kgDef();$k('#kgn').value=d.n;$k('#kgz').value=d.z;$k('#kgd').value=d.t};
+  $k('#kgb').onclick=()=>{const n=$k('#kgn').value.trim(),z=$k('#kgz').value.trim(),t=$k('#kgd').value,o=$k('#kgo');if(!n){o.innerHTML='<p class="sub">Bitte einen Kursnamen eintragen.</p>';return}
+   try{localStorage.setItem(KGK,JSON.stringify({n,z,t}))}catch(e){}const r=kgLink(n,z,t);
+   o.innerHTML=`<p class="sub">${r.n} Termine im Link${r.bad.length?'. Nicht lesbar und weggelassen: Zeile '+r.bad.join(', '):''}.</p><input class="qru" readonly value="${rEsc(r.u)}" aria-label="Kurslink"><div class="row"><button class="btn sec" id="kgc">Link kopieren</button><button class="btn sec" id="kgq">▦ QR-Code zeigen</button></div>`;
+   $k('#kgq').onclick=()=>qrShow('Kurs '+n,r.u,'Mit der Handy-Kamera scannen. Der Link richtet den Kurs mit allen Kurstagen ein.');$k('#kgc').onclick=()=>{const i=$k('.qru');i.select();(navigator.clipboard?navigator.clipboard.writeText(r.u):Promise.reject()).then(()=>toast('Kurslink kopiert'),()=>{try{document.execCommand('copy');toast('Kurslink kopiert')}catch(e){}})}}}}
 
 /* ---------- Start: Adresse aus dem Link öffnen ---------- */
 if(location.hash&&!/^#(glossar|formelsammlung)$/.test(location.hash)){ROUT=true;try{openRoute(location.hash)}finally{ROUT=false}}else nav();
