@@ -58,8 +58,9 @@ Diese Datei ist der Startpunkt für das eigene Projekt „Meisterlabor“. Sie f
 - Force-Push wird blockiert: nach gemergtem PR den Branch neu von `origin/main` aufsetzen und vor dem Push `git merge -s ours origin/<branch>`.
 
 **Nach jedem Merge**
-1. Dozentenversion bauen: `index.html` kopieren und `const DOZENT=false` durch `const DOZENT=true` ersetzen, ablegen als `dozent/meisterlabor_dozent.html` im Projektordner (nie ins Repo).
-2. Sicherung: `BACKUP_REPO=bam01872/Meisterlabor BACKUP_ZIEL=<projektordner>/backup/meisterlabor python3 <projektordner>/backup/werkzeug/backup.py` (Repo-Bundle, App-ZIP, alle PRs). Das Skript muss dafür ins neue Projekt mitkommen (Abschnitt 7).
+1. Dozentenversion bauen (seit Version 13): `python3 /mnt/project-files/dozent/build-dozent.py index.html /mnt/project-files/dozent/meisterlabor_dozent.html` (Kopie des Skripts in `werkzeug/build-dozent.py`). Kurz prüfen: `const DOZENT=true` drin, Titel „Dozent · Lernlabor Betrieb“, `#dozent` öffnet ohne JS-Fehler. Nie ins Repo, nicht auf Pages, nicht als öffentliches Artifact.
+2. Sicherung: `BACKUP_REPO=bam01872/Meisterlabor BACKUP_ZIEL=/mnt/project-files/backup python3 /mnt/project-files/backup/werkzeug/backup.py` (Repo-Bundle, App-ZIP, alle PRs; Ziel bewusst ohne Unterordner, damit Verlauf und protokoll.txt weiterlaufen).
+3. In der Fertig-Meldung nennen, dass Dozentenversion und Sicherung gelaufen sind.
 
 **Gestaltung (aus dem Lernlabor übernommen)**
 - Oberfläche und Bedienung wie das Lernlabor, nur eigene Akzentfarbe (Bordeaux). Bei Abweichungen nachfragen.

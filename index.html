@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>const APPV=12,APPD='16.11.2026'</script>
+<script>const APPV=13,APPD='16.11.2026'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lernlabor Betrieb</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -4041,7 +4041,7 @@ const drawT=draw;draw=function(){if(tab==='tour'){const v=q('#view');v.innerHTML
 window.tutOpen=k=>{TUK=Math.max(0,Math.min(K.length-1,k|0));go('tour');scrollTo(0,0)};
 
 /* Was ist neu (Ich → Sonstiges) */
-setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
+setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 13</h3><ul><li>Technische Vorbereitung für Kurslinks Deines Dozenten. Für Dich ändert sich nichts.</li></ul><h3>Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
 
 /* FN-01: Größe, „=“ und Wert nicht trennen (geschütztes Leerzeichen um = und ≈ in sichtbaren Texten) */
 (()=>{const RX=/ ([=≈]) /g,SKIP='SCRIPT,STYLE,TEXTAREA,INPUT,OPTION,svg,text,tspan';
@@ -4074,7 +4074,10 @@ const RN={uben:'ueben',betrieb:'im-betrieb',fall:'pruefungsaufgaben',glossar:'gl
 const RT=Object.fromEntries(Object.entries(RN).map(([a,b])=>[b,a]));
 let ROUT=false;
 const route=()=>FACH.includes(tab)?'thema/'+SN[tab+':'+modSel[tab]]:tab==='fall'?'pruefungsaufgaben/'+(fIdx+1):tab==='stand'&&KMV?'kurstermine':(RN[tab]||'');
-const link=r=>location.origin+location.pathname+(r?'#'+r:'');
+/* Links zeigen immer auf die öffentliche App, auch aus der lokalen Dozentendatei (file:// oder …dozent….html) */
+const PAGES='https://bam01872.github.io/Meisterlabor/';
+const base=()=>location.protocol==='file:'?PAGES:(location.origin+location.pathname).replace(/[^/]*dozent[^/]*\.html$/i,'');
+const link=r=>base()+(r?'#'+r:'');
 function sync(){if(ROUT)return;const r=route(),want=r?'#'+r:'';if(location.hash===want||(!want&&!location.hash))return;
  try{history.replaceState(Object.assign({},history.state,{y:scrollY}),'');history.pushState({y:0},'',want||location.pathname+location.search)}catch(e){}}
 function openRoute(h){h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
