@@ -4,6 +4,9 @@ const {chromium}=require('playwright');const fs=require('fs');const path=require
  const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8'),html=fs.readFileSync(path.join(root,'index.html'),'utf8');
  if(!/const V='meisterlabor-v\d+'/.test(sw))fail('sw.js ohne Versionsname');
  if(/const DOZENT=true/.test(html))fail('Dozentenversion im Repo');
+ // Dozentenversion muss baubar bleiben (werkzeug/build-dozent.py): Schalter und Titel je genau einmal
+ if(html.split('const DOZENT=false;').length!==2)fail('const DOZENT=false; fehlt oder doppelt');
+ if(html.split('<title>Lernlabor Betrieb</title>').length!==2)fail('<title>Lernlabor Betrieb</title> fehlt oder doppelt');
  const b=await chromium.launch();
  for(const w of [390,1366]){const p=await b.newPage({viewport:{width:w,height:900}});
   p.on('pageerror',e=>fail(w+' '+e.message));
