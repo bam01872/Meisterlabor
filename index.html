@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<script>const APPV=15,APPD='16.11.2026'</script>
+<script>const APPV=16,APPD='16.11.2026'</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Lernlabor Betrieb</title>
 <link rel="manifest" href="manifest.webmanifest">
@@ -63,8 +63,8 @@ table{border-collapse:collapse;width:100%;font-size:15px}th,td{border-bottom:1px
 .timer{font-size:28px;font-weight:800;font-variant-numeric:tabular-nums}
 .vz{margin:0}.vz svg{width:100%;height:auto;display:block}.vz svg text{fill:var(--ink);font-family:inherit;font-size:14px}.vz figcaption{font-size:13px;color:var(--mute);margin-top:4px}.vz label{font-size:14px}.vz input[type=range]{accent-color:var(--acc);max-width:150px}.warn{background:color-mix(in srgb,var(--amber) 15%,var(--card));border:1px solid var(--amber);border-radius:8px;padding:8px 12px;font-size:14px}
 div.vz{overflow-x:auto}.vz table{font-size:13px}.cols>*,.panel{min-width:0;max-width:100%}.row label input{font:inherit;padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:inherit;margin-left:4px}#rtxt textarea,#dtx{width:100%;box-sizing:border-box;font:13px/1.4 ui-monospace,monospace;padding:8px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:inherit;margin:6px 0}label.btn{display:inline-block}.dtw{overflow-x:auto;-webkit-overflow-scrolling:touch}.dtab{width:max-content;min-width:100%;font-size:14px}.dtab th,.dtab td{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top;white-space:nowrap;overflow-wrap:normal;word-break:normal}.dtab td:nth-last-child(2){white-space:normal;min-width:200px;max-width:280px}.dtab .btn{margin:0;padding:4px 10px}.dwarn td{background:color-mix(in srgb,#e3a21a 12%,transparent)}.dbar{display:inline-block;width:60px;height:8px;border-radius:6px;background:var(--line);overflow:hidden;vertical-align:middle}.dbar i{display:block;height:100%}.dx{border:0;background:transparent;color:var(--mute);cursor:pointer;font-size:16px}.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:10px 0}.kpis div{border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column}.kpis span{font-size:13px;color:var(--mute)}.kpis b{font-size:24px;color:var(--acc)}.hint{background:color-mix(in srgb,#e3a21a 14%,transparent);border-radius:8px;padding:6px 10px}.dl{list-style:none;padding:0;margin:6px 0}.dl li{display:flex;flex-wrap:wrap;gap:6px 12px;justify-content:space-between;padding:8px 0;border-top:1px solid var(--line)}.dl small{color:var(--mute)}.dl li>span:last-child{white-space:nowrap}
-#view .dzp :is(p,li,td,th){text-align:left;-webkit-hyphens:manual;hyphens:manual}
-#kgen .kgl{display:block;margin:10px 0 4px}#kgen textarea{width:100%;font:15px/1.5 inherit;font-family:inherit}#kgen .qru{width:100%;margin:8px 0;font-size:14px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}#kgen .row input[type=text]{max-width:100%}
+#view :is(.dzp,.egp,.egh) :is(p,li,td,th){text-align:left;-webkit-hyphens:manual;hyphens:manual}.bprec{margin:4px 0 8px;padding-left:1.2em}.bprec li{margin:3px 0}
+#kgen .kgl,#egen .kgl{display:block;margin:10px 0 4px}#egen textarea,#egen input[type=text]{width:100%;font:15px/1.5 inherit;font-family:inherit}#egen .egl{list-style:none;padding:0;margin:8px 0}#egen .egl li{display:flex;gap:8px;justify-content:space-between;align-items:flex-start;padding:8px 0;border-top:1px solid var(--line)}#egen .egl li>span{min-width:0}#egen .egf[hidden]{display:none}#egen .qru,#bpl .qru{width:100%;margin:6px 0;font-size:14px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}.dfwl{padding-left:1.3em}.dfwl li{margin:10px 0}.egs{border-top:1px solid var(--line);padding:8px 0}.egs summary{cursor:pointer;padding:4px 0}.egok{color:var(--ok);font-size:14px;white-space:nowrap}.egc{display:block;margin:6px 0}.egq textarea{width:100%}#bpl .bprow{border-top:1px solid var(--line);padding:10px 0}#bpl .bprow p{margin:4px 0}#bpl select{max-width:100%}#kgen textarea{width:100%;font:15px/1.5 inherit;font-family:inherit}#kgen .qru{width:100%;margin:8px 0;font-size:14px;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px}#kgen .row input[type=text]{max-width:100%}
 .dtab small{color:var(--mute);font-size:12px}
 .dmlw textarea{width:100%;font:14px/1.5 inherit;font-family:inherit;margin:8px 0}.dmlw input{width:5em}/* ===== Design wie im Lernlabor (Formen, Schrift, Menüs) ===== */
 @font-face{font-family:"Schibsted Grotesk";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/schibsted-grotesk-latin-400-normal.woff2) format("woff2")}
@@ -1442,7 +1442,7 @@ function repBuild(){const s=load(),q=s.q||{},id=(s.id)||{name:'',kurs:''},T=toda
  const cases=Object.entries(s.c||{}).map(([k,v])=>{const[f,t]=k.split(':');return{f:D[f]?D[f].kurz:f,t,pct:v.m?Math.round(v.g/v.m*100):0}});
  return{typ:'meisterlabor-bericht',v:1,app:'Lernlabor Betrieb',name:id.name,kurs:id.kurs,datum:T,erstellt:new Date().toISOString(),
   zuletzt:ds.length?ds[ds.length-1]:null,tage14:inN(14).length,tage30:inN(30).length,aufg30:inN(30).reduce((a,d)=>a+s.d[d],0),
-  module:mods,muendlich:oral,faelle:cases,pa:(()=>{const X=paD();return{ok:CASES.filter(c=>paSt(X,c.t)===2).length,beg:CASES.filter(c=>paSt(X,c.t)===1).length,n:CASES.length}})(),sim:(s.s||[]).slice(-10).reverse().map(x=>({f:D[x.f]?D[x.f].kurz:x.f,p:x.pct,d:dKey(new Date(x.t))}))}}
+  module:mods,muendlich:oral,faelle:cases,fw:lsJ(FWK,{}),eig:egSum().map(x=>({t:x.t,n:x.n,d:x.d,ok:x.ok})),pa:(()=>{const X=paD();return{ok:CASES.filter(c=>paSt(X,c.t)===2).length,beg:CASES.filter(c=>paSt(X,c.t)===1).length,n:CASES.length}})(),sim:(s.s||[]).slice(-10).reverse().map(x=>({f:D[x.f]?D[x.f].kurz:x.f,p:x.pct,d:dKey(new Date(x.t))}))}}
 function repPanel(){const s=load(),id=s.id||{name:'',kurs:''};const p=el(`<h3>📤 Lernfortschritt an Dozenten senden</h3><p class="sub">Erzeugt eine kleine Datei mit Deinen Ergebnissen je Modul, Prüfungsaufgaben, Simulationen und Lernaktivität. Sie enthält nur den Namen oder das Kürzel, das Du hier einträgst. Schicke sie Deinem Dozenten, zum Beispiel per Mail.</p>
  <div class="row"><label>Name oder Kürzel <input type="text" id="rnm" maxlength="40" value="${rEsc(id.name)}" autocomplete="off"></label> <label>Kurs <input type="text" id="rku" maxlength="40" value="${rEsc(id.kurs)}" placeholder="z. B. IMM 2026-1" autocomplete="off"></label></div>
  <div class="row"><button class="btn" id="rsh">Lernfortschritt senden</button><button class="btn sec" id="rtx">Als Text anzeigen</button></div><p class="sub" id="rmsg" aria-live="polite"></p><div id="rtxt" hidden><textarea readonly rows="5" aria-label="Lernfortschritt als Text"></textarea><button class="btn sec" id="rcp">Text kopieren</button></div>`,'panel');
@@ -1455,6 +1455,7 @@ function repPanel(){const s=load(),id=s.id||{name:'',kurs:''};const p=el(`<h3>�
   try{dl(txt,fn,'application/json');msg('Die Datei „'+fn+'“ wurde gespeichert. Hänge sie an eine Mail an Deinen Dozenten. Falls kein Download erscheint, nutze „Als Text anzeigen“.')}catch(e){show(txt,'Speichern ist hier nicht möglich. Kopiere den Text und schicke ihn Deinem Dozenten.')}};
  $p('#rtx').onclick=()=>{if(ident())show(JSON.stringify(repBuild()),'Kopiere den Text und schicke ihn Deinem Dozenten, zum Beispiel per Mail.')};
  $p('#rcp').onclick=async()=>{const ta=$p('#rtxt textarea');try{await navigator.clipboard.writeText(ta.value);msg('Text kopiert.')}catch(e){ta.select();try{document.execCommand('copy');msg('Text kopiert.')}catch(e2){msg('Bitte den markierten Text selbst kopieren.')}}};
+ p.append(egLoadBtn(t=>{$p('#rmsg').textContent=t}));
  return p}
 function dl(txt,fn,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type}));a.download=fn;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},800)}
 function backupPanel(){const p=el('<h3>💾 Lernstand sichern</h3><p class="sub">Dein Lernstand liegt nur in diesem Browser. Sichere ihn, um ihn auf ein anderes Gerät zu übertragen.</p><div class="row"><button class="btn sec" id="bex">Sichern (Datei)</button><label class="btn sec">Wiederherstellen<input type="file" id="bim" accept="application/json,.json" hidden></label></div><p class="sub" id="bmsg" aria-live="polite"></p>','panel');
@@ -1503,8 +1504,11 @@ function doz(v,msg){const all=dozAll(),kurse=[...new Set(Object.values(all).map(
  const wk=Object.values(ag).map(a=>({...a,r:Math.round(a.r/a.c)})).filter(a=>a.r<80).sort((a,b)=>a.r-b.r).slice(0,8);
  const fa={};S.forEach(({o})=>Object.values(o.module||{}).forEach(m=>{const x=fa[m.f]||(fa[m.f]={n:0,ok:0});x.n+=m.n;x.ok+=m.ok}));
  v.append(el(`<h3>Was dem Kurs am schwersten fällt</h3>${wk.length?'<ul class="dl">'+wk.map(a=>`<li><span><b>${rEsc(a.t)}</b> <small>${rEsc(a.f)} · ${a.c} TN</small></span><span>${bar(a.r)} ${a.r} %</span></li>`).join('')+'</ul>':'<p>Noch keine auffälligen Module (mindestens 3 Antworten je Teilnehmer nötig).</p>'}<h3>Quote je Fach</h3><ul class="dl">${Object.entries(fa).filter(([f,x])=>x.n).sort((a,b)=>a[1].ok/a[1].n-b[1].ok/b[1].n).map(([f,x])=>{const r=Math.round(x.ok/x.n*100);return`<li><span><b>${rEsc(f)}</b> <small>${x.n} Antworten</small></span><span>${bar(r)} ${r} %</span></li>`}).join('')}</ul>`,'panel dzp'));
+ {const a={};S.forEach(({o})=>Object.entries(o.fw||{}).forEach(([t,m])=>Object.entries(m).forEach(([j,c])=>{const E=ERK[t];if(!E||!E[2]||!E[2][+j]||!(c>0))return;const k=t+'|'+j,x=a[k]||(a[k]={t,txt:E[2][+j],tn:0,n:0});x.tn++;x.n+=c})));
+  const F=Object.values(a).sort((x,y)=>y.tn-x.tn||y.n-x.n).slice(0,3),fp=el(`<h3>⚠️ Top-3-Fehler im Kurs</h3>${F.length?`<p class="sub">Aus den typischen Fehlern, die Teilnehmende nach einer falschen Antwort selbst angetippt haben.</p><ol class="dfwl">${F.map((f,i)=>`<li><b>${rEsc(f.txt)}</b><br><small>${rEsc(f.t)} · ${f.tn} TN, ${f.n}×</small> <button type="button" class="chip" data-ft="${i}">Thema öffnen</button></li>`).join('')}</ol><p class="sub">Vorschlag für den nächsten Kurstag: Nimm Fehler 1 als Einstieg von 5 bis 10 Minuten. Lass einen falschen und einen richtigen Lösungsweg nebeneinander besprechen und gib danach eine passende Übung aus den Übungslinks.</p>`:'<p class="sub">Noch keine angetippten Fehler. Sie kommen mit den nächsten gesendeten Lernständen (ab Version 16).</p>'}`,'panel dzp');fp.id='dfw';
+  fp.querySelectorAll('[data-ft]').forEach(b=>b.onclick=()=>{const x=modFind(F[+b.dataset.ft].t);if(x){modSel[x[0]]=x[1];go(x[0]);scrollTo(0,0)}});v.append(fp)}
  if(DOZD&&all[DOZD]){const o=all[DOZD],M=Object.values(o.module).sort((a,b)=>a.f.localeCompare(b.f)||a.ok/a.n-b.ok/b.n);
-  const d=el(`<h3>Details: ${rEsc(o.name)}${o.kurs?' · '+rEsc(o.kurs):''}</h3><p class="sub">Stand ${dShow(o.datum)} · aktiv an ${o.tage14||0} von 14 Tagen und ${o.tage30||0} von 30 Tagen · ${o.aufg30||0} Antworten in 30 Tagen</p>${(o.sim||[]).length?'<p>Simulationen: '+o.sim.map(x=>rEsc(x.f)+' '+pN(x.p)+' % ('+dShow(x.d)+')').join(' · ')+'</p>':''}${o.pa&&o.pa.n?'<p>Prüfungsaufgaben: ✓ '+o.pa.ok+' bearbeitet · ✎ '+o.pa.beg+' begonnen · von '+o.pa.n+'</p>':''}${(o.faelle||[]).length?'<p>Selbstbewertung: '+o.faelle.map(c=>rEsc(c.f+' '+c.t)+' '+c.pct+' %').join(' · ')+'</p>':''}${Object.keys(o.muendlich||{}).length?'<p>Mündlich gewusst: '+Object.entries(o.muendlich).map(([k,x])=>rEsc(k)+' '+x.ok+'/'+x.n).join(' · ')+'</p>':''}<ul class="dl">${M.map(m=>{const r=Math.round(m.ok/m.n*100);return`<li><span><b>${rEsc(m.t)}</b> <small>${rEsc(m.f)} · ${m.n} Antworten</small></span><span>${bar(r)} ${r} %</span></li>`}).join('')}</ul><button class="btn sec" id="dclose">Details schließen</button>`,'panel dzp');
+  const d=el(`<h3>Details: ${rEsc(o.name)}${o.kurs?' · '+rEsc(o.kurs):''}</h3><p class="sub">Stand ${dShow(o.datum)} · aktiv an ${o.tage14||0} von 14 Tagen und ${o.tage30||0} von 30 Tagen · ${o.aufg30||0} Antworten in 30 Tagen</p>${(o.sim||[]).length?'<p>Simulationen: '+o.sim.map(x=>rEsc(x.f)+' '+pN(x.p)+' % ('+dShow(x.d)+')').join(' · ')+'</p>':''}${(o.eig||[]).length?'<p>Eigene Aufgaben: '+o.eig.map(x=>rEsc(x.t)+' '+x.d+'/'+x.n+(x.d?' ('+x.ok+' richtig)':'')).join(' · ')+'</p>':''}${o.pa&&o.pa.n?'<p>Prüfungsaufgaben: ✓ '+o.pa.ok+' bearbeitet · ✎ '+o.pa.beg+' begonnen · von '+o.pa.n+'</p>':''}${(o.faelle||[]).length?'<p>Selbstbewertung: '+o.faelle.map(c=>rEsc(c.f+' '+c.t)+' '+c.pct+' %').join(' · ')+'</p>':''}${Object.keys(o.muendlich||{}).length?'<p>Mündlich gewusst: '+Object.entries(o.muendlich).map(([k,x])=>rEsc(k)+' '+x.ok+'/'+x.n).join(' · ')+'</p>':''}<ul class="dl">${M.map(m=>{const r=Math.round(m.ok/m.n*100);return`<li><span><b>${rEsc(m.t)}</b> <small>${rEsc(m.f)} · ${m.n} Antworten</small></span><span>${bar(r)} ${r} %</span></li>`}).join('')}</ul><button class="btn sec" id="dclose">Details schließen</button>`,'panel dzp');
   d.id='ddet';d.querySelector('#dclose').onclick=()=>{DOZD=null;rd()};v.append(d);d.scrollIntoView({block:'nearest'})}}
 /* ----- Version 14: Kursauswertung (anonym) als Datei und vorbereitete Mail an mich, wie im Lernlabor ----- */
 const DMAIL=['baum.ma91','yahoo.de'].join('@'),DTN='meisterlabor-doztn';
@@ -1521,6 +1525,7 @@ function trBuild(){const T0=today(),L=Object.values(dozAll()).filter(o=>DOZK==='
   fa:KZ().filter(k=>fa[k]&&fa[k].n).map(k=>k+' '+Math.round(fa[k].ok/fa[k].n*100)+' %'),
   pa:pa.length?{n:pa.length,one:pa.filter(x=>x.s.pa.ok>0).length,med:trMed(pa.map(x=>x.s.pa.ok)),of:pa[0].s.pa.n}:null,
   sim:sim.length?{n:sim.length,ok:sim.filter(x=>x.s.sim.p>=50).length,avg:Math.round(sim.reduce((a,x)=>a+x.s.sim.p,0)/sim.length)}:null,
+  eig:(()=>{const E={};L.forEach(o=>(o.eig||[]).forEach(x=>{const e=E[x.t]||(E[x.t]={t:x.t,all:0,any:0});if(x.d>=x.n)e.all++;else if(x.d)e.any++}));return Object.values(E)})(),
   weak:Object.values(ag).filter(a=>a.c>=3).map(a=>({k:a.k,r:Math.round(a.r/a.c)})).sort((a,b)=>a.r-b.r).slice(0,3)}}
 function trText(R){const z=['Zwischenstand Lernlabor Betrieb'+(R.kurs?' · '+R.kurs:''),'Stand: '+trY(R.T0)+(R.kn?(R.kt?' · Kurstag '+R.kt+' von '+R.kn:' · Kursbeginn '+trY(R.k1)):'')+' · '+R.N+' Teilnehmende',''];
  z.push('Lernfortschritt gesendet: '+R.n+' von '+R.N+' ('+trPc(R.n,R.N)+'), davon '+R.fresh+' in den letzten 7 Tagen');
@@ -1530,6 +1535,7 @@ function trText(R){const z=['Zwischenstand Lernlabor Betrieb'+(R.kurs?' · '+R.k
  if(R.fa.length)z.push('Quote je Fach: '+R.fa.join(', '));
  if(R.pa)z.push('Prüfungsaufgaben: '+R.pa.one+' von '+R.N+' haben mindestens eine bearbeitet, im Median '+trDe(R.pa.med)+' von '+R.pa.of);
  if(R.sim)z.push('Prüfungssimulation: '+R.sim.n+' von '+R.N+' haben eine gemacht, '+R.sim.ok+' bestanden, letzte im Schnitt '+R.sim.avg+' %');
+ R.eig.forEach(e=>z.push('Eigene Aufgaben „'+e.t+'“: '+e.all+' von '+R.N+' ganz erledigt'+(e.any?', '+e.any+' teilweise':'')));
  if(R.weak.length)z.push('Schwierigste Themen (mind. 3 TN): '+R.weak.map(w=>w.k+' '+w.r+' %').join(', '));
  z.push('','Datenschutz: keine Konten, keine Nutzungszählung. Grundlage sind nur freiwillig gesendete Lernfortschritte. Keine Namen, keine Einzelwerte.');return z.join('\n')}
 function trHTML(txt){const l=txt.split('\n');return'<!DOCTYPE html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+rEsc(l[0])+'</title><style>body{font:16px/1.55 system-ui,sans-serif;max-width:46em;margin:2em auto;padding:0 16px;color:#1d1a1b}h1{font-size:1.45em;margin:0 0 .2em;color:#7c1628}.s{color:#6b5f62}li{margin:.3em 0}</style></head><body><h1>'+rEsc(l[0])+'</h1><p class="s">'+rEsc(l[1])+'</p><ul>'+l.slice(3,-2).map(x=>'<li>'+rEsc(x)+'</li>').join('')+'</ul><p class="s">'+rEsc(l[l.length-1])+'</p><p class="s">Erstellt mit der Dozentenversion von Lernlabor Betrieb</p></body></html>'}
@@ -1541,6 +1547,42 @@ async function trMail(send){const v=$('#view'),$v=x=>v.querySelector(x),TN=trTN(
  try{dl(html,fn,'text/html')}catch(e){}
  try{location.href='mailto:'+DMAIL+'?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(txt+'\n\n(Anhang: '+fn+' aus dem Download-Ordner)')}catch(e){}
  m.textContent='Die Datei „'+fn+'“ ist gespeichert, und eine Mail an '+DMAIL+' ist vorbereitet. Hänge die Datei an und sende sie. Falls sich keine Mail öffnet, kopiere den Text unten. Prüfe die Zahl der Teilnehmenden.'}
+/* ===== Version 16: typische Fehler merken, eigene Aufgaben vom Dozenten, Üben zu einem Thema ===== */
+const FWK='meisterlabor-fw',EGK='meisterlabor-eigene';
+const lsJ=(k,d)=>{try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},lsS=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const modFind=t=>{for(const f of FACH){const i=D[f].modules.findIndex(m=>m.t===t);if(i>=0)return[f,i]}return null};
+/* „Woran lag es?“ nach einer falschen Antwort: typische Fehler des Themas (ERK[2]) antippen, gezählt in meisterlabor-fw */
+function fwChips(t,kind){const E=ERK[t];if(!E||!E[2]||!E[2].length)return null;const wl=document.createElement('div');wl.className='wlr';let last=null;
+ wl.innerHTML='<p class="wlh"><b>Woran lag es?</b> Tippe an, was passiert sein könnte.</p>'+E[2].map((x,j)=>'<button type="button" class="chip" aria-pressed="false" data-j="'+j+'">'+esc(x).replace(/([A-Za-zσλμϑΔεηṁ])_([A-Za-z0-9äöü]+)/g,'$1<sub>$2</sub>')+'</button>').join('')+'<button type="button" class="chip" aria-pressed="false" data-j="-1">Etwas anderes</button><p class="sub wlt" hidden></p>';
+ wl.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{const j=+b.dataset.j;if(j===last)return;wl.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));const F=lsJ(FWK,{});
+  if(last!=null&&last>=0&&F[t]&&F[t][last]){F[t][last]--;if(!F[t][last])delete F[t][last];if(!Object.keys(F[t]).length)delete F[t]}
+  if(j>=0){const m=F[t]||(F[t]={});m[j]=(m[j]||0)+1}lsS(FWK,F);last=j;const w=wl.querySelector('.wlt');w.hidden=false;
+  w.textContent=j<0?'Kein Problem. '+(kind==='w'?'Lies die Auflösung noch einmal in Ruhe.':'Der Lösungsweg zeigt Dir, wo es hakt.'):'Gut erkannt. '+(kind==='w'?'Lies die Auflösung mit diesem Punkt im Kopf noch einmal.':'Rechne mit diesem Punkt im Kopf noch einmal.')});return wl}
+/* Eigene Aufgaben vom Dozenten: Satz {id,titel,auf:[{id,art:'r'|'t',f,q,a,u,tol,w:[],m,s:[]}]} */
+const b64e=t=>btoa(unescape(encodeURIComponent(t))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,''),b64d=t=>decodeURIComponent(escape(atob(t.replace(/-/g,'+').replace(/_/g,'/'))));
+const egGet=()=>{const x=lsJ(EGK,{});return{sets:x.sets||{},st:x.st||{}}};
+function egValid(o){return o&&typeof o==='object'&&typeof o.id==='string'&&Array.isArray(o.auf)&&o.auf.length&&o.auf.length<=40&&o.auf.every(a=>a&&typeof a.q==='string'&&(a.art==='r'?isFinite(+a.a):a.art==='t'))}
+function egAdd(o){if(!egValid(o))return'';const X=egGet();o.titel=String(o.titel||'Aufgaben vom Dozenten').slice(0,80);X.sets[o.id]=o;lsS(EGK,X);return'„'+o.titel+'“ mit '+o.auf.length+(o.auf.length===1?' Aufgabe':' Aufgaben')+' übernommen. Du findest sie unter Üben.'}
+function egImport(raw){try{return egAdd(JSON.parse(b64d(raw)))}catch(e){return''}}
+const egKey=(S,a)=>S.id+'|'+a.id,egDone=(X,S)=>S.auf.filter(a=>X.st[egKey(S,a)]).length;
+function egSum(){const X=egGet();return Object.values(X.sets).map(S=>({t:S.titel,id:S.id,n:S.auf.length,d:egDone(X,S),ok:S.auf.filter(a=>(X.st[egKey(S,a)]||{}).ok).length}))}
+function egTask(S,a,i,re){const X=egGet(),k=egKey(S,a),st=X.st[k],w=document.createElement('div');w.className='q egq';const fc=D[a.f]?'<span class="tag" style="background:'+D[a.f].col+'">'+D[a.f].kurz+'</span> ':'';
+ const mark=ok=>{const Y=egGet();Y.st[k]={ok:!!ok,d:today()};lsS(EGK,Y);re()};
+ w.innerHTML='<p>'+fc+'<b>'+(i+1)+'.</b> '+esc(a.q)+(st?' <span class="egok">'+(st.ok?'✓ erledigt':'✎ erledigt, nicht ganz richtig')+'</span>':'')+'</p>';
+ if(a.art==='r'){const u=a.u?' '+esc(a.u):'';w.insertAdjacentHTML('beforeend','<div class="row"><input type="text" inputmode="decimal" aria-label="Deine Antwort" size="12"><span>'+u+'</span><button class="btn">Prüfen</button><button class="btn sec">Lösungsweg</button></div><div class="fb" aria-live="polite"></div><div class="sol" hidden><div>Ergebnis: <b>'+esc(nf(+a.a,(String(a.a).split('.')[1]||'').length))+u+'</b></div>'+(a.w||[]).map(l=>'<div>'+esc(l)+'</div>').join('')+'</div>');
+  const B=w.querySelectorAll('button'),inp=w.querySelector('input'),fb=w.querySelector('.fb'),sol=w.querySelector('.sol');
+  B[0].onclick=()=>{let v=inp.value.trim();v=v.indexOf(',')>=0?v.replace(/\./g,'').replace(',','.'):v;v=parseFloat(v);if(isNaN(v)){fb.textContent='Bitte eine Zahl eingeben.';return}
+   const ok=Math.abs(v-a.a)<=Math.max(Math.abs(a.a)*(+a.tol||1)/100,0.005);fb.textContent=ok?'Richtig.':'Nicht ganz. Prüfe den Lösungsweg.';fb.style.color=ok?'var(--ok)':'var(--red)';if(!ok)sol.hidden=false;const Y=egGet();if(!Y.st[k]||ok){Y.st[k]={ok,d:today()};lsS(EGK,Y)}};
+  B[1].onclick=()=>{sol.hidden=!sol.hidden}}
+ else{w.insertAdjacentHTML('beforeend','<textarea rows="4" aria-label="Deine Antwort"></textarea><div class="row"><button class="btn sec">Musterlösung zeigen</button></div><div class="sol" hidden><p><b>Musterlösung:</b> '+esc(a.m||'')+'</p>'+((a.s||[]).length?'<p class="sub">Hake ab, was in Deiner Antwort vorkommt:</p>'+a.s.map((x,j)=>'<label class="egc"><input type="checkbox" data-j="'+j+'"> '+esc(x)+'</label>').join(''):'')+'<div class="row"><button class="btn">Fertig</button></div></div>');
+  const B=w.querySelectorAll('button'),sol=w.querySelector('.sol');B[0].onclick=()=>{sol.hidden=false;B[0].hidden=true};
+  B[1].onclick=()=>{const c=w.querySelectorAll('.egc input'),n=[...c].filter(x=>x.checked).length;mark(!c.length||n>=Math.ceil(c.length*0.6))}}
+ return w}
+function egPanel(){const X=egGet(),S=Object.values(X.sets);if(!S.length)return null;const p=el('<h2>📝 Aufgaben von Deinem Dozenten</h2><p class="sub">Eigene Aufgaben Deines Dozenten, zum Beispiel als Hausaufgabe bis zum nächsten Kurstag. Sie zählen im Lernfortschritt mit.</p>','panel egp');
+ const re=()=>{const n=egPanel();if(n)p.replaceWith(n)};
+ S.forEach(s=>{const d=egDone(X,s),dt=document.createElement('details');dt.className='egs';if(d<s.auf.length)dt.open=true;dt.innerHTML='<summary><b>'+esc(s.titel)+'</b> <small>'+d+' von '+s.auf.length+' erledigt</small></summary>';
+  s.auf.forEach((a,i)=>dt.append(egTask(s,a,i,re)));const x=el('<button type="button" class="btn sec">Diese Aufgaben entfernen</button>','row');x.firstChild.onclick=e=>{if(!e.target.dataset.s){e.target.dataset.s=1;e.target.textContent='Wirklich entfernen?';return}const Y=egGet();delete Y.sets[s.id];Object.keys(Y.st).forEach(k=>{if(k.startsWith(s.id+'|'))delete Y.st[k]});lsS(EGK,Y);const n=egPanel();n?p.replaceWith(n):p.remove()};dt.append(x);p.append(dt)});return p}
+function egLoadBtn(msg){const l=el('<label class="btn sec">📝 Aufgaben-Datei vom Dozenten laden<input type="file" accept="application/json,.json" hidden></label>','row');l.querySelector('input').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{let m='';try{m=egAdd(JSON.parse(r.result))}catch(x){}msg(m||'Die Datei enthält keine Aufgaben von Lernlabor Betrieb.')};r.readAsText(f)};return l}
 const FACH=['reha','beha','mikp','zib'];
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
@@ -1559,7 +1601,7 @@ function mcqAll(f){const out=[];D[f].modules.forEach((m,i)=>m.mcq.forEach((q,j)=
 function mcqHTML(task,onDone){
  const q=task.q,opts=shuf([q[1],q[2],q[3],q[4]]);const w=document.createElement('div');w.className='q';
  w.innerHTML='<p>'+esc(q[0])+'</p>'+opts.map((o,i)=>'<button class="opt" data-i="'+i+'">'+esc(o)+'</button>').join('')+'<div class="fb" aria-live="polite"></div>';
- w.querySelectorAll('.opt').forEach((b,i)=>b.onclick=()=>{const ok=opts[i]===q[1];w.querySelectorAll('.opt').forEach((x,k)=>{x.disabled=true;if(opts[k]===q[1])x.classList.add('ok');else if(k===i)x.classList.add('bad')});w.querySelector('.fb').textContent=(ok?'Richtig. ':'Nicht ganz. ')+q[5];rec(task.f,task.m,ok);onDone&&onDone(ok)});
+ w.querySelectorAll('.opt').forEach((b,i)=>b.onclick=()=>{const ok=opts[i]===q[1];w.querySelectorAll('.opt').forEach((x,k)=>{x.disabled=true;if(opts[k]===q[1])x.classList.add('ok');else if(k===i)x.classList.add('bad')});w.querySelector('.fb').textContent=(ok?'Richtig. ':'Nicht ganz. ')+q[5];rec(task.f,task.m,ok);if(!ok&&!w.querySelector('.wlr')){const mt=D[task.f]&&D[task.f].modules[task.m],wl=mt&&fwChips(mt.t,'w');if(wl)w.querySelector('.fb').after(wl)}onDone&&onDone(ok)});
  return w}
 function calcHTML(c,onDone,mod){
  const t=c.gen(R),w=document.createElement('div');w.className='q';
@@ -1589,7 +1631,7 @@ function nav(){const inF=FACH.includes(tab);document.body.classList.toggle('subp
  nmClose();$('#fs').innerHTML=NG.map((g,i)=>'<button type="button" data-g="'+i+'" aria-pressed="'+g[2].includes(tab)+'"'+(i?' aria-haspopup="menu" aria-expanded="false"':'')+'><span class="ni" aria-hidden="true">'+g[0]+'</span><span>'+esc(g[1])+'</span></button>').join('');
  $('#fs').querySelectorAll('button').forEach(b=>b.onclick=()=>{const g=+b.dataset.g;if(!g){nmClose();go('home');window.scrollTo(0,0);return}if(NMO===g){nmClose();return}nmClose();NMO=g;b.setAttribute('aria-expanded','true');const m=$('#nm');
   m.innerHTML='<h3>'+(g===1?'Fächer':NG[g][1])+'</h3>'+NG[g][2].map(k=>{const l=TL[k],sp=l.indexOf(' '),ic='<span class="mi">'+l.slice(0,sp)+'</span>';return '<button type="button" role="menuitem" data-k="'+k+'" aria-current="'+(tab===k)+'">'+ic+'<span>'+l.slice(sp+1)+'</span></button>'}).join('');m.style.left=innerWidth>=900?b.offsetLeft+'px':'';m.hidden=false;$('#nmb').hidden=false;
-  m.querySelectorAll('button').forEach(x=>x.onclick=()=>{nmClose();const k=x.dataset.k;go(k);if(k!=='send')window.scrollTo(0,0)});m.querySelector('button').focus({preventScroll:true})})}
+  m.querySelectorAll('button').forEach(x=>x.onclick=()=>{nmClose();const k=x.dataset.k;if(k==='uben')uM=null;go(k);if(k!=='send')window.scrollTo(0,0)});m.querySelector('button').focus({preventScroll:true})})}
 function draw(){const v=$('#view');v.innerHTML='';({home,reha:()=>fach('reha'),beha:()=>fach('beha'),mikp:()=>fach('mikp'),zib:()=>fach('zib'),uben,fall,oral,sim,stand,kitutor:v=>KI.tutor(v,KCFG,kiPre),kipruf:v=>KI.pruefer(v,KCFG),doz:v=>doz(v)})[tab](v);kiPre=null}
 function el(h,c){const d=document.createElement('div');if(c)d.className=c;d.innerHTML=h;return d}
 /* Übersicht */
@@ -1701,18 +1743,21 @@ function fach(f){const v=$('#view');const d=D[f],ms=d.modules;const m=modSel[f],
  wrap.append(left);if(right.childNodes.length)wrap.append(right);else wrap.style.gridTemplateColumns='minmax(0,1fr)';v.append(wrap);
  requestAnimationFrame(()=>['#gs','#ms'].forEach(s=>{const r=$(s),b=r&&r.querySelector('[aria-pressed="true"]');if(b&&r.scrollWidth>r.clientWidth)r.scrollLeft=b.offsetLeft-(r.clientWidth-b.offsetWidth)/2}))}
 /* Üben */
-let uF='alle',uT='alle';
+let uF='alle',uT='alle',uM=null;
 function uben(v){
  const bar=el('<div class="row"><label>Fach <select id="uf"><option value="alle">Alle</option>'+FACH.map(f=>'<option value="'+f+'">'+D[f].name+'</option>').join('')+'</select></label><label>Typ <select id="ut"><option value="alle">Alle</option><option value="w">Wissensfragen</option><option value="r">Rechnen</option></select></label><button class="btn" id="nx">Nächste Aufgabe</button></div>','panel');
- const area=el('','');v.append(bar,area);$('#uf').value=uF;$('#ut').value=uT;
+ const area=el('','');{const ep=egPanel();if(ep)v.append(ep)}v.append(bar,area);$('#uf').value=uF;$('#ut').value=uT;
+ if(uM&&D[uM[0]]&&D[uM[0]].modules[uM[1]]){const c=el('<p class="sub">Nur Aufgaben zum Thema <b>'+esc(D[uM[0]].modules[uM[1]].t)+'</b> <button type="button" class="chip">Alle Themen</button></p>','');c.querySelector('button').onclick=()=>{uM=null;draw()};bar.append(c)}else uM=null;
  const next=()=>{area.innerHTML='';const fs=uF==='alle'?FACH:[uF];let pool=[];
-  if(uT!=='r')fs.forEach(f=>mcqAll(f).forEach(t=>pool.push(['w',t])));
-  if(uT!=='w')fs.forEach(f=>C.filter(c=>c.f===f).forEach(c=>{for(let i=0;i<3;i++)pool.push(['r',c])}));
+  const inM=(f,m)=>!uM||(uM[0]===f&&uM[1]===m);
+  if(uT!=='r')fs.forEach(f=>mcqAll(f).filter(t=>inM(t.f,t.m)).forEach(t=>pool.push(['w',t])));
+  if(uT!=='w')fs.forEach(f=>C.filter(c=>c.f===f&&inM(c.f,c.m)).forEach(c=>{for(let i=0;i<3;i++)pool.push(['r',c])}));
+  if(!pool.length&&uM){area.append(el('<p>Zu diesem Thema gibt es keine Aufgaben dieses Typs. Wähle oben einen anderen Typ.</p>',''));return}
   if(!pool.length)return;const x=R.p(pool);
   const tag='<span class="tag" style="background:'+D[x[0]==='w'?x[1].f:x[1].f].col+'">'+D[x[1].f].kurz+'</span>';
   const wrap=el(tag+(x[0]==='w'?esc(D[x[1].f].modules[x[1].m].t):esc(x[1].name)),'sub');area.append(wrap);
   area.append(x[0]==='w'?mcqHTML(x[1]):calcHTML(x[1]))};
- $('#uf').onchange=e=>{uF=e.target.value;setAcc(uF==='alle'?null:uF);next()};$('#ut').onchange=e=>{uT=e.target.value;next()};$('#nx').onclick=next;next()}
+ $('#uf').onchange=e=>{uF=e.target.value;uM=null;setAcc(uF==='alle'?null:uF);draw()};$('#ut').onchange=e=>{uT=e.target.value;next()};$('#nx').onclick=next;next()}
 /* Fallaufgaben */
 let fIdx=0,PAF='alle';
 /* Version 11: bearbeitete Prüfungsaufgaben merken (meisterlabor-pa, nur in diesem Browser). ✓ bearbeitet (Selbstbewertung fertig), ✎ begonnen, ○ offen */
@@ -1860,7 +1905,8 @@ function kmPanel(){const p=el(kmHTML(),'panel');p.id='kmp';const q=s=>p.querySel
   const k=kGet();let x=d;for(let i=0;i<(st?n:1);i++){k.d.push(x);k.e[x]={t,z,own:1};x=kAdd(x,st)}kSet(k);KM=d.slice(0,7);re(true)};
  if(q('#kmi'))q('#kmi').onclick=kursICS;return p}
 const stand0=stand;stand=function(v){stand0(v);const lt=v.querySelector('.lt');(lt?lt.parentNode:v.firstChild).after(kmPanel())};
-const home0=home;home=function(v){home0(v);const c=kursCard();if(c)v.firstChild.after(c)};
+const home0=home;home=function(v){home0(v);const c=kursCard();if(c)v.firstChild.after(c);
+ const E=egSum(),o=E.reduce((a,x)=>a+x.n-x.d,0);if(E.length){const e=el('<h2>📝 Aufgaben von Deinem Dozenten</h2><p>'+(o?'<b>'+o+' offen</b> · ':'✓ Alles erledigt · ')+E.map(x=>esc(x.t)+' '+x.d+'/'+x.n).join(' · ')+'</p><button type="button" class="btn'+(o?'':' sec')+'">Zu den Aufgaben</button>','panel egh');e.querySelector('button').onclick=()=>{go('uben');scrollTo(0,0)};(c||v.firstChild).after(e)}};
 /* ===== Einführung: kurze Tour beim ersten Öffnen, Hinweise beim ersten Besuch, im Leitstand wieder aufrufbar (wie Lernlabor v91) ===== */
 const TOUR=(()=>{const get=k=>{try{return localStorage.getItem(k)}catch(e){return null}},set=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
  const T=[
@@ -2358,7 +2404,7 @@ fach=function(f){const v=$('#view'),d=D[f],ms=d.modules,m=modSel[f],mod=ms[m],gi
  const cs=C.filter(x=>x.f===f&&x.m===m);
  if(cs.length){ub.append(el('<h2 style="margin-top:16px">🧮 Rechenaufgaben</h2><p class="sub">Zufallswerte, jedes Mal neu. Komma oder Punkt als Dezimalzeichen.</p>',''));
   cs.forEach(c=>{const h=document.createElement('div');const run=()=>{h.innerHTML='<span class="tag">'+esc(c.name)+'</span>';h.append(calcHTML(c,ok=>{if(ok)rfMark(key,'u')}));const b=document.createElement('button');b.className='btn sec';b.textContent='Neue Zahlen';b.onclick=run;h.append(b)};run();ub.append(h)})}
- const ut=el('<button type="button" class="btn">✏️ Gemischt üben in '+esc(d.kurz)+'</button>','ubt');ut.firstChild.onclick=()=>{uF=f;go('uben');scrollTo(0,0)};ub.append(ut);v.append(ub);
+ const ut=el('<button type="button" class="btn">✏️ Gemischt üben in '+esc(d.kurz)+'</button>','ubt');ut.firstChild.onclick=()=>{uF=f;uM=null;go('uben');scrollTo(0,0)};ub.append(ut);v.append(ub);
  if(E){const ns=el('<h2>Nachschlagen</h2>','panel nsl');
   ns.innerHTML+='<details><summary>💡 Verstehen</summary><p>'+esc(E[0])+'</p></details>'+(E[1]?'<details><summary>🏭 Im Betrieb</summary><p>'+esc(E[1])+'</p></details>':'')+'<details><summary>⚠️ Typische Fehler</summary><ul>'+E[2].map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></details>';
   v.append(ns)}
@@ -4082,7 +4128,7 @@ const drawT=draw;draw=function(){if(tab==='tour'){const v=q('#view');v.innerHTML
 window.tutOpen=k=>{TUK=Math.max(0,Math.min(K.length-1,k|0));go('tour');scrollTo(0,0)};
 
 /* Was ist neu (Ich → Sonstiges) */
-setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 15</h3><ul><li>Kurslink: Öffnest Du den Link oder QR-Code Deines Dozenten, richtet Lernlabor Betrieb Deinen Kurs mit allen Kurstagen ein. Der nächste Termin steht auf der Startseite, mit Knopf „In den Kalender“. Deine eigenen Termine bleiben.</li></ul><h3>Version 14</h3><ul><li>„Lernfortschritt senden“ enthält jetzt auch, wie viele Prüfungsaufgaben Du bearbeitet (✓) und begonnen (✎) hast.</li></ul><h3>Version 13</h3><ul><li>Technische Vorbereitung für Kurslinks Deines Dozenten. Für Dich ändert sich nichts.</li></ul><h3>Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
+setTimeout(()=>{const drawN=draw;draw=function(){drawN();if(tab!=='sonst')return;const d=q('#view .vneu');if(d&&!d.querySelector('.v10')){const s=d.querySelector('summary');s.insertAdjacentHTML('afterend','<div class="v10"><h3>🆕 Neu in Version 16</h3><ul><li>Nach einer falschen Antwort kannst Du antippen, woran es lag. Das hilft Dir und, wenn Du Deinen Lernfortschritt sendest, Deinem Dozenten.</li><li>Aufgaben von Deinem Dozenten: Über einen Link oder eine Datei kommen eigene Aufgaben in die App. Du findest sie oben unter Üben und auf der Startseite.</li><li>Dein Dozent kann Dir einen Link zum Üben genau eines Themas schicken.</li></ul><h3>Version 15</h3><ul><li>Kurslink: Öffnest Du den Link oder QR-Code Deines Dozenten, richtet Lernlabor Betrieb Deinen Kurs mit allen Kurstagen ein. Der nächste Termin steht auf der Startseite, mit Knopf „In den Kalender“. Deine eigenen Termine bleiben.</li></ul><h3>Version 14</h3><ul><li>„Lernfortschritt senden“ enthält jetzt auch, wie viele Prüfungsaufgaben Du bearbeitet (✓) und begonnen (✎) hast.</li></ul><h3>Version 13</h3><ul><li>Technische Vorbereitung für Kurslinks Deines Dozenten. Für Dich ändert sich nichts.</li></ul><h3>Version 12</h3><ul><li>16 neue Prüfungsaufgaben, vier je Fach: zum Beispiel Azubi in der Spätschicht, Akkord in der Vormontage, Workshop zur Rüstzeit und Vom Kollegen zum Meister.</li><li>16 neue Rechenaufgaben unter Üben, vier je Fach: zum Beispiel Ende der Entgeltfortzahlung, Return on Investment, Kostenabweichung im Projekt und Kosten der Einarbeitung.</li></ul><h3>Version 11</h3><ul><li>Prüfungsaufgaben: Lernlabor Betrieb merkt sich (nur in diesem Browser), welche Aufgaben bearbeitet (✓, Selbstbewertung fertig) oder begonnen (✎) sind. Die Auswahlliste zeigt die Zeichen, bei der Aufgabe stehen Datum und Punkte, und die neue Übersicht lässt sich nach offen, begonnen und bearbeitet filtern. Neu ist auch „Zufällige offene Aufgabe“.</li><li>Fehler behoben: Die Auswahl einer anderen Prüfungsaufgabe wechselte die Aufgabe nicht.</li></ul><h3>Version 10</h3><ul><li>Tutorial unter 👤 Ich › 🧭 Tutorial: sechs kurze Kapitel mit kleinen Übungen, wie im Lernlabor.</li><li>Beim ersten Öffnen eine Kurzeinführung in vier Karten, die auf das Tutorial verweist.</li></ul><h3>Version 9</h3><ul><li>Alle 49 Themen haben jetzt Vermuten, ein Erklärvideo „Kurz erklärt“ und eine Skizze.</li></ul><h3>Version 8</h3><ul><li>Bedienung und Gestaltung wie im Lernlabor: Thema wechseln, Schrittleiste, Nachschlagen, Üben mit Hilfe und Lösungsweg, eigene Adresse je Thema.</li></ul></div>')}}},0);
 
 /* FN-01: Größe, „=“ und Wert nicht trennen (geschütztes Leerzeichen um = und ≈ in sichtbaren Texten) */
 (()=>{const RX=/ ([=≈]) /g,SKIP='SCRIPT,STYLE,TEXTAREA,INPUT,OPTION,svg,text,tspan';
@@ -4114,15 +4160,16 @@ const SL={},SN={};FACH.forEach(f=>D[f].modules.forEach((m,i)=>{let s=slug(m.t);i
 const RN={uben:'ueben',betrieb:'im-betrieb',fall:'pruefungsaufgaben',glossar:'glossar',formeln:'formelsammlung',oral:'muendlich',sim:'simulation',stand:'lernstand',kurs:'kurstermine',sonst:'sonstiges',tour:'tutorial',doz:'dozent'};
 const RT=Object.fromEntries(Object.entries(RN).map(([a,b])=>[b,a]));
 let ROUT=false;
-const route=()=>FACH.includes(tab)?'thema/'+SN[tab+':'+modSel[tab]]:tab==='fall'?'pruefungsaufgaben/'+(fIdx+1):tab==='stand'&&KMV?'kurstermine':(RN[tab]||'');
+const route=()=>FACH.includes(tab)?'thema/'+SN[tab+':'+modSel[tab]]:tab==='uben'&&uM?'ueben/'+SN[uM[0]+':'+uM[1]]:tab==='fall'?'pruefungsaufgaben/'+(fIdx+1):tab==='stand'&&KMV?'kurstermine':(RN[tab]||'');
 /* Links zeigen immer auf die öffentliche App, auch aus der lokalen Dozentendatei (file:// oder …dozent….html) */
 const PAGES='https://bam01872.github.io/Meisterlabor/';
 const base=()=>location.protocol==='file:'?PAGES:(location.origin+location.pathname).replace(/[^/]*dozent[^/]*\.html$/i,'');
 const link=r=>base()+(r?'#'+r:'');
 function sync(){if(ROUT)return;const r=route(),want=r?'#'+r:'';if(location.hash===want||(!want&&!location.hash))return;
  try{history.replaceState(Object.assign({},history.state,{y:scrollY}),'');history.pushState({y:0},'',want||location.pathname+location.search)}catch(e){}}
-function openRoute(h){{const raw=(h||'').replace(/^#/,'');if(/^kurs\//.test(raw)){const m=kursImport(raw.slice(5));go('home');try{history.replaceState({y:0},'',location.pathname+location.search)}catch(e){}if(m)setTimeout(()=>toast(m),300);return}}h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
+function openRoute(h){{const raw=(h||'').replace(/^#/,'');if(/^aufgaben\//.test(raw)){const m=egImport(raw.slice(9));uM=null;go(m?'uben':'home');try{history.replaceState({y:0},'',location.pathname+location.search)}catch(e){}setTimeout(()=>toast(m||'Der Aufgabenlink ist unvollständig. Bitte Deinen Dozenten um einen neuen Link.'),300);return}if(/^kurs\//.test(raw)){const m=kursImport(raw.slice(5));go('home');try{history.replaceState({y:0},'',location.pathname+location.search)}catch(e){}if(m)setTimeout(()=>toast(m),300);return}}h=decodeURIComponent((h||'').replace(/^#/,''));const [a,...b]=h.split('/'),r=b.join('/');
  if(a==='thema'&&SL[r]){modSel[SL[r][0]]=SL[r][1];go(SL[r][0])}
+ else if(a==='ueben'&&SL[r]){uF=SL[r][0];uM=SL[r];uT='alle';go('uben')}
  else if(a==='pruefungsaufgaben'){const n=parseInt(r,10);if(n>=1&&n<=CASES.length)fIdx=n-1;go('fall')}
  else if(RT[a]&&(a!=='dozent'||DOZENT))go(RT[a]);else go('home')}
 window.llSync=sync;window.llRoute=route;
@@ -4221,7 +4268,7 @@ const calcL=calcHTML;calcHTML=function(c,onDone,mod){const w=calcL(c,onDone,mod)
   if(!/^Nicht ganz/.test(tx))return;fails++;
   let u=NaN;if(!t.dt){let s=inp.value.trim();s=s.indexOf(',')>=0?s.replace(/\./g,'').replace(',','.'):s;u=parseFloat(s)}
   fb.textContent='✗ Noch nicht. '+(t.dt?'Prüfe Startdatum, Fristbeginn und Feiertage.':hint(u,t.a,t.u));
-  if(fails===1&&!w.querySelector('.wlr')){const mt=D[c.f]&&D[c.f].modules[c.m],E=mt&&typeof ERK!=='undefined'&&ERK[mt.t];if(E&&E[2]&&E[2].length){const wl=document.createElement('div');wl.className='wlr';wl.innerHTML='<p class="wlh"><b>Woran lag es?</b> Tippe an, was passiert sein könnte.</p>'+E[2].map(x=>'<button type="button" class="chip" aria-pressed="false">'+esc(x).replace(/([A-Za-zσλμϑΔεηṁ])_([A-Za-z0-9äöü]+)/g,'$1<sub>$2</sub>')+'</button>').join('')+'<p class="sub wlt" hidden>Gut erkannt. Rechne mit diesem Punkt im Kopf noch einmal.</p>';wl.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{wl.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));wl.querySelector('.wlt').hidden=false});fb.after(wl)}}
+  if(fails===1&&!w.querySelector('.wlr')){const mt=D[c.f]&&D[c.f].modules[c.m],wl=mt&&fwChips(mt.t,'r');if(wl)fb.after(wl)}
   if(fails===1){sol.hidden=true;lock()}else{sol.hidden=true;unlock();fb.textContent+=' Jetzt kannst Du den Lösungsweg ansehen.'}});
  return w};
 
@@ -4305,6 +4352,51 @@ if(DOZENT){const KGK='meisterlabor-dozkl';
    try{localStorage.setItem(KGK,JSON.stringify({n,z,t}))}catch(e){}const r=kgLink(n,z,t);
    o.innerHTML=`<p class="sub">${r.n} Termine im Link${r.bad.length?'. Nicht lesbar und weggelassen: Zeile '+r.bad.join(', '):''}.</p><input class="qru" readonly value="${rEsc(r.u)}" aria-label="Kurslink"><div class="row"><button class="btn sec" id="kgc">Link kopieren</button><button class="btn sec" id="kgq">▦ QR-Code zeigen</button></div>`;
    $k('#kgq').onclick=()=>qrShow('Kurs '+n,r.u,'Mit der Handy-Kamera scannen. Der Link richtet den Kurs mit allen Kurstagen ein.');$k('#kgc').onclick=()=>{const i=$k('.qru');i.select();(navigator.clipboard?navigator.clipboard.writeText(r.u):Promise.reject()).then(()=>toast('Kurslink kopiert'),()=>{try{document.execCommand('copy');toast('Kurslink kopiert')}catch(e){}})}}}}
+
+/* ---------- Version 16 (Dozent): eigene Aufgaben schreiben und weitergeben, Übungslinks je Thema ---------- */
+if(DOZENT){const EAK='meisterlabor-dozauf';
+ const lnk=(u,t,h)=>{const d=document.createElement('div');d.innerHTML=`<input class="qru" readonly value="${rEsc(u)}" aria-label="Link"><div class="row"><button class="btn sec" data-c>Link kopieren</button><button class="btn sec" data-q>▦ QR-Code</button></div>`;
+  d.querySelector('[data-q]').onclick=()=>qrShow(t,u,h);d.querySelector('[data-c]').onclick=()=>{d.querySelector('input').select();(navigator.clipboard?navigator.clipboard.writeText(u):Promise.reject()).then(()=>toast('Link kopiert'),()=>{try{document.execCommand('copy');toast('Link kopiert')}catch(e){}})};return d};
+ const eaGet=()=>lsJ(EAK,{titel:'',auf:[]}),eaSet=x=>lsS(EAK,x);
+ const eaSet1=()=>{const x=eaGet();return{typ:'meisterlabor-aufgaben',v:1,id:x.id||'d0',titel:x.titel||'Aufgaben vom Dozenten',auf:x.auf}};
+ const dz1=doz;doz=function(v,msg){dz1(v,msg);
+  /* Eigene Aufgaben */
+  const X=eaGet(),p=document.createElement('div');p.className='panel dzp';p.id='egen';
+  p.innerHTML=`<h2>✍️ Eigene Aufgaben</h2><p class="sub">Schreibe eigene Rechen- oder Textaufgaben und gib sie als Link, QR-Code oder Datei weiter. Bei den Teilnehmenden erscheinen sie oben unter Üben und auf der Startseite. Nur eigene Aufgaben, keine IHK-Originale.</p>
+  <label class="kgl">Titel der Aufgabenreihe<input type="text" id="eat" maxlength="80" placeholder="z. B. Hausaufgabe BeHa bis 05.12." value="${rEsc(X.titel)}"></label>
+  ${X.auf.length?`<ol class="egl">${X.auf.map((a,i)=>`<li><span><b>${a.art==='r'?'🧮':'📝'} ${D[a.f]?D[a.f].kurz:''}</b> ${rEsc(a.q.length>110?a.q.slice(0,110)+' …':a.q)}${a.art==='r'?` <small>= ${rEsc(pN(a.a))} ${rEsc(a.u||'')}</small>`:''}</span><button class="dx" data-ex="${i}" aria-label="Aufgabe ${i+1} entfernen">✕</button></li>`).join('')}</ol>`:'<p class="sub">Noch keine Aufgaben in der Liste.</p>'}
+  <details id="eanew"${X.auf.length?'':' open'}><summary><b>Aufgabe hinzufügen</b></summary>
+  <div class="row"><label>Art <select id="eaa"><option value="r">Rechenaufgabe</option><option value="t">Textaufgabe</option></select></label><label>Fach <select id="eaf">${FACH.map(f=>`<option value="${f}">${D[f].kurz}</option>`).join('')}</select></label></div>
+  <label class="kgl">Aufgabentext<textarea id="eaq" rows="3"></textarea></label>
+  <div class="egf" id="ear"><div class="row"><label>Ergebnis <input type="text" id="eav" inputmode="decimal" size="10"></label><label>Einheit <input type="text" id="eau" size="6" placeholder="€"></label><label>Toleranz % <input type="text" id="eol" inputmode="decimal" size="4" value="1"></label></div><label class="kgl">Lösungsweg, ein Schritt pro Zeile<textarea id="eaw" rows="3"></textarea></label></div>
+  <div class="egf" id="eatx" hidden><label class="kgl">Musterlösung<textarea id="eam" rows="3"></textarea></label><label class="kgl">Stichpunkte zum Abhaken, einer pro Zeile<textarea id="eas" rows="3"></textarea></label></div>
+  <div class="row"><button class="btn" id="eaadd">Aufgabe hinzufügen</button></div></details>
+  <p class="sub" id="eamsg" aria-live="polite"></p>
+  ${X.auf.length?'<div class="row"><button class="btn" id="eal">Link erstellen</button><button class="btn sec" id="ead">Als Datei speichern</button><button class="btn sec" id="eax">Liste leeren</button></div><div id="eao"></div>':''}`;
+  v.append(p);const $e=x=>p.querySelector(x),rd=m=>{const y=scrollY;v.innerHTML='';doz(v);scrollTo(0,y);if(m){const g=v.querySelector('#eamsg');if(g)g.textContent=m}};
+  $e('#eat').onchange=()=>{const x=eaGet();x.titel=$e('#eat').value.trim();eaSet(x)};
+  $e('#eaa').onchange=()=>{const r=$e('#eaa').value==='r';$e('#ear').hidden=!r;$e('#eatx').hidden=r};
+  p.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const x=eaGet();x.auf.splice(+b.dataset.ex,1);eaSet(x);rd('Aufgabe entfernt.')});
+  $e('#eaadd').onclick=()=>{const art=$e('#eaa').value,q=$e('#eaq').value.trim(),m=$e('#eamsg');if(!q){m.textContent='Bitte einen Aufgabentext eintragen.';return}
+   const a={id:Date.now().toString(36),art,f:$e('#eaf').value,q:q.slice(0,1500)};
+   if(art==='r'){let t=$e('#eav').value.trim();t=t.indexOf(',')>=0?t.replace(/\./g,'').replace(',','.'):t;if(t===''||isNaN(+t)){m.textContent='Bitte das Ergebnis als Zahl eintragen, z. B. 1250,50.';return}
+    a.a=+t;a.u=$e('#eau').value.trim().slice(0,12);a.tol=Math.min(20,Math.max(0,parseFloat($e('#eol').value.replace(',','.'))||1));a.w=$e('#eaw').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,15)}
+   else{a.m=$e('#eam').value.trim().slice(0,2000);a.s=$e('#eas').value.split('\n').map(x=>x.trim()).filter(Boolean).slice(0,10);if(!a.m&&!a.s.length){m.textContent='Bitte eine Musterlösung oder Stichpunkte eintragen.';return}}
+   const x=eaGet();if(!x.id)x.id='d'+Date.now().toString(36);x.titel=$e('#eat').value.trim();if(x.auf.length>=40){m.textContent='Höchstens 40 Aufgaben je Reihe.';return}x.auf.push(a);eaSet(x);rd('Aufgabe '+x.auf.length+' hinzugefügt.')};
+  if($e('#eal')){$e('#eal').onclick=()=>{const S=eaSet1(),u=base()+'#aufgaben/'+b64e(JSON.stringify(S)),o=$e('#eao');o.innerHTML=`<p class="sub">${S.auf.length} ${S.auf.length===1?'Aufgabe':'Aufgaben'}, Link mit ${u.length} Zeichen.${u.length>1500?' Für einen QR-Code ist der Link sehr lang. Schicke ihn lieber als Link oder Datei.':''}</p>`;o.append(lnk(u,S.titel,'Mit der Handy-Kamera scannen. Der Link übernimmt die Aufgaben in Lernlabor Betrieb.'))};
+   $e('#ead').onclick=()=>{const S=eaSet1();try{dl(JSON.stringify(S),'aufgaben-'+(S.titel.toLowerCase().replace(/[^a-z0-9äöüß]+/g,'-').replace(/^-+|-+$/g,'')||'dozent')+'.json','application/json');$e('#eamsg').textContent='Datei gespeichert. Die Teilnehmenden laden sie unter Ich › Lernfortschritt senden › „Aufgaben-Datei vom Dozenten laden“.'}catch(e){$e('#eamsg').textContent='Speichern ist hier nicht möglich.'}};
+   $e('#eax').onclick=e=>{if(!e.target.dataset.s){e.target.dataset.s=1;e.target.textContent='Wirklich leeren?';return}eaSet({titel:'',auf:[]});rd('Liste geleert.')}}
+  /* Übungslinks je Thema */
+  const all=dozAll(),L=Object.values(all).filter(o=>DOZK==='*'||(o.kurs||'')===DOZK),T=[];FACH.forEach(f=>D[f].modules.forEach((m,i)=>T.push([f,i,m.t])));
+  const b=document.createElement('div');b.className='panel dzp';b.id='bpl';
+  b.innerHTML=`<h2>🎯 Übungslinks je Thema</h2><p class="sub">Ein Link öffnet bei den Teilnehmenden direkt die passende Übung. <b>Basis</b>: das Thema mit Merkbox und Check-Fragen. <b>Plus</b>: gemischte Wissens- und Rechenaufgaben nur zu diesem Thema. <b>Prüfung</b>: eine Prüfungsaufgabe aus dem Fach.</p><label class="kgl">Thema <select id="bpt">${FACH.map(f=>`<optgroup label="${D[f].kurz}">${T.filter(x=>x[0]===f).map(x=>`<option value="${x[0]}:${x[1]}">${rEsc(x[2])}</option>`).join('')}</optgroup>`).join('')}</select></label><div id="bpo"></div>`;
+  v.append(b);const show=()=>{const [f,i]=b.querySelector('#bpt').value.split(':'),n=+i,sl=SN[f+':'+n],o=b.querySelector('#bpo'),C2=CASES.map((c,k)=>[c,k]).filter(x=>x[0].f===f),nC=C2.some(x=>C.some(c=>c.f===f&&c.m===n));
+   const B=[],P=[],O=[];L.forEach(x=>{const m=(x.module||{})[f+':'+n];if(!m||m.n<3)O.push(x.name);else if(m.ok/m.n>=0.8)P.push(x.name);else B.push(x.name)});
+   const who=a=>a.length?a.map(rEsc).join(', '):'–';o.innerHTML=(L.length?`<p class="sub">Empfehlung aus ${L.length} Lernständen. Das ist ein Vorschlag, Du entscheidest.</p><ul class="bprec"><li><b>🟡 Plus</b> (ab 80 %, mindestens 3 Antworten): ${who(P)}</li><li><b>🟢 Basis</b> (unter 80 %): ${who(B)}</li><li><b>🟢 Basis</b> (noch zu wenig geübt): ${who(O)}</li></ul>`:'<p class="sub">Mit geladenen Lernständen steht hier eine Empfehlung, wer Basis und wer Plus bekommt.</p>')+
+    `<div class="bprow" data-l="b"><p><b>🟢 Basis</b> · Thema mit Check-Fragen</p></div><div class="bprow" data-l="p"><p><b>🟡 Plus</b> · Wissensfragen${C.some(c=>c.f===f&&c.m===n)?' und Rechenaufgaben':''} nur zu diesem Thema</p></div><div class="bprow" data-l="x"><p><b>🔴 Prüfung</b> · Prüfungsaufgabe aus ${D[f].kurz} <select id="bpc" aria-label="Prüfungsaufgabe">${C2.map(([c,k])=>`<option value="${k+1}">${rEsc(c.t)}</option>`).join('')}</select></p><div></div></div>`;
+   const t=D[f].modules[n].t;o.querySelector('[data-l=b]').append(lnk(base()+'#thema/'+sl,t+' · Basis','Mit der Handy-Kamera scannen. Der Link öffnet das Thema mit den Check-Fragen.'));o.querySelector('[data-l=p]').append(lnk(base()+'#ueben/'+sl,t+' · Plus','Mit der Handy-Kamera scannen. Der Link öffnet das Üben zu diesem Thema.'));
+   const px=()=>{const k=o.querySelector('#bpc').value,d=o.querySelector('[data-l=x]>div');d.innerHTML='';d.append(lnk(base()+'#pruefungsaufgaben/'+k,'Prüfungsaufgabe: '+CASES[k-1].t,'Mit der Handy-Kamera scannen. Der Link öffnet die Prüfungsaufgabe.'))};o.querySelector('#bpc').onchange=px;px()};
+  b.querySelector('#bpt').onchange=show;show()}}
 
 /* ---------- Start: Adresse aus dem Link öffnen ---------- */
 if(location.hash&&!/^#(glossar|formelsammlung)$/.test(location.hash)){ROUT=true;try{openRoute(location.hash)}finally{ROUT=false}}else nav();
